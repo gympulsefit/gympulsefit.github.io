@@ -27,8 +27,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="img/icon.png">
 <link rel="apple-touch-icon" href="img/icon.png">
-<meta name="google-site-verification" content="DGbmN3u5YZqPYP7oXoBu73FGIkUK-Fvcan2WPgeFIfA">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "MobileApplication", "name": "GymPulse", "operatingSystem": "iOS, Android", "applicationCategory": "HealthApplication", "inLanguage": ["ru", "uk", "en", "es", "fr", "de", "zh"], "description": "GymPulse — дневник тренировок: ранги силы, карта нагрузки на мышцы, умные цели, программы для зала и дома.", "url": "https://gympulsefit.github.io/", "image": "https://gympulsefit.github.io/img/og.jpg", "publisher": {"@type": "Organization", "name": "GymPulse", "email": "gympulse.development@gmail.com"}}</script>
+DGbmN3u5YZqPYP7oXoBu73FGIkUK-Fvcan2WPgeFIfA<script type="application/ld+json">{"@context": "https://schema.org", "@type": "MobileApplication", "name": "GymPulse", "operatingSystem": "iOS, Android", "applicationCategory": "HealthApplication", "inLanguage": ["ru", "uk", "en", "es", "fr", "de", "zh"], "description": "GymPulse — дневник тренировок: ранги силы, карта нагрузки на мышцы, умные цели, программы для зала и дома.", "url": "https://gympulsefit.github.io/", "image": "https://gympulsefit.github.io/img/og.jpg", "publisher": {"@type": "Organization", "name": "GymPulse", "email": "gympulse.development@gmail.com"}}</script>
 
 <script>(function(){var l;try{l=new URLSearchParams(location.search).get('lang')||localStorage.getItem('gp_lang')}catch(e){}if(l!=='ru'&&l!=='en')l=/^(ru|uk|be|kk)/i.test(navigator.language||'')?'ru':'en';document.documentElement.lang=l})()</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -119,10 +118,10 @@
 .head-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
 .rail { display: flex; gap: 22px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 34px 0 20px; scrollbar-width: none; }
 .rail::-webkit-scrollbar { display: none; }
-.rail figure { flex: none; margin: 0; scroll-snap-align: center; width: 230px; }
-.rail .phone { width: 230px; border-radius: 34px; padding: 8px; box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.9), 0 0 0 1px #3a363b inset; }
-.rail .phone img { border-radius: 27px; }
-.rail .phone::after { top: 15px; height: 17px; }
+.rail figure { flex: none; margin: 0; scroll-snap-align: center; width: 272px; }
+.rail .phone { width: 272px; border-radius: 40px; padding: 9px; box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.9), 0 0 0 1px #3a363b inset; }
+.rail .phone img { border-radius: 32px; image-rendering: -webkit-optimize-contrast; }
+.rail .phone::after { top: 17px; height: 20px; }
 .rail figcaption { margin-top: 14px; }
 .rail figcaption b { display: block; font-family: var(--f-display); font-style: italic; text-transform: uppercase; font-weight: 800; font-size: 16px; }
 .rail figcaption span { color: var(--mut); font-size: 13.5px; }
@@ -131,16 +130,22 @@
 .rail-nav button:hover { background: var(--line); }
 
 .split { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 40px; }
-.prog { padding: 28px; }
-.prog .tag { display: inline-flex; font-family: var(--f-mono); font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 7px 12px; border-radius: 10px; background: var(--ac-soft); color: var(--ac-2); }
-.prog ul { list-style: none; margin: 18px 0 0; padding: 0; display: grid; }
-.prog li { display: flex; justify-content: space-between; gap: 12px; padding: 11px 0; border-bottom: 1px dashed var(--line); font-weight: 600; font-size: 15px; }
-.prog li:last-child { border-bottom: 0; }
-.prog li > span:last-child { color: var(--mut); font-weight: 500; font-size: 12.5px; font-family: var(--f-mono); white-space: nowrap; text-align: right; }
+.prog { padding: 30px; display: flex; flex-direction: column; }
+.prog .tag { align-self: flex-start; display: inline-flex; font-family: var(--f-mono); font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 7px 12px; border-radius: 10px; background: var(--ac-soft); color: var(--ac-2); }
+.prog ul { list-style: none; margin: 20px 0 0; padding: 0; display: grid; counter-reset: p; }
+.prog li { counter-increment: p; display: grid; grid-template-columns: 30px 1fr auto; align-items: center; gap: 12px; padding: 13px 0; border-bottom: 1px solid var(--line); }
+.prog li::before { content: counter(p, decimal-leading-zero); font-family: var(--f-mono); font-size: 12px; font-weight: 500; color: var(--mut); opacity: .7; }
+.prog .n { font-weight: 600; font-size: 15.5px; letter-spacing: -0.005em; line-height: 1.3; }
+.prog .m { font-family: var(--f-mono); font-size: 11.5px; font-weight: 500; letter-spacing: 0.02em; white-space: nowrap; padding: 4px 9px; border-radius: 8px; background: rgba(255, 255, 255, 0.06); color: var(--mut); }
+.prog .pmore { margin: 16px 0 0; padding-top: 2px; font-size: 13.5px; color: var(--mut); line-height: 1.45; }
+.prog .pmore b { color: var(--fg); font-weight: 600; }
 .prog.home { background: linear-gradient(150deg, var(--ac), var(--ac-2)); color: var(--on-ac); border: 0; }
-.prog.home li > span:last-child { color: rgba(26, 14, 0, 0.7); }
 .prog.home .tag { background: rgba(26, 14, 0, 0.12); color: var(--on-ac); }
-.prog.home li { border-color: rgba(26, 14, 0, 0.22); }
+.prog.home li { border-color: rgba(26, 14, 0, 0.16); }
+.prog.home li::before { color: rgba(26, 14, 0, 0.55); opacity: 1; }
+.prog.home .m { background: rgba(26, 14, 0, 0.1); color: rgba(26, 14, 0, 0.78); }
+.prog.home .pmore { color: rgba(26, 14, 0, 0.68); }
+.prog.home .pmore b { color: var(--on-ac); }
 
 .priv { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 40px; align-items: start; }
 .checks { display: grid; gap: 12px; }
@@ -216,7 +221,7 @@
       <div class="soon"><span class="dot" aria-hidden="true"></span><span data-l="ru">Готовится к выходу в App Store и Google Play</span><span data-l="en">Coming soon to the App Store and Google Play</span></div>
     </div>
     <div class="stage">
-      <div class="phone"><img src="img/home.jpg" alt="GymPulse" width="640" height="1391"></div>
+      <div class="phone"><img src="img/home.jpg" alt="GymPulse" width="960" height="2087"></div>
       <div class="chip c1"><span class="hex" aria-hidden="true"></span><div><span data-l="ru">Ранг: Золото</span><span data-l="en">Rank: Gold</span><small><span data-l="ru">Грудь · жим лёжа</span><span data-l="en">Chest · bench press</span></small></div></div>
       <div class="chip c2"><span class="n" data-l="ru">+2,5 кг</span><span class="n" data-l="en">+5 lb</span><div><span data-l="ru">Новая цель</span><span data-l="en">New target</span><small><span data-l="ru">Жим лёжа 102,5 × 6</span><span data-l="en">Bench press 225 × 6</span></small></div></div>
       <div class="chip c3"><span class="fl" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24"><path d="M12 21c3.9 0 6.5-2.6 6.5-6.3 0-3.3-2.1-5.4-3.8-7.3-.5 1.8-1.5 2.8-2.7 3.2.2-2.7-.8-5.4-3.3-7.6-.3 3.3-2.1 5.1-3.6 7.1-1 1.3-1.6 2.9-1.6 4.6C5.5 18.4 8.1 21 12 21z" fill="#FF7A00"/></svg></span><div><span data-l="ru">4 дня на этой неделе</span><span data-l="en">4 days this week</span><small><span data-l="ru">серия продолжается</span><span data-l="en">streak is on</span></small></div></div>
@@ -335,15 +340,15 @@
       <div class="rail-nav"><button type="button" id="prev" aria-label="Previous">←</button><button type="button" id="next" aria-label="Next">→</button></div>
     </div>
     <div class="rail" id="rail">
-      <figure><div class="phone"><img loading="lazy" src="img/home.jpg" alt="" width="640" height="1391"></div><figcaption><b data-l="ru">Главная</b><b data-l="en">Home</b><span data-l="ru">Неделя, серия и быстрый старт</span><span data-l="en">Your week, streak and quick start</span></figcaption></figure>
-      <figure><div class="phone"><img loading="lazy" src="img/rec.jpg" alt="" width="640" height="1391"></div><figcaption><b data-l="ru">Восстановление</b><b data-l="en">Recovery</b><span data-l="ru">Какие мышцы готовы к работе</span><span data-l="en">Which muscles are ready</span></figcaption></figure>
-      <figure><div class="phone"><img loading="lazy" src="img/rank.jpg" alt="" width="640" height="1391"></div><figcaption><b data-l="ru">Прогресс</b><b data-l="en">Progress</b><span data-l="ru">Ранг каждой группы мышц</span><span data-l="en">A rank for every muscle group</span></figcaption></figure>
-      <figure><div class="phone"><img loading="lazy" src="img/tgt.jpg" alt="" width="640" height="1391"></div><figcaption><b data-l="ru">Цели</b><b data-l="en">Targets</b><span data-l="ru">Вес на следующую тренировку</span><span data-l="en">Weight for your next session</span></figcaption></figure>
-      <figure><div class="phone"><img loading="lazy" src="img/load.jpg" alt="" width="640" height="1391"></div><figcaption><b data-l="ru">Нагрузка</b><b data-l="en">Load</b><span data-l="ru">Подходы на группу за 30 дней</span><span data-l="en">Sets per muscle group, 30 days</span></figcaption></figure>
-      <figure><div class="phone"><img loading="lazy" src="img/prog.jpg" alt="" width="640" height="1391"></div><figcaption><b data-l="ru">Программы</b><b data-l="en">Programs</b><span data-l="ru">Свои и готовые, старт в одно касание</span><span data-l="en">Yours and ready-made, one tap to start</span></figcaption></figure>
-      <figure><div class="phone"><img loading="lazy" src="img/chal.jpg" alt="" width="640" height="1391"></div><figcaption><b data-l="ru">Челленджи</b><b data-l="en">Challenges</b><span data-l="ru">Уровни, опыт и задания</span><span data-l="en">Levels, XP and goals</span></figcaption></figure>
-      <figure><div class="phone"><img loading="lazy" src="img/lb.jpg" alt="" width="640" height="1391"></div><figcaption><b data-l="ru">Рейтинг</b><b data-l="en">Leaderboard</b><span data-l="ru">Ваше место в мире и стране</span><span data-l="en">Your place worldwide and at home</span></figcaption></figure>
-      <figure><div class="phone"><img loading="lazy" src="img/hist.jpg" alt="" width="640" height="1391"></div><figcaption><b data-l="ru">История</b><b data-l="en">History</b><span data-l="ru">Календарь и все тренировки</span><span data-l="en">Calendar and every workout</span></figcaption></figure>
+      <figure><div class="phone"><img loading="lazy" src="img/home.jpg" alt="" width="960" height="2087"></div><figcaption><b data-l="ru">Главная</b><b data-l="en">Home</b><span data-l="ru">Неделя, серия и быстрый старт</span><span data-l="en">Your week, streak and quick start</span></figcaption></figure>
+      <figure><div class="phone"><img loading="lazy" src="img/rec.jpg" alt="" width="960" height="2087"></div><figcaption><b data-l="ru">Восстановление</b><b data-l="en">Recovery</b><span data-l="ru">Какие мышцы готовы к работе</span><span data-l="en">Which muscles are ready</span></figcaption></figure>
+      <figure><div class="phone"><img loading="lazy" src="img/rank.jpg" alt="" width="960" height="2087"></div><figcaption><b data-l="ru">Прогресс</b><b data-l="en">Progress</b><span data-l="ru">Ранг каждой группы мышц</span><span data-l="en">A rank for every muscle group</span></figcaption></figure>
+      <figure><div class="phone"><img loading="lazy" src="img/tgt.jpg" alt="" width="960" height="2087"></div><figcaption><b data-l="ru">Цели</b><b data-l="en">Targets</b><span data-l="ru">Вес на следующую тренировку</span><span data-l="en">Weight for your next session</span></figcaption></figure>
+      <figure><div class="phone"><img loading="lazy" src="img/load.jpg" alt="" width="960" height="2087"></div><figcaption><b data-l="ru">Нагрузка</b><b data-l="en">Load</b><span data-l="ru">Подходы на группу за 30 дней</span><span data-l="en">Sets per muscle group, 30 days</span></figcaption></figure>
+      <figure><div class="phone"><img loading="lazy" src="img/prog.jpg" alt="" width="960" height="2087"></div><figcaption><b data-l="ru">Программы</b><b data-l="en">Programs</b><span data-l="ru">Свои и готовые, старт в одно касание</span><span data-l="en">Yours and ready-made, one tap to start</span></figcaption></figure>
+      <figure><div class="phone"><img loading="lazy" src="img/chal.jpg" alt="" width="960" height="2087"></div><figcaption><b data-l="ru">Челленджи</b><b data-l="en">Challenges</b><span data-l="ru">Уровни, опыт и задания</span><span data-l="en">Levels, XP and goals</span></figcaption></figure>
+      <figure><div class="phone"><img loading="lazy" src="img/lb.jpg" alt="" width="960" height="2087"></div><figcaption><b data-l="ru">Рейтинг</b><b data-l="en">Leaderboard</b><span data-l="ru">Ваше место в мире и стране</span><span data-l="en">Your place worldwide and at home</span></figcaption></figure>
+      <figure><div class="phone"><img loading="lazy" src="img/hist.jpg" alt="" width="960" height="2087"></div><figcaption><b data-l="ru">История</b><b data-l="en">History</b><span data-l="ru">Календарь и все тренировки</span><span data-l="en">Calendar and every workout</span></figcaption></figure>
     </div>
   </div>
 </section>
@@ -357,24 +362,24 @@
       <div class="card prog rv">
         <span class="tag"><span data-l="ru">В зале · 15</span><span data-l="en">Gym · 15</span></span>
         <ul>
-          <li><span><span data-l="ru">Жим: грудь, плечи, трицепс</span><span data-l="en">Push: chest, shoulders, triceps</span></span><span data-l="ru">5 упр.</span><span data-l="en">5 ex.</span></li>
-          <li><span><span data-l="ru">Тяга: спина и бицепс</span><span data-l="en">Pull: back and biceps</span></span><span data-l="ru">5 упр.</span><span data-l="en">5 ex.</span></li>
-          <li><span><span data-l="ru">Ноги и ягодицы</span><span data-l="en">Legs and glutes</span></span><span data-l="ru">5 упр.</span><span data-l="en">5 ex.</span></li>
-          <li><span><span data-l="ru">Верх тела в тренажёрах</span><span data-l="en">Upper body on machines</span></span><span data-l="ru">6 упр.</span><span data-l="en">6 ex.</span></li>
-          <li><span><span data-l="ru">Сила: базовые упражнения</span><span data-l="en">Strength: the big lifts</span></span><span data-l="ru">5 упр.</span><span data-l="en">5 ex.</span></li>
-          <li><span><span data-l="ru">Руки, ягодицы, пресс и ещё 7</span><span data-l="en">Arms, glutes, abs and 7 more</span></span><span></span></li>
+          <li><span class="n"><span data-l="ru">Жим: грудь, плечи, трицепс</span><span data-l="en">Push: chest, shoulders, triceps</span></span><span class="m"><span data-l="ru">5 упр.</span><span data-l="en">5 ex.</span></span></li>
+          <li><span class="n"><span data-l="ru">Тяга: спина и бицепс</span><span data-l="en">Pull: back and biceps</span></span><span class="m"><span data-l="ru">5 упр.</span><span data-l="en">5 ex.</span></span></li>
+          <li><span class="n"><span data-l="ru">Ноги и ягодицы</span><span data-l="en">Legs and glutes</span></span><span class="m"><span data-l="ru">5 упр.</span><span data-l="en">5 ex.</span></span></li>
+          <li><span class="n"><span data-l="ru">Верх тела в тренажёрах</span><span data-l="en">Upper body on machines</span></span><span class="m"><span data-l="ru">6 упр.</span><span data-l="en">6 ex.</span></span></li>
+          <li><span class="n"><span data-l="ru">Сила: базовые упражнения</span><span data-l="en">Strength: the big lifts</span></span><span class="m"><span data-l="ru">5 упр.</span><span data-l="en">5 ex.</span></span></li>
         </ul>
+        <p class="pmore"><span data-l="ru"><b>+ ещё 10</b> — руки, ягодицы, пресс и другие</span><span data-l="en"><b>+ 10 more</b> — arms, glutes, abs and others</span></p>
       </div>
       <div class="card prog home rv">
         <span class="tag"><span data-l="ru">Дома · 8</span><span data-l="en">Home · 8</span></span>
         <ul>
-          <li><span><span data-l="ru">Старт дома</span><span data-l="en">Home starter</span></span><span data-l="ru">без инвентаря</span><span data-l="en">no equipment</span></li>
-          <li><span><span data-l="ru">Всё тело: турник и пол</span><span data-l="en">Full body: bar and floor</span></span><span data-l="ru">турник</span><span data-l="en">pull-up bar</span></li>
-          <li><span><span data-l="ru">Турник и брусья</span><span data-l="en">Bar and dips</span></span><span data-l="ru">турник, брусья</span><span data-l="en">bar, dip bars</span></li>
-          <li><span><span data-l="ru">Ноги без железа</span><span data-l="en">Legs, no weights</span></span><span data-l="ru">стул</span><span data-l="en">chair</span></li>
-          <li><span><span data-l="ru">Круговая жиросжигающая</span><span data-l="en">Fat-burning circuit</span></span><span data-l="ru">без инвентаря</span><span data-l="en">no equipment</span></li>
-          <li><span><span data-l="ru">Пресс, гантели дома и ещё 1</span><span data-l="en">Abs, dumbbells and 1 more</span></span><span></span></li>
+          <li><span class="n"><span data-l="ru">Старт дома</span><span data-l="en">Home starter</span></span><span class="m"><span data-l="ru">без инвентаря</span><span data-l="en">no equipment</span></span></li>
+          <li><span class="n"><span data-l="ru">Всё тело: турник и пол</span><span data-l="en">Full body: bar and floor</span></span><span class="m"><span data-l="ru">турник</span><span data-l="en">pull-up bar</span></span></li>
+          <li><span class="n"><span data-l="ru">Турник и брусья</span><span data-l="en">Bar and dips</span></span><span class="m"><span data-l="ru">турник, брусья</span><span data-l="en">bar, dip bars</span></span></li>
+          <li><span class="n"><span data-l="ru">Ноги без железа</span><span data-l="en">Legs, no weights</span></span><span class="m"><span data-l="ru">стул</span><span data-l="en">chair</span></span></li>
+          <li><span class="n"><span data-l="ru">Круговая жиросжигающая</span><span data-l="en">Fat-burning circuit</span></span><span class="m"><span data-l="ru">без инвентаря</span><span data-l="en">no equipment</span></span></li>
         </ul>
+        <p class="pmore"><span data-l="ru"><b>+ ещё 3</b> — пресс, гантели дома и другие</span><span data-l="en"><b>+ 3 more</b> — abs, home dumbbells and others</span></p>
       </div>
     </div>
   </div>
