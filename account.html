@@ -8,7 +8,7 @@
 <meta name="gp:title-en" content="GymPulse — Account">
 <meta name="description" content="Управление аккаунтом GymPulse.">
 <meta name="theme-color" content="#08070A">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-vhCojYVqglzWc3rxSe71ZzEY8ykdeRPMenTMEMSjk7M=' 'sha256-+N1O2ZhB4fCDuWW6IZrmTO3uLFp5yGKeGTYfXfHgf4A=' 'sha256-ujYWzJKeQBLWagDcQnxqzu0/yEpIm5n63ieNqsLZJpg=' https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.119.0/; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://tsquteboyugfvkewymhu.supabase.co; connect-src 'self' https://tsquteboyugfvkewymhu.supabase.co wss://tsquteboyugfvkewymhu.supabase.co; object-src 'none'; frame-src 'none'; worker-src 'none'; manifest-src 'self'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-vhCojYVqglzWc3rxSe71ZzEY8ykdeRPMenTMEMSjk7M=' 'sha256-+N1O2ZhB4fCDuWW6IZrmTO3uLFp5yGKeGTYfXfHgf4A=' 'sha256-25fCiRb4iYJKmDPbPjr32mXl3Fm/svxAkvFXTJlMIlY=' https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.119.0/; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://tsquteboyugfvkewymhu.supabase.co; connect-src 'self' https://tsquteboyugfvkewymhu.supabase.co wss://tsquteboyugfvkewymhu.supabase.co; object-src 'none'; frame-src 'none'; worker-src 'none'; manifest-src 'self'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <script>if (self !== top) { try { top.location.href = self.location.href; } catch (e) {} document.documentElement.style.display = 'none'; }</script>
 
 <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -48,6 +48,26 @@
 .acc .note { color: var(--mut); font-size: 13.5px; margin-top: 8px; }
 .acc .big { width: 64px; height: 64px; border-radius: 50%; background: rgba(47, 210, 122, .14); display: grid; place-items: center; margin: 6px 0 14px; }
 .acc [hidden] { display: none !important; }
+.imp-src { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 14px 0; }
+.imp-app { background: var(--panel-2); border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; font-size: 13px; color: var(--mut); }
+.imp-app b { display: block; color: var(--fg); font-size: 15px; margin-bottom: 2px; }
+.drop { display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; border: 1.5px dashed rgba(255, 122, 0, .45); border-radius: 18px; padding: 26px 16px; cursor: pointer; background: rgba(255, 122, 0, .04); transition: background .2s, border-color .2s; }
+.drop:hover, .drop.over { background: rgba(255, 122, 0, .1); border-color: var(--ac); }
+.drop-ic { font-size: 26px; color: var(--ac); line-height: 1; }
+.drop .note { margin: 0; }
+.imp-sum { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 16px 0 10px; }
+.imp-sum div { background: var(--panel-2); border: 1px solid var(--line); border-radius: 14px; padding: 12px; }
+.imp-sum b { display: block; font-family: var(--f-display); font-style: italic; font-weight: 900; font-size: 24px; color: var(--ac); }
+.imp-sum span { color: var(--mut); font-size: 12.5px; }
+.imp-sum .wide { grid-column: 1 / -1; color: var(--mut); font-size: 13.5px; }
+.seg { display: inline-flex; padding: 3px; border-radius: 11px; background: var(--panel-2); border: 1px solid var(--line); }
+.seg button { border: 0; background: transparent; color: var(--mut); font-weight: 700; padding: 6px 14px; border-radius: 8px; cursor: pointer; font-family: var(--f-mono); }
+.seg button.on { background: var(--ac); color: var(--on-ac); }
+.imp-unk { margin: 10px 0 0; }
+.imp-unk summary { cursor: pointer; color: var(--ac-2); font-size: 13.5px; font-weight: 600; }
+.bar { height: 8px; border-radius: 6px; background: var(--panel-2); overflow: hidden; margin-top: 14px; }
+.bar i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--ac), var(--ac-2)); transition: width .3s; }
+@media (max-width: 560px) { .imp-src { grid-template-columns: 1fr; } .imp-sum { grid-template-columns: 1fr 1fr; } }
 .mfa-steps { margin: 14px 0 0; padding-left: 20px; color: var(--fg); display: grid; gap: 6px; font-size: 14.5px; }
 .mfa-qr { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; margin: 16px 0 4px; }
 .mfa-qr img { width: 168px; height: 168px; background: #fff; border-radius: 16px; padding: 8px; }
@@ -249,6 +269,28 @@
             <div class="dl-item"><b data-t="jsonT"></b><p data-t="jsonS"></p><button type="button" class="btn btn-gh" id="x-json" data-t="download"></button></div>
           </div>
         </div>
+        <div class="card" id="imp-card">
+          <h2 data-t="impT"></h2>
+          <p data-t="impS"></p>
+          <div class="imp-src">
+            <div class="imp-app"><b>Strong</b><span data-t="impStrong"></span></div>
+            <div class="imp-app"><b>Hevy</b><span data-t="impHevy"></span></div>
+          </div>
+          <label class="drop" id="imp-drop">
+            <input type="file" id="imp-file" accept=".csv,text/csv,text/plain" hidden>
+            <span class="drop-ic" aria-hidden="true">⇪</span>
+            <b data-t="impPick"></b>
+            <span class="note" data-t="impPickS"></span>
+          </label>
+          <div id="imp-prev" hidden>
+            <div class="imp-sum" id="imp-sum"></div>
+            <div class="row" id="imp-unit-row" hidden><span class="note" style="margin:0" data-t="impUnit"></span>
+              <div class="seg"><button type="button" data-u="kg" class="on">kg</button><button type="button" data-u="lb">lb</button></div></div>
+            <details class="imp-unk" id="imp-unk" hidden><summary></summary><p class="note" id="imp-unk-list"></p></details>
+            <div class="bar" id="imp-bar" hidden><i></i></div>
+            <div class="row"><button type="button" class="btn btn-gh" id="imp-cancel" data-t="cancel"></button><button type="button" class="btn btn-ac" id="imp-go"></button></div>
+          </div>
+        </div>
       </div>
 
       <!-- Резервные копии -->
@@ -332,7 +374,7 @@
 <script>
 const SUPABASE_URL = 'https://tsquteboyugfvkewymhu.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_idamVW06MDAkTXfMhYo3RQ_-R0iIrN2';
-const EXN = {"Жим лёжа":["Bench Press",0],"Жим гантелей лёжа":["Dumbbell Bench Press",0],"Жим на наклонной скамье":["Incline Bench Press",0],"Разведение гантелей":["Dumbbell Fly",0],"Отжимания на брусьях":["Dips",0],"Сведение в кроссовере":["Cable Crossover",0],"Становая тяга":["Deadlift",1],"Подтягивания":["Pull-ups",1],"Тяга штанги в наклоне":["Barbell Row",1],"Тяга верхнего блока":["Lat Pulldown",1],"Тяга нижнего блока":["Seated Cable Row",1],"Тяга гантели одной рукой":["One-Arm Dumbbell Row",1],"Гиперэкстензия":["Back Extension",1],"Приседания со штангой":["Barbell Squat",2],"Фронтальные приседания":["Front Squat",2],"Жим ногами":["Leg Press",2],"Румынская тяга":["Romanian Deadlift",2],"Выпады":["Lunges",2],"Болгарские сплит-приседания":["Bulgarian Split Squat",2],"Разгибание ног":["Leg Extension",2],"Сгибание ног":["Leg Curl",2],"Подъём на носки":["Calf Raise",2],"Ягодичный мост":["Glute Bridge",2],"Жим стоя":["Overhead Press",3],"Жим гантелей сидя":["Seated Dumbbell Press",3],"Махи гантелей в стороны":["Lateral Raise",3],"Тяга к подбородку":["Upright Row",3],"Обратные разведения":["Reverse Fly",3],"Подъём штанги на бицепс":["Barbell Curl",4],"Молотки":["Hammer Curl",4],"Французский жим":["Skull Crusher",4],"Разгибание на трицепс в блоке":["Triceps Pushdown",4],"Сгибание на скамье Скотта":["Preacher Curl",4],"Скручивания":["Crunches",5],"Подъём ног в висе":["Hanging Leg Raise",5],"Планка (сек)":["Plank (sec)",5],"Жим гантелей на наклонной скамье":["Incline Dumbbell Press",0],"Жим в тренажёре на грудь":["Machine Chest Press",0],"Отжимания от пола":["Push-ups",0],"Пуловер с гантелью":["Dumbbell Pullover",0],"Сведение в тренажёре «бабочка»":["Pec Deck Fly",0],"Жим на скамье с обратным наклоном":["Decline Bench Press",0],"Т-тяга":["T-Bar Row",1],"Тяга в рычажном тренажёре":["Machine Row",1],"Шраги со штангой":["Barbell Shrugs",1],"Шраги с гантелями":["Dumbbell Shrugs",1],"Пуловер на верхнем блоке":["Straight-Arm Pulldown",1],"Подтягивания обратным хватом":["Chin-ups",1],"Гакк-приседания":["Hack Squat",2],"Приседания в Смите":["Smith Machine Squat",2],"Становая тяга сумо":["Sumo Deadlift",2],"Гоблет-приседания":["Goblet Squat",2],"Зашагивания на платформу":["Step-ups",2],"Отведение ноги в кроссовере":["Cable Glute Kickback",2],"Сведение ног в тренажёре":["Hip Adduction Machine",2],"Разведение ног в тренажёре":["Hip Abduction Machine",2],"Подъём на носки сидя":["Seated Calf Raise",2],"Жим Арнольда":["Arnold Press",3],"Махи в кроссовере":["Cable Lateral Raise",3],"Подъём гантелей перед собой":["Front Raise",3],"Жим в тренажёре на плечи":["Machine Shoulder Press",3],"Тяга каната к лицу":["Face Pull",3],"Обратные разведения в тренажёре":["Reverse Pec Deck",3],"Жим лёжа узким хватом":["Close-Grip Bench Press",4],"Разгибание гантели из-за головы":["Overhead Dumbbell Extension",4],"Подъём гантелей на бицепс":["Dumbbell Curl",4],"Концентрированный подъём на бицепс":["Concentration Curl",4],"Сгибание рук на блоке":["Cable Curl",4],"Кикбэк с гантелью":["Dumbbell Kickback",4],"Обратные отжимания от скамьи":["Bench Dips",4],"Сгибание запястий":["Wrist Curl",4],"Русские скручивания":["Russian Twist",5],"Велосипед":["Bicycle Crunch",5],"Боковая планка (сек)":["Side Plank (sec)",5],"Подъём ног лёжа":["Lying Leg Raise",5],"Ролик для пресса":["Ab Wheel Rollout",5],"Скручивания на блоке":["Cable Crunch",5],"Приседания с собственным весом":["Bodyweight Squat",2],"Приседания с выпрыгиванием":["Jump Squat",2],"Стульчик у стены (сек)":["Wall Sit (sec)",2],"Алмазные отжимания":["Diamond Push-ups",4],"Отжимания с ногами на возвышении":["Decline Push-ups",0],"Пайк-отжимания":["Pike Push-ups",3],"Австралийские подтягивания":["Inverted Row",1],"Супермен":["Superman",1],"Альпинист (сек)":["Mountain Climbers (sec)",5],"Бёрпи":["Burpees",6]};
+const EXN = {"Жим лёжа": ["Bench Press", 0], "Жим гантелей лёжа": ["Dumbbell Bench Press", 0], "Жим на наклонной скамье": ["Incline Bench Press", 0], "Разведение гантелей": ["Dumbbell Fly", 0], "Отжимания на брусьях": ["Dips", 0], "Сведение в кроссовере": ["Cable Crossover", 0], "Становая тяга": ["Deadlift", 1], "Подтягивания": ["Pull-ups", 1], "Тяга штанги в наклоне": ["Barbell Row", 1], "Тяга верхнего блока": ["Lat Pulldown", 1], "Тяга нижнего блока": ["Seated Cable Row", 1], "Тяга гантели одной рукой": ["One-Arm Dumbbell Row", 1], "Гиперэкстензия": ["Back Extension", 1], "Приседания со штангой": ["Barbell Squat", 2], "Фронтальные приседания": ["Front Squat", 2], "Жим ногами": ["Leg Press", 2], "Румынская тяга": ["Romanian Deadlift", 2], "Выпады": ["Lunges", 2], "Болгарские сплит-приседания": ["Bulgarian Split Squat", 2], "Разгибание ног": ["Leg Extension", 2], "Сгибание ног": ["Leg Curl", 2], "Подъём на носки": ["Calf Raise", 2], "Ягодичный мост": ["Glute Bridge", 2], "Жим стоя": ["Overhead Press", 3], "Жим гантелей сидя": ["Seated Dumbbell Press", 3], "Махи гантелей в стороны": ["Lateral Raise", 3], "Тяга к подбородку": ["Upright Row", 3], "Обратные разведения": ["Reverse Fly", 3], "Подъём штанги на бицепс": ["Barbell Curl", 4], "Молотки": ["Hammer Curl", 4], "Французский жим": ["Skull Crusher", 4], "Разгибание на трицепс в блоке": ["Triceps Pushdown", 4], "Сгибание на скамье Скотта": ["Preacher Curl", 4], "Скручивания": ["Crunches", 5], "Подъём ног в висе": ["Hanging Leg Raise", 5], "Планка (сек)": ["Plank (sec)", 5], "Жим гантелей на наклонной скамье": ["Incline Dumbbell Press", 0], "Жим в тренажёре на грудь": ["Machine Chest Press", 0], "Отжимания от пола": ["Push-ups", 0], "Пуловер с гантелью": ["Dumbbell Pullover", 0], "Сведение в тренажёре «бабочка»": ["Pec Deck Fly", 0], "Жим на скамье с обратным наклоном": ["Decline Bench Press", 0], "Т-тяга": ["T-Bar Row", 1], "Тяга в рычажном тренажёре": ["Machine Row", 1], "Шраги со штангой": ["Barbell Shrugs", 1], "Шраги с гантелями": ["Dumbbell Shrugs", 1], "Пуловер на верхнем блоке": ["Straight-Arm Pulldown", 1], "Подтягивания обратным хватом": ["Chin-ups", 1], "Гакк-приседания": ["Hack Squat", 2], "Приседания в Смите": ["Smith Machine Squat", 2], "Становая тяга сумо": ["Sumo Deadlift", 2], "Гоблет-приседания": ["Goblet Squat", 2], "Зашагивания на платформу": ["Step-ups", 2], "Отведение ноги в кроссовере": ["Cable Glute Kickback", 2], "Сведение ног в тренажёре": ["Hip Adduction Machine", 2], "Разведение ног в тренажёре": ["Hip Abduction Machine", 2], "Подъём на носки сидя": ["Seated Calf Raise", 2], "Жим Арнольда": ["Arnold Press", 3], "Махи в кроссовере": ["Cable Lateral Raise", 3], "Подъём гантелей перед собой": ["Front Raise", 3], "Жим в тренажёре на плечи": ["Machine Shoulder Press", 3], "Тяга каната к лицу": ["Face Pull", 3], "Обратные разведения в тренажёре": ["Reverse Pec Deck", 3], "Жим лёжа узким хватом": ["Close-Grip Bench Press", 4], "Разгибание гантели из-за головы": ["Overhead Dumbbell Extension", 4], "Подъём гантелей на бицепс": ["Dumbbell Curl", 4], "Концентрированный подъём на бицепс": ["Concentration Curl", 4], "Сгибание рук на блоке": ["Cable Curl", 4], "Кикбэк с гантелью": ["Dumbbell Kickback", 4], "Обратные отжимания от скамьи": ["Bench Dips", 4], "Сгибание запястий": ["Wrist Curl", 4], "Русские скручивания": ["Russian Twist", 5], "Велосипед": ["Bicycle Crunch", 5], "Боковая планка (сек)": ["Side Plank (sec)", 5], "Подъём ног лёжа": ["Lying Leg Raise", 5], "Ролик для пресса": ["Ab Wheel Rollout", 5], "Скручивания на блоке": ["Cable Crunch", 5], "Приседания с собственным весом": ["Bodyweight Squat", 2], "Приседания с выпрыгиванием": ["Jump Squat", 2], "Стульчик у стены (сек)": ["Wall Sit (sec)", 2], "Алмазные отжимания": ["Diamond Push-ups", 4], "Отжимания с ногами на возвышении": ["Decline Push-ups", 0], "Пайк-отжимания": ["Pike Push-ups", 3], "Австралийские подтягивания": ["Inverted Row", 1], "Супермен": ["Superman", 1], "Альпинист (сек)": ["Mountain Climbers (sec)", 5], "Бёрпи": ["Burpees", 6], "Разведение гантелей на наклонной скамье": ["Incline Dumbbell Fly", 0], "Сведение в кроссовере снизу вверх": ["Low-to-High Cable Fly", 0], "Жим лёжа в Смите": ["Smith Machine Bench Press", 0], "Жим в Смите на наклонной скамье": ["Incline Smith Machine Press", 0], "Тяга Пендли": ["Pendlay Row", 1], "Тяга верхнего блока узким хватом": ["Close-Grip Lat Pulldown", 1], "Тяга гантелей лёжа на наклонной скамье": ["Chest-Supported Dumbbell Row", 1], "Рэк-тяга": ["Rack Pull", 1], "Гуд монинг": ["Good Morning", 1], "Подтягивания в гравитроне": ["Assisted Pull-up", 1], "Хип-траст со штангой": ["Barbell Hip Thrust", 2], "Приседания плие с гантелью": ["Dumbbell Sumo Squat", 2], "Выпады назад": ["Reverse Lunge", 2], "Выпады в ходьбе": ["Walking Lunges", 2], "Сгибание ног сидя": ["Seated Leg Curl", 2], "Становая тяга с трэп-грифом": ["Trap Bar Deadlift", 2], "Пистолетик": ["Pistol Squat", 2], "Нордические сгибания": ["Nordic Hamstring Curl", 2], "Румынская тяга с гантелями": ["Dumbbell Romanian Deadlift", 2], "Запрыгивания на тумбу": ["Box Jump", 2], "Жим штанги сидя": ["Seated Barbell Press", 3], "Жим гантелей стоя": ["Standing Dumbbell Press", 3], "Жим в Смите сидя": ["Smith Machine Shoulder Press", 3], "Жим лендмайн": ["Landmine Press", 3], "Разгибание на трицепс с канатом": ["Rope Triceps Pushdown", 4], "Разгибание из-за головы на блоке": ["Overhead Cable Triceps Extension", 4], "Подъём EZ-штанги на бицепс": ["EZ-Bar Curl", 4], "Сгибание рук на наклонной скамье": ["Incline Dumbbell Curl", 4], "Паучьи сгибания": ["Spider Curl", 4], "Обратные сгибания со штангой": ["Reverse Barbell Curl", 4], "Молотки с канатом на блоке": ["Cable Rope Hammer Curl", 4], "Французский жим с гантелями": ["Dumbbell Skull Crusher", 4], "Подъём коленей в висе": ["Hanging Knee Raise", 5], "Мёртвый жук": ["Dead Bug", 5], "Дровосек в кроссовере": ["Cable Woodchopper", 5], "Паллоф-пресс": ["Pallof Press", 5], "Обратные скручивания": ["Reverse Crunch", 5], "Скручивания на наклонной скамье": ["Decline Crunch", 5], "Ножницы (сек)": ["Flutter Kicks (sec)", 5], "Прогулка фермера (сек)": ["Farmer's Walk (sec)", 6], "Махи гирей": ["Kettlebell Swing", 6], "Трастеры": ["Thrusters", 6]};
 const LB = 2.20462;
 const TIERS = [['Бронза', 'Bronze', '#B9784A'], ['Серебро', 'Silver', '#AEB8C2'], ['Золото', 'Gold', '#E8BE3E'], ['Платина', 'Platinum', '#4FD1C5'], ['Алмаз', 'Diamond', '#6FB8FF'], ['Элита', 'Elite', '#A78BFA']];
 const T = {
@@ -360,6 +402,12 @@ const T = {
     mfaHelp: 'После пароля нужно ввести 6 цифр из Google Authenticator или похожего приложения. Даже зная пароль, без вашего телефона войти нельзя.', mfaEnable: 'Включить 2FA', mfaDisable: 'Выключить 2FA',
     mfaS1: 'Установите на телефон Google Authenticator, Microsoft Authenticator или 1Password.', mfaS2: 'Отсканируйте QR-код или введите ключ вручную.', mfaS3: 'Введите 6 цифр из приложения и нажмите «Подтвердить».',
     mfaKey: 'Ключ для ручного ввода', mfaOnT: '2FA включена. Теперь при входе понадобится код из приложения.', mfaOffQ: 'Выключить 2FA? Вход снова будет только по паролю.', mfaOffT: '2FA выключена.', mfaBad: 'Неверный код. Проверьте время на телефоне и попробуйте ещё раз.',
+    impT: 'Перенос из Strong и Hevy', impS: 'Заберите всю историю тренировок из другого приложения: подходы, веса, разминки, дроп-сеты и суперсеты. Повторный импорт того же файла ничего не задвоит.',
+    impStrong: 'Профиль → Настройки → «Экспорт данных Strong»', impHevy: 'Профиль → Настройки → «Экспорт и импорт» → «Экспорт тренировок»',
+    impPick: 'Выберите CSV-файл', impPickS: 'или перетащите его сюда', impUnit: 'В чём записаны веса в Strong?', impW: 'тренировок', impS2: 'подходов', impE: 'упражнений узнали',
+    impFrom: 'Файл {src}: с {a} по {b}', impUnk: 'Не узнали {n} упр. — добавим как ваши собственные', impGo: 'Перенести тренировки: {n}',
+    impBig: 'Файл слишком большой (больше 30 МБ).', impBad: 'Не получилось прочитать файл. Нужен CSV, выгруженный из Strong или Hevy.', impEmpty: 'В файле не нашлось подходов с повторами.',
+    impDone: 'Готово! Перенесено тренировок: {n}. Откройте GymPulse — история появится после синхронизации.', impFail: 'Не удалось перенести:',
     deleted: 'Аккаунт удалён.', linkBad: 'Ссылка устарела или уже использована. Запросите новую.', wait: 'Подождите…', netErr: 'Не удалось загрузить данные. Проверьте интернет и обновите страницу.' },
   en: { loading: 'Loading…', accEyebrow: 'GymPulse account', toAccount: 'Open my account', newPwT: 'New password', newPwS: 'Choose a new password for GymPulse.', newPw: 'New password', repeatPw: 'Repeat password',
     pwRule: 'At least 8 characters with Latin letters and numbers.', savePw: 'Save password', loginT: 'Sign in', loginS: 'Your profile, workout history, data, backups and security settings.', email: 'Email', password: 'Password',
@@ -385,6 +433,12 @@ const T = {
     mfaHelp: 'After your password you enter 6 digits from Google Authenticator or a similar app. Even with your password, nobody can sign in without your phone.', mfaEnable: 'Turn on 2FA', mfaDisable: 'Turn off 2FA',
     mfaS1: 'Install Google Authenticator, Microsoft Authenticator or 1Password on your phone.', mfaS2: 'Scan the QR code or type the key manually.', mfaS3: 'Enter the 6 digits from the app and press “Verify”.',
     mfaKey: 'Key for manual entry', mfaOnT: '2FA is on. You will need a code from the app to sign in.', mfaOffQ: 'Turn off 2FA? Sign-in will be password-only again.', mfaOffT: '2FA is off.', mfaBad: 'Wrong code. Check your phone’s clock and try again.',
+    impT: 'Move from Strong or Hevy', impS: 'Bring your whole training history from another app: sets, weights, warm-ups, drop sets and supersets. Importing the same file again won’t create duplicates.',
+    impStrong: 'Profile → Settings → “Export Strong Data”', impHevy: 'Profile → Settings → “Export & Import Data” → “Export Workouts”',
+    impPick: 'Choose a CSV file', impPickS: 'or drop it here', impUnit: 'Which unit are the weights in Strong?', impW: 'workouts', impS2: 'sets', impE: 'exercises matched',
+    impFrom: '{src} file: {a} to {b}', impUnk: '{n} exercises not matched — we’ll add them as your own', impGo: 'Import {n} workouts',
+    impBig: 'The file is too large (over 30 MB).', impBad: 'Could not read the file. Use a CSV exported from Strong or Hevy.', impEmpty: 'No sets with reps were found in the file.',
+    impDone: 'Done: {n} workouts imported. Open GymPulse — your history appears after it syncs.', impFail: 'Import failed:',
     deleted: 'Account deleted.', linkBad: 'This link has expired or was already used. Request a new one.', wait: 'Please wait…', netErr: 'Could not load your data. Check your connection and refresh the page.' } };
 const lang = () => (window.gpLang ? window.gpLang() : 'ru');
 const t = (k, p) => (T[lang()][k] || k).replace(/\{(\w+)\}/g, (_, x) => (p && p[x] != null ? p[x] : ''));
@@ -539,7 +593,7 @@ $('x-csv').onclick = async () => {
   const head = en ? ['Date', 'Workout', 'Exercise', 'Set', 'Type', 'Weight', 'Unit', 'Reps', 'Done', 'Weight (kg)', 'Body weight (kg)', 'Note']
     : ['Дата', 'Тренировка', 'Упражнение', 'Подход', 'Тип', 'Вес', 'Ед.', 'Повторы', 'Выполнен', 'Вес (кг)', 'Вес тела (кг)', 'Заметка'];
   const rows = [head.join(sep)];
-  W.slice().reverse().forEach(w => w.items.forEach(i => (i.sets || []).forEach((s, k) => rows.push([w.date, w.name || '', exName(i.n), k + 1, s.t === 'x' ? (en ? 'warm-up' : 'разминка') : (en ? 'working' : 'рабочий'),
+  W.slice().reverse().forEach(w => w.items.forEach(i => (i.sets || []).forEach((s, k) => rows.push([w.date, w.name || '', exName(i.n), k + 1, s.t === 'x' ? (en ? 'warm-up' : 'разминка') : s.t === 'd' ? (en ? 'drop set' : 'дроп-сет') : s.t === 'f' ? (en ? 'to failure' : 'до отказа') : (en ? 'working' : 'рабочий'),
     s.w === '' || s.w == null ? '' : num(s.w), s.u || 'kg', s.r == null ? '' : s.r, s.d ? (en ? 'yes' : 'да') : (en ? 'no' : 'нет'), N(s.w) ? num(Math.round(kgOf(s) * 100) / 100) : '',
     N(w.bw) ? num(Math.round(N(w.bw) / (w.bwu === 'lb' ? LB : 1) * 10) / 10) : '', i.note || ''].map(q).join(sep)))));
   save('GymPulse-workouts-' + stamp() + '.csv', '﻿' + rows.join('\r\n'), 'text/csv;charset=utf-8'); msg(t('prepared', { n: W.length }), true);
@@ -600,6 +654,197 @@ $('lb').onclick = async e => {
     else { const { error } = await sb.from('leaderboard').delete().eq('user_id', U.id); if (error) throw error; await saveG({ lb: 0 }); msg(t('lbLeft'), true); }
   } catch (err) { msg(err.message || String(err)); }
   loadLb();
+};
+
+// ---------- импорт из Strong и Hevy ----------
+const IMP_MAP = {
+  'bench press': { barbell: 'Жим лёжа', dumbbell: 'Жим гантелей лёжа', 'smith machine': 'Жим лёжа в Смите', machine: 'Жим в тренажёре на грудь', '': 'Жим лёжа' },
+  'incline bench press': { barbell: 'Жим на наклонной скамье', dumbbell: 'Жим гантелей на наклонной скамье', 'smith machine': 'Жим в Смите на наклонной скамье', '': 'Жим на наклонной скамье' },
+  'incline dumbbell press': 'Жим гантелей на наклонной скамье', 'incline chest press': { machine: 'Жим в тренажёре на грудь', '': 'Жим гантелей на наклонной скамье' },
+  'decline bench press': 'Жим на скамье с обратным наклоном', 'close grip bench press': 'Жим лёжа узким хватом', 'chest press': 'Жим в тренажёре на грудь',
+  'chest fly': { dumbbell: 'Разведение гантелей', machine: 'Сведение в тренажёре «бабочка»', cable: 'Сведение в кроссовере', '': 'Разведение гантелей' },
+  'incline chest fly': 'Разведение гантелей на наклонной скамье', 'incline dumbbell fly': 'Разведение гантелей на наклонной скамье',
+  'butterfly': 'Сведение в тренажёре «бабочка»', 'pec deck': 'Сведение в тренажёре «бабочка»', 'cable crossover': 'Сведение в кроссовере',
+  'cable fly crossovers': 'Сведение в кроссовере', 'low cable fly crossovers': 'Сведение в кроссовере снизу вверх', 'low to high cable fly': 'Сведение в кроссовере снизу вверх',
+  'chest dip': 'Отжимания на брусьях', 'dip': 'Отжимания на брусьях', 'triceps dip': { assisted: 'Отжимания на брусьях', '': 'Отжимания на брусьях' }, 'bench dip': 'Обратные отжимания от скамьи',
+  'push up': 'Отжимания от пола', 'diamond push up': 'Алмазные отжимания', 'decline push up': 'Отжимания с ногами на возвышении', 'pike push up': 'Пайк-отжимания',
+  'pullover': 'Пуловер с гантелью', 'straight arm pulldown': 'Пуловер на верхнем блоке', 'straight arm lat pulldown': 'Пуловер на верхнем блоке',
+  'deadlift': { barbell: 'Становая тяга', 'trap bar': 'Становая тяга с трэп-грифом', dumbbell: 'Румынская тяга с гантелями', '': 'Становая тяга' },
+  'trap bar deadlift': 'Становая тяга с трэп-грифом', 'sumo deadlift': 'Становая тяга сумо', 'rack pull': 'Рэк-тяга', 'good morning': 'Гуд монинг',
+  'romanian deadlift': { dumbbell: 'Румынская тяга с гантелями', '': 'Румынская тяга' }, 'stiff leg deadlift': { dumbbell: 'Румынская тяга с гантелями', '': 'Румынская тяга' },
+  'pull up': { assisted: 'Подтягивания в гравитроне', machine: 'Подтягивания в гравитроне', '': 'Подтягивания' }, 'assisted pull up': 'Подтягивания в гравитроне', 'chin up': 'Подтягивания обратным хватом',
+  'lat pulldown': 'Тяга верхнего блока', 'wide grip lat pulldown': 'Тяга верхнего блока', 'close grip lat pulldown': 'Тяга верхнего блока узким хватом', 'lat pulldown close grip': 'Тяга верхнего блока узким хватом',
+  'seated row': { machine: 'Тяга в рычажном тренажёре', '': 'Тяга нижнего блока' }, 'seated cable row': 'Тяга нижнего блока', 'cable row': 'Тяга нижнего блока',
+  'bent over row': { dumbbell: 'Тяга гантели одной рукой', '': 'Тяга штанги в наклоне' }, 'barbell row': 'Тяга штанги в наклоне', 'pendlay row': 'Тяга Пендли',
+  'dumbbell row': 'Тяга гантели одной рукой', 'one arm dumbbell row': 'Тяга гантели одной рукой', 'single arm row': 'Тяга гантели одной рукой', 'single arm dumbbell row': 'Тяга гантели одной рукой',
+  't bar row': 'Т-тяга', 'chest supported row': 'Тяга гантелей лёжа на наклонной скамье', 'chest supported incline row': 'Тяга гантелей лёжа на наклонной скамье', 'incline row': 'Тяга гантелей лёжа на наклонной скамье',
+  'iso lateral row': 'Тяга в рычажном тренажёре', 'machine row': 'Тяга в рычажном тренажёре', 'inverted row': 'Австралийские подтягивания',
+  'back extension': 'Гиперэкстензия', 'hyperextension': 'Гиперэкстензия', 'shrug': { dumbbell: 'Шраги с гантелями', '': 'Шраги со штангой' }, 'face pull': 'Тяга каната к лицу',
+  'squat': { 'smith machine': 'Приседания в Смите', bodyweight: 'Приседания с собственным весом', dumbbell: 'Гоблет-приседания', kettlebell: 'Гоблет-приседания', '': 'Приседания со штангой' },
+  'back squat': 'Приседания со штангой', 'front squat': 'Фронтальные приседания', 'goblet squat': 'Гоблет-приседания', 'hack squat': 'Гакк-приседания', 'air squat': 'Приседания с собственным весом',
+  'leg press': 'Жим ногами', 'lunge': 'Выпады', 'walking lunge': 'Выпады в ходьбе', 'reverse lunge': 'Выпады назад', 'bulgarian split squat': 'Болгарские сплит-приседания', 'split squat': 'Болгарские сплит-приседания',
+  'leg extension': 'Разгибание ног', 'lying leg curl': 'Сгибание ног', 'leg curl': 'Сгибание ног', 'seated leg curl': 'Сгибание ног сидя',
+  'calf raise': 'Подъём на носки', 'standing calf raise': 'Подъём на носки', 'seated calf raise': 'Подъём на носки сидя', 'calf press': 'Подъём на носки',
+  'glute bridge': 'Ягодичный мост', 'hip thrust': 'Хип-траст со штангой', 'hip adduction': 'Сведение ног в тренажёре', 'hip abduction': 'Разведение ног в тренажёре',
+  'glute kickback': 'Отведение ноги в кроссовере', 'cable kickback': 'Отведение ноги в кроссовере', 'step up': 'Зашагивания на платформу', 'sumo squat': 'Приседания плие с гантелью',
+  'pistol squat': 'Пистолетик', 'nordic hamstring curl': 'Нордические сгибания', 'box jump': 'Запрыгивания на тумбу', 'jump squat': 'Приседания с выпрыгиванием', 'wall sit': 'Стульчик у стены (сек)',
+  'overhead press': { dumbbell: 'Жим гантелей стоя', 'smith machine': 'Жим в Смите сидя', machine: 'Жим в тренажёре на плечи', '': 'Жим стоя' }, 'military press': 'Жим стоя', 'strict military press': 'Жим стоя',
+  'shoulder press': { dumbbell: 'Жим гантелей сидя', machine: 'Жим в тренажёре на плечи', barbell: 'Жим штанги сидя', 'smith machine': 'Жим в Смите сидя', '': 'Жим гантелей сидя' },
+  'seated overhead press': { dumbbell: 'Жим гантелей сидя', '': 'Жим штанги сидя' }, 'seated shoulder press': { barbell: 'Жим штанги сидя', machine: 'Жим в тренажёре на плечи', '': 'Жим гантелей сидя' },
+  'arnold press': 'Жим Арнольда', 'landmine press': 'Жим лендмайн',
+  'lateral raise': { cable: 'Махи в кроссовере', '': 'Махи гантелей в стороны' }, 'front raise': 'Подъём гантелей перед собой', 'upright row': 'Тяга к подбородку',
+  'reverse fly': { machine: 'Обратные разведения в тренажёре', '': 'Обратные разведения' }, 'rear delt fly': { machine: 'Обратные разведения в тренажёре', '': 'Обратные разведения' }, 'rear delt reverse fly': { machine: 'Обратные разведения в тренажёре', '': 'Обратные разведения' },
+  'bicep curl': { dumbbell: 'Подъём гантелей на бицепс', cable: 'Сгибание рук на блоке', 'ez bar': 'Подъём EZ-штанги на бицепс', '': 'Подъём штанги на бицепс' },
+  'curl': { dumbbell: 'Подъём гантелей на бицепс', cable: 'Сгибание рук на блоке', 'ez bar': 'Подъём EZ-штанги на бицепс', '': 'Подъём штанги на бицепс' },
+  'ez bar curl': 'Подъём EZ-штанги на бицепс', 'hammer curl': { cable: 'Молотки с канатом на блоке', '': 'Молотки' }, 'rope hammer curl': 'Молотки с канатом на блоке',
+  'preacher curl': 'Сгибание на скамье Скотта', 'concentration curl': 'Концентрированный подъём на бицепс', 'incline curl': 'Сгибание рук на наклонной скамье', 'incline dumbbell curl': 'Сгибание рук на наклонной скамье',
+  'spider curl': 'Паучьи сгибания', 'reverse curl': 'Обратные сгибания со штангой', 'wrist curl': 'Сгибание запястий',
+  'triceps pushdown': 'Разгибание на трицепс в блоке', 'triceps rope pushdown': 'Разгибание на трицепс с канатом', 'rope pushdown': 'Разгибание на трицепс с канатом', 'triceps pushdown rope': 'Разгибание на трицепс с канатом',
+  'skullcrusher': { dumbbell: 'Французский жим с гантелями', '': 'Французский жим' }, 'skull crusher': { dumbbell: 'Французский жим с гантелями', '': 'Французский жим' }, 'lying triceps extension': { dumbbell: 'Французский жим с гантелями', '': 'Французский жим' },
+  'triceps extension': { cable: 'Разгибание из-за головы на блоке', '': 'Разгибание гантели из-за головы' }, 'overhead triceps extension': { cable: 'Разгибание из-за головы на блоке', '': 'Разгибание гантели из-за головы' },
+  'triceps kickback': 'Кикбэк с гантелью', 'kickback': 'Кикбэк с гантелью',
+  'crunch': { cable: 'Скручивания на блоке', '': 'Скручивания' }, 'cable crunch': 'Скручивания на блоке', 'decline crunch': 'Скручивания на наклонной скамье', 'reverse crunch': 'Обратные скручивания',
+  'hanging leg raise': 'Подъём ног в висе', 'hanging knee raise': 'Подъём коленей в висе', 'knee raise': 'Подъём коленей в висе', 'leg raise': 'Подъём ног лёжа', 'lying leg raise': 'Подъём ног лёжа',
+  'plank': 'Планка (сек)', 'side plank': 'Боковая планка (сек)', 'russian twist': 'Русские скручивания', 'bicycle crunch': 'Велосипед',
+  'ab wheel': 'Ролик для пресса', 'ab wheel rollout': 'Ролик для пресса', 'ab rollout': 'Ролик для пресса', 'mountain climber': 'Альпинист (сек)', 'dead bug': 'Мёртвый жук',
+  'woodchopper': 'Дровосек в кроссовере', 'cable wood chop': 'Дровосек в кроссовере', 'pallof press': 'Паллоф-пресс', 'flutter kick': 'Ножницы (сек)', 'superman': 'Супермен',
+  'burpee': 'Бёрпи', 'farmers walk': 'Прогулка фермера (сек)', 'farmer walk': 'Прогулка фермера (сек)', 'kettlebell swing': 'Махи гирей', 'thruster': 'Трастеры',
+};
+const EQW = { barbell: 'barbell', dumbbell: 'dumbbell', cable: 'cable', machine: 'machine', 'smith machine': 'smith machine', smith: 'smith machine', bodyweight: 'bodyweight', weighted: 'bodyweight', assisted: 'assisted',
+  band: 'band', kettlebell: 'kettlebell', 'ez bar': 'ez bar', 'ez curl bar': 'ez bar', 'trap bar': 'trap bar', 'hex bar': 'trap bar', 'plate loaded': 'machine', lever: 'machine' };
+const sing = w => (w.length > 4 && /(ch|sh|x)es$/.test(w) ? w.slice(0, -2) : w.length > 3 && /[^s]s$/.test(w) ? w.slice(0, -1) : w);
+const impNorm = s => String(s || '').toLowerCase().replace(/[’'`]/g, '').replace(/pullup/g, 'pull up').replace(/pushup/g, 'push up').replace(/chinup/g, 'chin up')
+  .replace(/[^a-z0-9а-яё]+/g, ' ').trim().split(' ').map(sing).join(' ');
+const IMPN = {}; Object.keys(IMP_MAP).forEach(k => { IMPN[impNorm(k)] = IMP_MAP[k]; });
+const EXNN = {}; Object.keys(EXN).forEach(ru => { EXNN[impNorm(EXN[ru][0])] = ru; EXNN[impNorm(ru)] = ru; });
+function impName(raw) {
+  const s = String(raw || '').trim(); if (!s) return null;
+  const m = s.match(/^(.*?)\s*\(([^)]*)\)\s*$/), base = impNorm(m ? m[1] : s), eqRaw = m ? m[2].toLowerCase().trim() : '', eq = EQW[eqRaw] || eqRaw;
+  const v = IMPN[base];
+  if (v) return { n: typeof v === 'string' ? v : (v[eq] || v['']), ok: true };
+  if (EXNN[impNorm(s)]) return { n: EXNN[impNorm(s)], ok: true };
+  if (EXNN[base]) return { n: EXNN[base], ok: true };
+  return { n: s, ok: false };
+}
+// CSV: кавычки, переносы строк внутри полей, разделитель , или ;
+function parseCSV(text) {
+  text = text.replace(/^﻿/, '');
+  const first = text.slice(0, text.indexOf('\n') > 0 ? text.indexOf('\n') : text.length), sep = (first.match(/;/g) || []).length > (first.match(/,/g) || []).length ? ';' : ',';
+  const rows = []; let row = [], f = '', q = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (q) { if (c === '"') { if (text[i + 1] === '"') { f += '"'; i++; } else q = false; } else f += c; }
+    else if (c === '"') q = true;
+    else if (c === sep) { row.push(f); f = ''; }
+    else if (c === '\n' || c === '\r') { if (c === '\r' && text[i + 1] === '\n') i++; row.push(f); f = ''; if (row.length > 1 || row[0] !== '') rows.push(row); row = []; }
+    else f += c;
+  }
+  if (f !== '' || row.length) { row.push(f); rows.push(row); }
+  return rows;
+}
+const MON = { jan: 0, feb: 1, mar: 2, apr: 3, may: 4, jun: 5, jul: 6, aug: 7, sep: 8, oct: 9, nov: 10, dec: 11 };
+function impDate(s) {
+  s = String(s || '').trim(); let m;
+  if ((m = s.match(/^(\d{4})-(\d{2})-(\d{2})(?:[ T](\d{1,2}):(\d{2}))?/))) return new Date(+m[1], +m[2] - 1, +m[3], +(m[4] || 12), +(m[5] || 0));
+  if ((m = s.match(/^(\d{1,2}) ([A-Za-z]{3})[a-z]* (\d{4}),? (\d{1,2}):(\d{2})/)) && MON[m[2].toLowerCase()] != null) return new Date(+m[3], MON[m[2].toLowerCase()], +m[1], +m[4], +m[5]);
+  if ((m = s.match(/^(\d{1,2})\.(\d{1,2})\.(\d{4})(?: (\d{1,2}):(\d{2}))?/))) return new Date(+m[3], +m[2] - 1, +m[1], +(m[4] || 12), +(m[5] || 0));
+  const d = new Date(s); return isNaN(d) ? null : d;
+}
+const isoD = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+const h32 = s => { let h = 0x811c9dc5; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193); } return (h >>> 0).toString(36); };
+const numS = v => { const x = parseFloat(String(v == null ? '' : v).replace(',', '.')); return isNaN(x) ? 0 : x; };
+const durMin = s => { s = String(s || ''); let m = 0, x; if ((x = s.match(/(\d+)\s*h/))) m += 60 * +x[1]; if ((x = s.match(/(\d+)\s*m/))) m += +x[1]; if (!m && /^\d+$/.test(s.trim())) m = Math.round(+s / 60); return m; };
+// → { src, list: [тренировки GymPulse], sets, unknown: Set, needUnit }
+function impBuild(rows, unitPick) {
+  const H = rows[0].map(h => h.trim().toLowerCase()), ix = n => H.indexOf(n), body = rows.slice(1);
+  const hevy = ix('exercise_title') >= 0 && ix('start_time') >= 0, strong = ix('exercise name') >= 0 && ix('date') >= 0;
+  if (!hevy && !strong) return null;
+  const out = new Map(), unknown = new Set(); let sets = 0, skipped = 0, needUnit = false;
+  const get = (r, n) => { const i = ix(n); return i >= 0 ? (r[i] || '').trim() : ''; };
+  let wCol, unit, wuCol;
+  if (hevy) { wCol = ix('weight_kg') >= 0 ? 'weight_kg' : 'weight_lbs'; unit = wCol === 'weight_kg' ? 'kg' : 'lb'; }
+  else { wuCol = ['weight unit', 'unit'].find(n => ix(n) >= 0); wCol = H.find(h => /^weight( \(|$)/.test(h)) || 'weight'; unit = /lb/.test(wCol) ? 'lb' : /kg/.test(wCol) ? 'kg' : null; if (!unit && !wuCol) { needUnit = true; unit = unitPick; } }
+  body.forEach(r => {
+    if (r.length < 3) return;
+    const ds = hevy ? get(r, 'start_time') : get(r, 'date'), d = impDate(ds); if (!d) { skipped++; return; }
+    const title = hevy ? get(r, 'title') : get(r, 'workout name'), key = (hevy ? 'h' : 's') + h32(ds + '|' + title);
+    let w = out.get(key);
+    if (!w) {
+      const dur = hevy ? Math.max(0, Math.round((impDate(get(r, 'end_time')) - d) / 60000)) || 0 : durMin(get(r, 'duration'));
+      w = { id: 'imp-' + key, date: isoD(d), name: title, bw: '', bwu: unit || 'kg', note: hevy ? get(r, 'description') : get(r, 'workout notes'), items: [], ts: d.getTime(), src: hevy ? 'hevy' : 'strong' };
+      if (dur > 0) w.dur = Math.min(600, dur);
+      out.set(key, w);
+    }
+    const raw = hevy ? get(r, 'exercise_title') : get(r, 'exercise name'), nm = impName(raw); if (!nm || /^rest( timer)?$/i.test(raw)) return;
+    const so = (hevy ? get(r, 'set_type') : get(r, 'set order')).toLowerCase();
+    if (/rest/.test(so)) return;
+    const reps = numS(get(r, 'reps')), secs = numS(hevy ? get(r, 'duration_seconds') : get(r, 'seconds')), kg = numS(get(r, wCol));
+    const rr = reps > 0 ? reps : secs > 0 ? Math.round(secs) : 0;
+    if (!(rr > 0)) { skipped++; return; }
+    if (!nm.ok) unknown.add(nm.n);
+    const su = wuCol ? (/lb/i.test(get(r, wuCol)) ? 'lb' : 'kg') : (unit || 'kg');
+    const t = /^w/.test(so) ? 'x' : /^d/.test(so) ? 'd' : /^f/.test(so) ? 'f' : null;
+    const gk = hevy ? raw + '|' + get(r, 'superset_id') : raw;
+    let it = w.items[w.items.length - 1];
+    if (!it || it._k !== gk) { it = { n: nm.n, note: get(r, hevy ? 'exercise_notes' : 'notes'), sets: [], _k: gk, _ss: hevy ? get(r, 'superset_id') : '' }; w.items.push(it); }
+    const s = { w: kg > 0 ? String(Math.round(kg * 100) / 100) : '', u: su, r: String(rr), d: true }; if (t) s.t = t;
+    it.sets.push(s); sets++;
+  });
+  const list = [...out.values()].filter(w => w.items.length);
+  list.forEach(w => { w.items.forEach((it, i) => { const nx = w.items[i + 1]; if (it._ss && nx && nx._ss === it._ss) it.ss = true; delete it._k; delete it._ss; }); });
+  list.sort((a, b) => a.date.localeCompare(b.date));
+  return { src: hevy ? 'Hevy' : 'Strong', list, sets, unknown, needUnit, skipped };
+}
+let impRows = null, impRes = null, impUnit = 'kg', impBusy = false;
+function impShow() {
+  const r = impRes, box = $('imp-prev'); if (!r) { box.hidden = true; $('imp-drop').hidden = false; return; }
+  $('imp-drop').hidden = true; box.hidden = false;
+  const from = r.list[0] ? new Date(r.list[0].date + 'T12:00').toLocaleDateString(loc(), { day: 'numeric', month: 'short', year: 'numeric' }) : '—';
+  const to = r.list.length ? new Date(r.list[r.list.length - 1].date + 'T12:00').toLocaleDateString(loc(), { day: 'numeric', month: 'short', year: 'numeric' }) : '—';
+  const exs = new Set(r.list.flatMap(w => w.items.map(i => i.n))), unk = r.unknown.size;
+  $('imp-sum').innerHTML = '<div><b>' + esc(r.list.length.toLocaleString(loc())) + '</b><span>' + esc(t('impW')) + '</span></div><div><b>' + esc(r.sets.toLocaleString(loc())) + '</b><span>' + esc(t('impS2')) + '</span></div><div><b>' + esc(exs.size - unk) + '/' + esc(exs.size) + '</b><span>' + esc(t('impE')) + '</span></div>' +
+    '<p class="wide">' + esc(t('impFrom', { src: r.src, a: from, b: to })) + '</p>';
+  $('imp-unit-row').hidden = !r.needUnit;
+  document.querySelectorAll('#imp-unit-row button').forEach(b => b.classList.toggle('on', b.dataset.u === impUnit));
+  $('imp-unk').hidden = !unk;
+  if (unk) { $('imp-unk').querySelector('summary').textContent = t('impUnk', { n: unk }); $('imp-unk-list').textContent = [...r.unknown].join(' · '); }
+  $('imp-go').textContent = t('impGo', { n: r.list.length });
+  $('imp-go').disabled = !r.list.length || impBusy;
+}
+async function impRead(file) {
+  if (!file) return;
+  if (file.size > 30 * 1024 * 1024) return msg(t('impBig'));
+  let txt = ''; try { txt = await file.text(); } catch (e) { return msg(t('impBad')); }
+  const rows = parseCSV(txt);
+  if (rows.length < 2) return msg(t('impBad'));
+  impRows = rows; impRes = impBuild(rows, impUnit);
+  if (!impRes) { impRows = null; return msg(t('impBad')); }
+  if (!impRes.list.length) { impRes = null; impRows = null; return msg(t('impEmpty')); }
+  msg(''); impShow();
+}
+$('imp-file').onchange = e => { impRead(e.target.files[0]); e.target.value = ''; };
+['dragenter', 'dragover'].forEach(ev => $('imp-drop').addEventListener(ev, e => { e.preventDefault(); $('imp-drop').classList.add('over'); }));
+['dragleave', 'drop'].forEach(ev => $('imp-drop').addEventListener(ev, e => { e.preventDefault(); $('imp-drop').classList.remove('over'); }));
+$('imp-drop').addEventListener('drop', e => impRead(e.dataTransfer && e.dataTransfer.files[0]));
+$('imp-unit-row').onclick = e => { const b = e.target.closest('button'); if (!b || !impRows) return; impUnit = b.dataset.u; impRes = impBuild(impRows, impUnit); impShow(); };
+$('imp-cancel').onclick = () => { if (impBusy) return; impRows = impRes = null; $('imp-bar').hidden = true; impShow(); };
+$('imp-go').onclick = async () => {
+  const r = impRes; if (!r || impBusy) return;
+  impBusy = true; impShow(); $('imp-cancel').disabled = true; $('imp-bar').hidden = false; const bar = $('imp-bar').firstElementChild; bar.style.width = '2%';
+  try {
+    const now = Date.now(), rows = r.list.map(w => ({ user_id: U.id, id: w.id, data: w, deleted: false, updated_at: now }));
+    for (let i = 0; i < rows.length; i += 200) {
+      const { error } = await sb.from('workouts').upsert(rows.slice(i, i + 200), { onConflict: 'user_id,id' }); if (error) throw error;
+      bar.style.width = Math.round(Math.min(rows.length, i + 200) / rows.length * 100) + '%';
+    }
+    if (r.unknown.size) {                       // свои упражнения появятся в списке приложения
+      await loadG(); const have = new Set((G.custom || []).map(c => (typeof c === 'string' ? c : c.n)));
+      const add = [...r.unknown].filter(n => !have.has(n)); if (add.length) await saveG({ custom: [...(G.custom || []), ...add] });
+    }
+    W = []; await loadW().catch(() => {}); if (U) { renderHistory(); fillProfile(false); }
+    impRows = impRes = null; msg(t('impDone', { n: r.list.length }), true);
+  } catch (err) { msg(t('impFail') + ' ' + (err.message || err)); }
+  impBusy = false; $('imp-cancel').disabled = false; $('imp-bar').hidden = true; impShow();
 };
 
 // безопасность
