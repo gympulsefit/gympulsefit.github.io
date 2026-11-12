@@ -45,6 +45,11 @@
 .acc .msg.err { background: rgba(255, 90, 77, .1); color: var(--bad); border: 1px solid rgba(255, 90, 77, .3); }
 .acc .note { color: var(--mut); font-size: 13.5px; margin-top: 8px; }
 .acc .big { width: 64px; height: 64px; border-radius: 50%; background: rgba(47, 210, 122, .14); display: grid; place-items: center; margin: 6px 0 14px; }
+.acc [hidden] { display: none !important; }
+.mfa-steps { margin: 14px 0 0; padding-left: 20px; color: var(--fg); display: grid; gap: 6px; font-size: 14.5px; }
+.mfa-qr { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; margin: 16px 0 4px; }
+.mfa-qr img { width: 168px; height: 168px; background: #fff; border-radius: 16px; padding: 8px; }
+.mfa-qr code { display: block; font-family: var(--f-mono); font-size: 15px; letter-spacing: .08em; margin-top: 4px; user-select: all; overflow-wrap: anywhere; color: var(--fg); }
 .acc .danger { border-color: rgba(255, 90, 77, .35); background: rgba(255, 90, 77, .06); }
 
 /* шапка кабинета */
@@ -158,6 +163,16 @@
       </div>
     </section>
 
+    <section id="v-mfa" hidden>
+      <div class="eyebrow" data-t="accEyebrow"></div>
+      <h1 class="d slash" data-t="mfaT"></h1><p class="sub" data-t="mfaSub"></p>
+      <div class="card">
+        <input id="mf" class="code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="000000" aria-label="2FA">
+        <button type="button" class="btn btn-ac full" id="mf-go" data-t="verify"></button>
+        <button type="button" class="linkb" id="mf-out" data-t="back"></button>
+      </div>
+    </section>
+
     <section id="v-login" hidden>
       <div class="eyebrow" data-t="accEyebrow"></div>
       <h1 class="d slash" data-t="loginT"></h1><p class="sub" data-t="loginS"></p>
@@ -257,6 +272,23 @@
           <p class="note" data-t="pwRule"></p>
           <button type="button" class="btn btn-ac" id="cp-go" data-t="savePw"></button>
         </div>
+        <div class="card" id="mfa-card">
+          <h2 data-t="mfaCard"></h2>
+          <p><b id="mfa-st"></b></p>
+          <p class="note" data-t="mfaHelp"></p>
+          <button type="button" class="btn btn-ac" id="mfa-on" data-t="mfaEnable" hidden></button>
+          <button type="button" class="btn btn-bad" id="mfa-off" data-t="mfaDisable" hidden></button>
+          <div id="mfa-box" hidden>
+            <ol class="mfa-steps"><li data-t="mfaS1"></li><li data-t="mfaS2"></li><li data-t="mfaS3"></li></ol>
+            <div class="mfa-qr"><img id="mfa-qr" alt="QR"><div><span class="note" data-t="mfaKey"></span><code id="mfa-key"></code></div></div>
+            <input id="mfa-code" class="code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="000000" aria-label="2FA">
+            <div class="row"><button type="button" class="btn btn-gh" id="mfa-cancel" data-t="cancel"></button><button type="button" class="btn btn-ac" id="mfa-ok" data-t="verify"></button></div>
+          </div>
+          <div id="mfa-offbox" hidden>
+            <p class="note" style="color:var(--fg)" data-t="mfaOffQ"></p>
+            <div class="row"><button type="button" class="btn btn-gh" id="mfa-off-no" data-t="cancel"></button><button type="button" class="btn btn-bad" id="mfa-off-yes" data-t="mfaDisable"></button></div>
+          </div>
+        </div>
         <div class="card">
           <h2 data-t="chMail"></h2>
           <label class="f" for="cm" data-t="newMail"></label><input id="cm" type="email" autocomplete="email">
@@ -322,6 +354,10 @@ const T = {
     dangerT: 'Удаление аккаунта', delQ: 'Аккаунт, все тренировки, резервные копии и фото профиля будут удалены без возможности восстановления.', delAcc: 'Удалить аккаунт', delSure: 'Точно удалить? Это действие нельзя отменить.', delYes: 'Да, удалить навсегда', cancel: 'Отмена',
     sentTo: 'Код отправлен на {e}. Проверьте «Входящие» и «Спам».', needEmail: 'Введите почту', needAll: 'Введите почту и пароль', pwBad: 'Пароль: минимум 8 символов, латинские буквы и цифры', pwDiff: 'Пароли не совпадают',
     pwSaved: 'Пароль изменён.', mailSent: 'Письмо отправлено. Подтвердите смену по ссылке в нём.', confirmedT: 'Почта подтверждена', confirmedS: 'Вернитесь в приложение GymPulse и войдите.', emailChT: 'Почта изменена', emailChS: 'Если пришло два письма (на старую и новую почту), подтвердите оба.',
+    mfaT: 'Код 2FA', mfaSub: 'Введите 6 цифр из приложения-аутентификатора.', mfaCard: 'Вход по коду (2FA)', mfaOnS: '✓ Включён', mfaOffS: 'Выключен: вход только по паролю',
+    mfaHelp: 'После пароля нужно ввести 6 цифр из Google Authenticator или похожего приложения. Даже зная пароль, без вашего телефона войти нельзя.', mfaEnable: 'Включить 2FA', mfaDisable: 'Выключить 2FA',
+    mfaS1: 'Установите на телефон Google Authenticator, Microsoft Authenticator или 1Password.', mfaS2: 'Отсканируйте QR-код или введите ключ вручную.', mfaS3: 'Введите 6 цифр из приложения и нажмите «Подтвердить».',
+    mfaKey: 'Ключ для ручного ввода', mfaOnT: '2FA включена. Теперь при входе понадобится код из приложения.', mfaOffQ: 'Выключить 2FA? Вход снова будет только по паролю.', mfaOffT: '2FA выключена.', mfaBad: 'Неверный код. Проверьте время на телефоне и попробуйте ещё раз.',
     deleted: 'Аккаунт удалён.', linkBad: 'Ссылка устарела или уже использована. Запросите новую.', wait: 'Подождите…', netErr: 'Не удалось загрузить данные. Проверьте интернет и обновите страницу.' },
   en: { loading: 'Loading…', accEyebrow: 'GymPulse account', toAccount: 'Open my account', newPwT: 'New password', newPwS: 'Choose a new password for GymPulse.', newPw: 'New password', repeatPw: 'Repeat password',
     pwRule: 'At least 8 characters with Latin letters and numbers.', savePw: 'Save password', loginT: 'Sign in', loginS: 'Your profile, workout history, data, backups and security settings.', email: 'Email', password: 'Password',
@@ -343,6 +379,10 @@ const T = {
     dangerT: 'Delete account', delQ: 'Your account, all workouts, backups and profile photo will be erased permanently.', delAcc: 'Delete account', delSure: 'Are you sure? This cannot be undone.', delYes: 'Yes, delete forever', cancel: 'Cancel',
     sentTo: 'Code sent to {e}. Check your inbox and spam.', needEmail: 'Enter your email', needAll: 'Enter your email and password', pwBad: 'Password: at least 8 characters, letters and numbers', pwDiff: 'Passwords do not match',
     pwSaved: 'Password changed.', mailSent: 'Email sent. Confirm the change via the link inside.', confirmedT: 'Email confirmed', confirmedS: 'Go back to the GymPulse app and sign in.', emailChT: 'Email changed', emailChS: 'If you got two emails (old and new address), confirm both.',
+    mfaT: '2FA code', mfaSub: 'Enter the 6 digits from your authenticator app.', mfaCard: 'Two-factor login (2FA)', mfaOnS: '✓ On', mfaOffS: 'Off: password only',
+    mfaHelp: 'After your password you enter 6 digits from Google Authenticator or a similar app. Even with your password, nobody can sign in without your phone.', mfaEnable: 'Turn on 2FA', mfaDisable: 'Turn off 2FA',
+    mfaS1: 'Install Google Authenticator, Microsoft Authenticator or 1Password on your phone.', mfaS2: 'Scan the QR code or type the key manually.', mfaS3: 'Enter the 6 digits from the app and press “Verify”.',
+    mfaKey: 'Key for manual entry', mfaOnT: '2FA is on. You will need a code from the app to sign in.', mfaOffQ: 'Turn off 2FA? Sign-in will be password-only again.', mfaOffT: '2FA is off.', mfaBad: 'Wrong code. Check your phone’s clock and try again.',
     deleted: 'Account deleted.', linkBad: 'This link has expired or was already used. Request a new one.', wait: 'Please wait…', netErr: 'Could not load your data. Check your connection and refresh the page.' } };
 const lang = () => (window.gpLang ? window.gpLang() : 'ru');
 const t = (k, p) => (T[lang()][k] || k).replace(/\{(\w+)\}/g, (_, x) => (p && p[x] != null ? p[x] : ''));
@@ -365,7 +405,7 @@ function paint() {
 }
 window.onLang = paint;
 const msg = (txt, ok) => { const m = $('msg'); m.textContent = txt || ''; m.hidden = !txt; m.className = 'msg' + (ok ? ' ok' : ' err'); if (txt) window.scrollTo({ top: 0, behavior: 'smooth' }); };
-function show(v) { ['load', 'done', 'newpw', 'login', 'acc'].forEach(x => { $('v-' + x).hidden = x !== v; }); $('box').className = 'wrap ' + (v === 'acc' ? 'wide' : 'narrow'); if (v === 'acc') openAcc(); }
+function show(v) { ['load', 'done', 'newpw', 'login', 'acc', 'mfa'].forEach(x => { $('v-' + x).hidden = x !== v; }); $('box').className = 'wrap ' + (v === 'acc' ? 'wide' : 'narrow'); if (v === 'acc') openAcc(); if (v === 'mfa') setTimeout(() => $('mf').focus(), 50); }
 const pwOk = p => p.length >= 8 && /[A-Za-z]/.test(p) && /\d/.test(p);
 const busy = (btn, on) => { btn.disabled = on; if (on) { btn.dataset.l = btn.textContent; btn.textContent = t('wait'); } else paint(); };
 
@@ -373,8 +413,17 @@ const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY, { auth: { persistSe
 let codeMode = null, codeEmail = '';
 
 // ---------- кабинет ----------
+async function mfaNeed() {
+  const { data } = await sb.auth.mfa.getAuthenticatorAssuranceLevel();
+  if (!data || data.nextLevel !== 'aal2' || data.currentLevel === 'aal2') return null;
+  const f = await sb.auth.mfa.listFactors(); const x = f.data && f.data.totp && f.data.totp[0];
+  return x ? x.id : null;
+}
+let mfaFid = null;
 async function openAcc() {
   const { data } = await sb.auth.getUser(); U = data && data.user; if (!U) return show('login');
+  try { mfaFid = await mfaNeed(); } catch (e) { mfaFid = null; }
+  if (mfaFid) { U = null; $('mf').value = ''; return show('mfa'); }
   fillProfile(true); avatar();
   const want = (location.hash || '').slice(1); setPane(['profile', 'history', 'data', 'backups', 'rank', 'security'].includes(want) ? want : 'profile');
   try { await Promise.all([loadW(), loadG()]); } catch (e) { msg(t('netErr')); }
@@ -384,7 +433,7 @@ function setPane(p) {
   pane = p; document.querySelectorAll('#tabs button').forEach(b => b.setAttribute('aria-selected', b.dataset.p === p ? 'true' : 'false'));
   document.querySelectorAll('.pane').forEach(el => { el.hidden = el.id !== 'p-' + p; });
   try { history.replaceState(null, '', '#' + p); } catch (e) {}
-  if (p === 'backups') loadSnaps(); if (p === 'rank') loadLb();
+  if (p === 'backups') loadSnaps(); if (p === 'rank') loadLb(); if (p === 'security') loadMfa().catch(() => {});
 }
 $('tabs').onclick = e => { const b = e.target.closest('button'); if (b) { msg(''); setPane(b.dataset.p); } };
 const md = () => (U && U.user_metadata) || {};
@@ -575,6 +624,45 @@ $('del-yes').onclick = async () => {
   const { error } = await sb.rpc('delete_my_account'); busy($('del-yes'), false);
   if (error) return msg(error.message);
   await sb.auth.signOut(); U = null; $('del-box').hidden = true; $('del').hidden = false; show('login'); msg(t('deleted'), true);
+};
+
+// 2FA: второй шаг при входе
+$('mf-go').onclick = async () => {
+  const code = $('mf').value.replace(/\D/g, ''); if (code.length !== 6 || !mfaFid) return;
+  busy($('mf-go'), true); const { error } = await sb.auth.mfa.challengeAndVerify({ factorId: mfaFid, code }); busy($('mf-go'), false);
+  if (error) { $('mf').value = ''; return msg(t('mfaBad')); } msg(''); show('acc');
+};
+$('mf').addEventListener('keydown', e => { if (e.key === 'Enter') $('mf-go').click(); });
+$('mf').addEventListener('input', e => { e.target.value = e.target.value.replace(/\D/g, '').slice(0, 6); if (e.target.value.length === 6) $('mf-go').click(); });
+$('mf-out').onclick = async () => { await sb.auth.signOut(); U = null; mfaFid = null; msg(''); show('login'); };
+// 2FA: включение и выключение в «Безопасности»
+let mfaF = null, mfaEn = null;
+async function loadMfa() {
+  const { data } = await sb.auth.mfa.listFactors(); mfaF = (data && data.totp && data.totp[0]) || null;
+  $('mfa-st').textContent = t(mfaF ? 'mfaOnS' : 'mfaOffS'); $('mfa-st').style.color = mfaF ? 'var(--ok)' : 'var(--mut)';
+  $('mfa-on').hidden = !!mfaF || !!mfaEn; $('mfa-off').hidden = !mfaF; $('mfa-box').hidden = !mfaEn; $('mfa-offbox').hidden = true;
+}
+$('mfa-on').onclick = async () => {
+  busy($('mfa-on'), true);
+  try { const { data } = await sb.auth.mfa.listFactors(); for (const f of (data && data.all) || []) if (f.status !== 'verified') await sb.auth.mfa.unenroll({ factorId: f.id }); } catch (e) {}
+  const { data, error } = await sb.auth.mfa.enroll({ factorType: 'totp', friendlyName: 'GymPulse web ' + Date.now().toString(36) }); busy($('mfa-on'), false);
+  if (error) return msg(error.message);
+  mfaEn = data.id; $('mfa-qr').src = data.totp.qr_code; $('mfa-key').textContent = data.totp.secret.replace(/(.{4})/g, '$1 ').trim(); $('mfa-code').value = '';
+  loadMfa(); setTimeout(() => $('mfa-code').focus(), 50);
+};
+$('mfa-cancel').onclick = async () => { const id = mfaEn; mfaEn = null; if (id) sb.auth.mfa.unenroll({ factorId: id }).catch(() => {}); loadMfa(); };
+$('mfa-ok').onclick = async () => {
+  const code = $('mfa-code').value.replace(/\D/g, ''); if (code.length !== 6 || !mfaEn) return;
+  busy($('mfa-ok'), true); const { error } = await sb.auth.mfa.challengeAndVerify({ factorId: mfaEn, code }); busy($('mfa-ok'), false);
+  if (error) { $('mfa-code').value = ''; return msg(t('mfaBad')); }
+  mfaEn = null; await loadMfa(); msg(t('mfaOnT'), true);
+};
+$('mfa-code').addEventListener('input', e => { e.target.value = e.target.value.replace(/\D/g, '').slice(0, 6); });
+$('mfa-off').onclick = () => { $('mfa-offbox').hidden = false; $('mfa-off').hidden = true; };
+$('mfa-off-no').onclick = () => loadMfa();
+$('mfa-off-yes').onclick = async () => {
+  busy($('mfa-off-yes'), true); const { error } = await sb.auth.mfa.unenroll({ factorId: mfaF.id }); busy($('mfa-off-yes'), false);
+  if (error) return msg(error.message); await sb.auth.refreshSession().catch(() => {}); await loadMfa(); msg(t('mfaOffT'), true);
 };
 
 // вход
