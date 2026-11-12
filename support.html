@@ -1,27 +1,67 @@
-<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<style>:root{--bg:#0b0a0a;--card:#151314;--tx:#f5f5f7;--mut:#a0a0a8;--ac:#ff7a00}
-@media (prefers-color-scheme: light){:root{--bg:#f6f4f2;--card:#fff;--tx:#141414;--mut:#5c5c64;--ac:#e06a00}}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
-main{max-width:760px;margin:0 auto;padding:32px 16px 64px}
-h1{font-size:30px;font-style:italic;font-weight:900;text-transform:uppercase;letter-spacing:-.3px;margin:0 0 6px}
-h1 span{color:var(--ac)}h2{font-size:15px;font-style:italic;font-weight:900;text-transform:uppercase;letter-spacing:.8px;margin:28px 0 8px}
-.card{background:var(--card);border-radius:18px;padding:18px 20px;margin:14px 0}.mut{color:var(--mut);font-size:14px}
-a{color:var(--ac)}nav{display:flex;gap:10px;margin-bottom:26px}nav a{text-decoration:none;font-weight:800;padding:6px 12px;border-radius:10px;background:var(--card)}
-ul{padding-left:20px}hr{border:0;border-top:1px solid rgba(128,128,128,.25);margin:40px 0}</style><title>GymPulse — Поддержка</title></head><body><main>
-<nav><a href="#ru">RU</a><a href="#en">EN</a><a href="privacy.html">Конфиденциальность / Privacy</a></nav>
-<section id="ru"><h1><span>/</span> Поддержка GymPulse</h1>
-<div class="card"><b>Напишите нам:</b> <a href="mailto:gympulse.development@gmail.com">gympulse.development@gmail.com</a><br><span class="mut">Или в приложении: Профиль → Поддержка → «Написать в поддержку». Отвечаем обычно в течение 1–2 дней.</span></div>
-<h2>Частые вопросы</h2>
-<p><b>Не потеряются ли мои тренировки?</b><br>Каждая тренировка сохраняется на телефоне и в облаке. Сервер ежедневно делает копию, вернуть данные можно в Профиль → Облако → Копии.</p>
-<p><b>Работает ли приложение без интернета?</b><br>Да. Изменения отправятся в облако, когда появится сеть.</p>
-<p><b>Как считается ранг?</b><br>По лучшему расчётному 1ПМ в упражнениях, в сравнении с нормативами StrengthLog и Strength Level с учётом пола и веса тела.</p>
-<p><b>Как удалить аккаунт?</b><br>Профиль → Удалить аккаунт. Все данные стираются безвозвратно.</p>
-<p><b>Забыли пароль?</b><br>На экране входа нажмите «Забыли пароль?» — придёт письмо для сброса.</p></section>
-<hr><section id="en" lang="en"><h1><span>/</span> GymPulse Support</h1>
-<div class="card"><b>Email us:</b> <a href="mailto:gympulse.development@gmail.com">gympulse.development@gmail.com</a><br><span class="mut">Or in the app: Profile → Support → “Contact support”. We usually reply within 1–2 days.</span></div>
-<h2>FAQ</h2>
-<p><b>Can I lose my workouts?</b><br>Every workout is saved on your phone and in the cloud. The server makes a daily copy; restore it in Profile → Cloud → Backups.</p>
-<p><b>Does it work offline?</b><br>Yes. Changes upload once you are back online.</p>
-<p><b>How are ranks calculated?</b><br>From your best estimated 1RM per exercise, compared with StrengthLog and Strength Level standards for your sex and body weight.</p>
-<p><b>How do I delete my account?</b><br>Profile → Delete account. All data is erased permanently.</p>
-<p><b>Forgot your password?</b><br>Tap “Forgot password?” on the sign-in screen to get a reset email.</p></section></main></body></html>
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GymPulse — Поддержка</title>
+<meta name="gp:title-ru" content="GymPulse — Поддержка">
+<meta name="gp:title-en" content="GymPulse — Support">
+<meta name="description" content="Поддержка GymPulse: контакты и ответы на частые вопросы.">
+<meta name="theme-color" content="#08070A">
+<script>(function(){var l;try{l=new URLSearchParams(location.search).get('lang')||localStorage.getItem('gp_lang')}catch(e){}if(l!=='ru'&&l!=='en')l=/^(ru|uk|be|kk)/i.test(navigator.language||'')?'ru':'en';document.documentElement.lang=l})()</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@1,700;1,800;1,900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="strip"><div class="wrap"><span data-l="ru"><b>СКОРО</b> в App Store и Google Play</span><span data-l="en"><b>COMING SOON</b> to the App Store and Google Play</span></div></div>
+<nav class="top" aria-label="GymPulse">
+  <div class="wrap">
+    <a class="logo" href="./" aria-label="GymPulse"><img src="img/logo.png" alt="GymPulse" width="66" height="30"></a>
+    <ul>
+      <li><a href="./#features"><span data-l="ru">Возможности</span><span data-l="en">Features</span></a></li>
+      <li><a href="./#load"><span data-l="ru">Карта нагрузки</span><span data-l="en">Load map</span></a></li>
+      <li><a href="./#programs"><span data-l="ru">Программы</span><span data-l="en">Programs</span></a></li>
+      <li><a href="support.html" aria-current="page"><span data-l="ru">Поддержка</span><span data-l="en">Support</span></a></li>
+      <li><a href="account.html"><span data-l="ru">Аккаунт</span><span data-l="en">Account</span></a></li>
+    </ul>
+    <div class="lang" role="group" aria-label="Language"><button type="button" data-set="ru">RU</button><button type="button" data-set="en">EN</button></div>
+    <a class="btn btn-ac" href="./#download"><span data-l="ru">Скачать</span><span data-l="en">Download</span></a>
+  </div>
+</nav>
+
+<main class="doc">
+  <div class="wrap">
+    <div class="eyebrow"><span data-l="ru">Поддержка</span><span data-l="en">Support</span></div>
+    <h1 class="d slash"><span data-l="ru">Мы на связи</span><span data-l="en">We're here to help</span></h1>
+    <p class="lead"><span data-l="ru">Нашли ошибку, есть идея или вопрос? Напишите нам, обычно отвечаем в течение 1–2 дней.</span><span data-l="en">Found a bug, have an idea or a question? Email us. We usually reply within 1–2 days.</span></p>
+    <div class="mail" style="margin-top:22px"><code id="mail">gympulse.development@gmail.com</code><button type="button" class="btn btn-gh" data-copy="mail"><span class="c0"><span data-l="ru">Копировать</span><span data-l="en">Copy</span></span><span class="c1"><span data-l="ru">Скопировано</span><span data-l="en">Copied</span></span></button></div>
+    <p class="meta" style="margin-top:12px"><span data-l="ru">Или в приложении: Профиль → Поддержка → «Написать в поддержку». Письмо уже будет содержать версию приложения и системы.</span><span data-l="en">Or in the app: Profile → Support → “Contact support”. The email will already include your app and system version.</span></p>
+
+    <h2><span data-l="ru">Частые вопросы</span><span data-l="en">Common questions</span></h2>
+    <div class="faq">
+      <details><summary><span data-l="ru">Не потеряются ли мои тренировки?</span><span data-l="en">Can I lose my workouts?</span></summary><p data-l="ru">Каждая тренировка сохраняется на телефоне и в облаке. Раз в день сервер делает копию и хранит 14 последних. Вернуть данные можно в Профиль → Безопасность → Резервные копии.</p><p data-l="en">Every workout is saved on your phone and in the cloud. Once a day the server makes a backup and keeps the last 14. Restore one in Profile → Security → Backups.</p></details>
+      <details><summary><span data-l="ru">Работает ли приложение без интернета?</span><span data-l="en">Does the app work offline?</span></summary><p data-l="ru">Да. Изменения отправятся в облако, когда появится сеть.</p><p data-l="en">Yes. Changes upload as soon as you are back online.</p></details>
+      <details><summary><span data-l="ru">Как считается ранг?</span><span data-l="en">How are ranks calculated?</span></summary><p data-l="ru">По лучшему расчётному одноповторному максимуму в упражнениях, в сравнении с нормативами StrengthLog и Strength Level для вашего пола и веса тела.</p><p data-l="en">From your best estimated one-rep max per exercise, compared with StrengthLog and Strength Level standards for your sex and body weight.</p></details>
+      <details><summary><span data-l="ru">Забыли пароль?</span><span data-l="en">Forgot your password?</span></summary><p data-l="ru">На экране входа нажмите «Забыли пароль?» или войдите по коду из письма. Сменить пароль можно и на странице <a href="account.html">управления аккаунтом</a>.</p><p data-l="en">Tap “Forgot password?” on the sign-in screen or sign in with an email code. You can also change it on the <a href="account.html">account page</a>.</p></details>
+      <details><summary><span data-l="ru">Как удалить аккаунт?</span><span data-l="en">How do I delete my account?</span></summary><p data-l="ru">Профиль → Безопасность → Удалить аккаунт или на странице <a href="account.html">управления аккаунтом</a>. Все данные стираются безвозвратно.</p><p data-l="en">Profile → Security → Delete account, or on the <a href="account.html">account page</a>. All data is erased permanently.</p></details>
+      <details><summary><span data-l="ru">Как сменить язык или цвет оформления?</span><span data-l="en">How do I change the language or accent colour?</span></summary><p data-l="ru">Профиль → Язык. Цвет выбирается кружками в разделе «Цвет оформления» там же, в профиле.</p><p data-l="en">Profile → Language. Pick an accent colour with the dots under “Accent colour” in your profile.</p></details>
+    </div>
+  </div>
+</main>
+<footer>
+  <div class="wrap">
+    <a href="./" aria-label="GymPulse"><img src="img/logo.png" alt="GymPulse" width="52" height="24"></a>
+    <nav aria-label="Docs">
+      <a href="support.html"><span data-l="ru">Поддержка</span><span data-l="en">Support</span></a>
+      <a href="privacy.html"><span data-l="ru">Политика конфиденциальности</span><span data-l="en">Privacy policy</span></a>
+      <a href="account.html"><span data-l="ru">Управление аккаунтом</span><span data-l="en">Manage account</span></a>
+    </nav>
+    <small><span data-l="ru">© 2026 GymPulse. App Store является товарным знаком Apple Inc., Google Play является товарным знаком Google LLC.</span><span data-l="en">© 2026 GymPulse. App Store is a trademark of Apple Inc. Google Play is a trademark of Google LLC.</span></small>
+  </div>
+</footer>
+<script src="site.js"></script>
+
+</body>
+</html>

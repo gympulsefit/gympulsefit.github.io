@@ -2,154 +2,179 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>GymPulse Account</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GymPulse — Аккаунт</title>
+<meta name="gp:title-ru" content="GymPulse — Аккаунт">
+<meta name="gp:title-en" content="GymPulse — Account">
+<meta name="description" content="Управление аккаунтом GymPulse.">
+<meta name="theme-color" content="#08070A">
+<script>(function(){var l;try{l=new URLSearchParams(location.search).get('lang')||localStorage.getItem('gp_lang')}catch(e){}if(l!=='ru'&&l!=='en')l=/^(ru|uk|be|kk)/i.test(navigator.language||'')?'ru':'en';document.documentElement.lang=l})()</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@1,700;1,800;1,900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="style.css">
 <meta name="robots" content="noindex">
-<style>
-:root{--bg:#070505;--card:#141112;--card2:#1d191a;--bd:#2c2624;--tx:#f5f5f7;--mut:#9a9590;--ac:#ff7a00;--ac2:#ffb31a;--ok:#3ddc84;--bad:#ff4d4d}
-*{box-sizing:border-box}
-body{margin:0;min-height:100vh;background:var(--bg);color:var(--tx);font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-  background-image:radial-gradient(ellipse 900px 600px at 50% -10%,rgba(255,110,0,.32),rgba(255,80,0,.06) 55%,transparent 75%)}
-main{max-width:460px;margin:0 auto;padding:28px 16px 60px}
-.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px}
-.brand{display:flex;align-items:center;gap:10px;font-weight:900;font-style:italic;letter-spacing:4px;font-size:18px}
-.brand svg{width:56px;height:24px}
-.lang{display:flex;gap:6px}.lang button{background:transparent;border:1px solid var(--bd);color:var(--mut);border-radius:9px;padding:4px 9px;font-weight:700;cursor:pointer}
-.lang button.on{border-color:var(--ac);color:var(--ac)}
-h1{font-size:30px;font-weight:900;font-style:italic;text-transform:uppercase;letter-spacing:-.4px;margin:0 0 6px;line-height:1.1}
-h1 span{color:var(--ac)}
-.sub{color:var(--mut);margin:0 0 22px}
-.card{background:rgba(20,17,18,.88);border:1px solid rgba(255,122,0,.25);border-radius:22px;padding:18px;margin-bottom:14px}
-.card h2{font-size:13px;font-weight:900;font-style:italic;text-transform:uppercase;letter-spacing:1.2px;margin:0 0 12px}
-label{display:block;color:var(--mut);font-size:13px;font-weight:700;margin:10px 0 6px}
-input{width:100%;background:var(--card2);border:1.5px solid var(--bd);border-radius:14px;color:var(--tx);font-size:16px;padding:13px 14px;outline:none}
-input:focus{border-color:var(--ac)}
-input.code{font-size:28px;letter-spacing:10px;text-align:center;font-weight:900}
-.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border:0;border-radius:16px;padding:14px;margin-top:14px;cursor:pointer;
-  font-weight:900;font-style:italic;text-transform:uppercase;letter-spacing:.6px;font-size:15px;color:#1a0e00;background:linear-gradient(135deg,var(--ac),var(--ac2));box-shadow:0 8px 24px rgba(255,122,0,.35)}
-.btn:disabled{opacity:.6;cursor:default}
-.btn.ghost{background:var(--card2);color:var(--tx);border:1px solid var(--bd);box-shadow:none;font-style:normal;text-transform:none;letter-spacing:0;font-weight:700}
-.btn.danger{background:transparent;color:var(--bad);border:1px solid rgba(255,77,77,.4);box-shadow:none}
-.link{background:none;border:0;color:var(--ac);font-weight:700;cursor:pointer;padding:8px 0;font-size:14px}
-.row{display:flex;gap:8px;align-items:center;justify-content:space-between}
-.msg{border-radius:14px;padding:12px 14px;margin:0 0 14px;font-weight:600;font-size:14px;display:none}
-.msg.ok{display:block;background:rgba(61,220,132,.1);color:var(--ok);border:1px solid rgba(61,220,132,.3)}
-.msg.err{display:block;background:rgba(255,77,77,.1);color:var(--bad);border:1px solid rgba(255,77,77,.3)}
-.big{font-size:64px;text-align:center;margin:8px 0}
-.mut{color:var(--mut);font-size:13px}
-.who{display:flex;align-items:center;gap:12px}
-.av{width:44px;height:44px;border-radius:50%;background:rgba(255,122,0,.15);color:var(--ac);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px}
-.hide{display:none!important}
-footer{text-align:center;color:var(--mut);font-size:12px;margin-top:26px}footer a{color:var(--mut)}
-</style>
 </head>
 <body>
-<main>
-  <div class="top">
-    <div class="brand"><svg viewBox="0 0 152 48"><g fill="#f5f5f7"><rect y="14" width="6" height="20" rx="2"/><rect x="8" y="4" width="12" height="40" rx="4"/><rect x="132" y="4" width="12" height="40" rx="4"/><rect x="146" y="14" width="6" height="20" rx="2"/></g><path d="M20 24H52l6-5 6 12 9-28 10 40 7-24 5 5H132" stroke="#ff7a00" stroke-width="5" fill="none" stroke-linejoin="round" stroke-linecap="round"/></svg>GYMPULSE</div>
-    <div class="lang"><button data-l="ru">RU</button><button data-l="en">EN</button></div>
+<style>
+.acc { padding-block: clamp(36px, 6vw, 64px) clamp(56px, 8vw, 96px); background: radial-gradient(ellipse 900px 520px at 50% -10%, rgba(255, 110, 0, .22), transparent 70%); }
+.acc .wrap { max-width: 520px; }
+.acc h1.d { font-size: clamp(36px, 6vw, 52px); margin: 8px 0 10px; }
+.acc .sub { color: var(--mut); margin: 0 0 22px; }
+.acc .card { margin-bottom: 14px; padding: 22px; border-color: rgba(255, 122, 0, .22); }
+.acc .card h2 { font-family: var(--f-display); font-style: italic; font-weight: 800; text-transform: uppercase; font-size: 15px; letter-spacing: .06em; margin: 0 0 12px; }
+.acc label { display: block; color: var(--mut); font-size: 13px; font-weight: 600; margin: 12px 0 6px; }
+.acc input { width: 100%; background: var(--panel-2); border: 1.5px solid var(--line); border-radius: 14px; color: var(--fg); font-size: 16px; padding: 13px 14px; outline: none; font-family: var(--f-body); }
+.acc input:focus { border-color: var(--ac); }
+.acc input.code { font-size: 28px; letter-spacing: 10px; text-align: center; font-weight: 800; font-family: var(--f-mono); }
+.acc .btn { width: 100%; margin-top: 14px; }
+.acc .btn-gh { font-family: var(--f-body); font-style: normal; text-transform: none; letter-spacing: 0; font-weight: 700; }
+.acc .btn-bad { background: transparent; color: var(--bad); border: 1px solid rgba(255, 90, 77, .45); font-family: var(--f-body); font-style: normal; text-transform: none; letter-spacing: 0; font-weight: 700; }
+.acc .linkb { background: none; border: 0; color: var(--ac-2); font-weight: 600; cursor: pointer; padding: 10px 0 0; font-size: 14px; font-family: var(--f-body); }
+.acc .row { display: flex; gap: 8px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+.acc .msg { border-radius: 14px; padding: 12px 14px; margin: 0 0 14px; font-weight: 600; font-size: 14px; }
+.acc .msg.ok { background: rgba(47, 210, 122, .1); color: var(--ok); border: 1px solid rgba(47, 210, 122, .3); }
+.acc .msg.err { background: rgba(255, 90, 77, .1); color: var(--bad); border: 1px solid rgba(255, 90, 77, .3); }
+.acc .note { color: var(--mut); font-size: 13px; margin-top: 8px; }
+.acc .who { display: flex; align-items: center; gap: 12px; }
+.acc .av { width: 46px; height: 46px; border-radius: 50%; background: var(--ac-soft); color: var(--ac); display: grid; place-items: center; font-weight: 900; font-size: 18px; flex: none; }
+.acc .who > div { min-width: 0; overflow-wrap: anywhere; }
+.acc .big { width: 64px; height: 64px; border-radius: 50%; background: rgba(47, 210, 122, .14); display: grid; place-items: center; margin: 6px 0 14px; }
+.acc .danger { border-color: rgba(255, 90, 77, .35); background: rgba(255, 90, 77, .06); }
+</style>
+<div class="strip"><div class="wrap"><span data-l="ru"><b>СКОРО</b> в App Store и Google Play</span><span data-l="en"><b>COMING SOON</b> to the App Store and Google Play</span></div></div>
+<nav class="top" aria-label="GymPulse">
+  <div class="wrap">
+    <a class="logo" href="./" aria-label="GymPulse"><img src="img/logo.png" alt="GymPulse" width="66" height="30"></a>
+    <ul>
+      <li><a href="./#features"><span data-l="ru">Возможности</span><span data-l="en">Features</span></a></li>
+      <li><a href="./#load"><span data-l="ru">Карта нагрузки</span><span data-l="en">Load map</span></a></li>
+      <li><a href="./#programs"><span data-l="ru">Программы</span><span data-l="en">Programs</span></a></li>
+      <li><a href="support.html"><span data-l="ru">Поддержка</span><span data-l="en">Support</span></a></li>
+      <li><a href="account.html" aria-current="page"><span data-l="ru">Аккаунт</span><span data-l="en">Account</span></a></li>
+    </ul>
+    <div class="lang" role="group" aria-label="Language"><button type="button" data-set="ru">RU</button><button type="button" data-set="en">EN</button></div>
+    <a class="btn btn-ac" href="./#download"><span data-l="ru">Скачать</span><span data-l="en">Download</span></a>
   </div>
-  <div id="msg" class="msg"></div>
+</nav>
 
-  <!-- загрузка -->
-  <section id="v-load"><p class="mut" data-t="loading"></p></section>
+<main class="acc">
+  <div class="wrap">
+    <div id="msg" class="msg" hidden></div>
 
-  <!-- готово (подтверждения) -->
-  <section id="v-done" class="hide">
-    <div class="big">✅</div>
-    <h1 id="done-t"></h1><p class="sub" id="done-s"></p>
-    <button class="btn ghost" onclick="show('login')" data-t="toAccount"></button>
-  </section>
+    <section id="v-load"><p class="note" data-t="loading"></p></section>
 
-  <!-- новый пароль после ссылки из письма -->
-  <section id="v-newpw" class="hide">
-    <h1><span>/</span> <span style="color:inherit" data-t="newPwT"></span></h1><p class="sub" data-t="newPwS"></p>
-    <div class="card">
-      <label data-t="newPw"></label><input id="np1" type="password" autocomplete="new-password">
-      <label data-t="repeatPw"></label><input id="np2" type="password" autocomplete="new-password">
-      <p class="mut" data-t="pwRule"></p>
-      <button class="btn" id="np-go" data-t="savePw"></button>
-    </div>
-  </section>
+    <section id="v-done" hidden>
+      <div class="big"><svg width="30" height="30" viewBox="0 0 28 28" aria-hidden="true"><path d="M7 14.5l4.5 4.5L21 9" stroke="#2FD27A" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <h1 class="d" id="done-t"></h1><p class="sub" id="done-s"></p>
+      <button type="button" class="btn btn-gh" id="to-acc" data-t="toAccount"></button>
+    </section>
 
-  <!-- вход -->
-  <section id="v-login" class="hide">
-    <h1><span>/</span> <span style="color:inherit" data-t="loginT"></span></h1><p class="sub" data-t="loginS"></p>
-    <div class="card" id="pw-box">
-      <label data-t="email"></label><input id="le" type="email" autocomplete="email">
-      <label data-t="password"></label><input id="lp" type="password" autocomplete="current-password">
-      <button class="btn" id="l-go" data-t="signIn"></button>
-      <div class="row"><button class="link" id="l-code" data-t="byCode"></button><button class="link" id="l-forgot" data-t="forgot"></button></div>
-    </div>
-    <div class="card hide" id="code-box">
-      <p class="mut" id="code-to"></p>
-      <label data-t="code"></label><input id="lc" class="code" inputmode="numeric" maxlength="10" autocomplete="one-time-code">
-      <button class="btn" id="c-go" data-t="verify"></button>
-      <div class="row"><button class="link" id="c-back" data-t="back"></button><button class="link" id="c-resend" data-t="resend"></button></div>
-    </div>
-  </section>
+    <section id="v-newpw" hidden>
+      <div class="eyebrow" data-t="accEyebrow"></div>
+      <h1 class="d slash" data-t="newPwT"></h1><p class="sub" data-t="newPwS"></p>
+      <div class="card">
+        <label for="np1" data-t="newPw"></label><input id="np1" type="password" autocomplete="new-password">
+        <label for="np2" data-t="repeatPw"></label><input id="np2" type="password" autocomplete="new-password">
+        <p class="note" data-t="pwRule"></p>
+        <button type="button" class="btn btn-ac" id="np-go" data-t="savePw"></button>
+      </div>
+    </section>
 
-  <!-- аккаунт -->
-  <section id="v-acc" class="hide">
-    <h1><span>/</span> <span style="color:inherit" data-t="accT"></span></h1>
-    <div class="card"><div class="who"><div class="av" id="av"></div><div><b id="acc-name"></b><div class="mut" id="acc-mail"></div></div></div></div>
-    <div class="card">
-      <h2 data-t="chPw"></h2>
-      <label data-t="newPw"></label><input id="cp1" type="password" autocomplete="new-password">
-      <label data-t="repeatPw"></label><input id="cp2" type="password" autocomplete="new-password">
-      <p class="mut" data-t="pwRule"></p>
-      <button class="btn" id="cp-go" data-t="savePw"></button>
-    </div>
-    <div class="card">
-      <h2 data-t="chMail"></h2>
-      <label data-t="newMail"></label><input id="cm" type="email" autocomplete="email">
-      <p class="mut" data-t="chMailHelp"></p>
-      <button class="btn" id="cm-go" data-t="saveMail"></button>
-    </div>
-    <button class="btn ghost" id="out" data-t="signOut"></button>
-    <button class="btn danger" id="del" data-t="delAcc"></button>
-  </section>
+    <section id="v-login" hidden>
+      <div class="eyebrow" data-t="accEyebrow"></div>
+      <h1 class="d slash" data-t="loginT"></h1><p class="sub" data-t="loginS"></p>
+      <div class="card" id="pw-box">
+        <label for="le" data-t="email"></label><input id="le" type="email" autocomplete="email">
+        <label for="lp" data-t="password"></label><input id="lp" type="password" autocomplete="current-password">
+        <button type="button" class="btn btn-ac" id="l-go" data-t="signIn"></button>
+        <div class="row"><button type="button" class="linkb" id="l-code" data-t="byCode"></button><button type="button" class="linkb" id="l-forgot" data-t="forgot"></button></div>
+      </div>
+      <div class="card" id="code-box" hidden>
+        <p class="note" id="code-to"></p>
+        <label for="lc" data-t="code"></label><input id="lc" class="code" inputmode="numeric" maxlength="10" autocomplete="one-time-code">
+        <button type="button" class="btn btn-ac" id="c-go" data-t="verify"></button>
+        <div class="row"><button type="button" class="linkb" id="c-back" data-t="back"></button><button type="button" class="linkb" id="c-resend" data-t="resend"></button></div>
+      </div>
+      <p class="note" data-t="noAcc"></p>
+    </section>
 
-  <footer><a href="support.html" data-t="support"></a> · <a href="privacy.html" data-t="privacy"></a></footer>
+    <section id="v-acc" hidden>
+      <div class="eyebrow" data-t="accEyebrow"></div>
+      <h1 class="d slash" data-t="accT"></h1>
+      <div class="card"><div class="who"><div class="av" id="av"></div><div><b id="acc-name"></b><div class="note" id="acc-mail" style="margin:0"></div></div></div></div>
+      <div class="card">
+        <h2 data-t="chPw"></h2>
+        <label for="cp1" data-t="newPw"></label><input id="cp1" type="password" autocomplete="new-password">
+        <label for="cp2" data-t="repeatPw"></label><input id="cp2" type="password" autocomplete="new-password">
+        <p class="note" data-t="pwRule"></p>
+        <button type="button" class="btn btn-ac" id="cp-go" data-t="savePw"></button>
+      </div>
+      <div class="card">
+        <h2 data-t="chMail"></h2>
+        <label for="cm" data-t="newMail"></label><input id="cm" type="email" autocomplete="email">
+        <p class="note" data-t="chMailHelp"></p>
+        <button type="button" class="btn btn-ac" id="cm-go" data-t="saveMail"></button>
+      </div>
+      <button type="button" class="btn btn-gh" id="out" data-t="signOut"></button>
+      <button type="button" class="btn btn-bad" id="del" data-t="delAcc"></button>
+      <div class="card danger" id="del-box" hidden style="margin-top:14px">
+        <h2 style="color:var(--bad)" data-t="delT"></h2>
+        <p data-t="delQ"></p>
+        <div class="row" style="flex-wrap:nowrap"><button type="button" class="btn btn-gh" id="del-no" data-t="cancel"></button><button type="button" class="btn btn-bad" id="del-yes" data-t="delYes"></button></div>
+      </div>
+    </section>
+  </div>
 </main>
+<footer>
+  <div class="wrap">
+    <a href="./" aria-label="GymPulse"><img src="img/logo.png" alt="GymPulse" width="52" height="24"></a>
+    <nav aria-label="Docs">
+      <a href="support.html"><span data-l="ru">Поддержка</span><span data-l="en">Support</span></a>
+      <a href="privacy.html"><span data-l="ru">Политика конфиденциальности</span><span data-l="en">Privacy policy</span></a>
+      <a href="account.html"><span data-l="ru">Управление аккаунтом</span><span data-l="en">Manage account</span></a>
+    </nav>
+    <small><span data-l="ru">© 2026 GymPulse. App Store является товарным знаком Apple Inc., Google Play является товарным знаком Google LLC.</span><span data-l="en">© 2026 GymPulse. App Store is a trademark of Apple Inc. Google Play is a trademark of Google LLC.</span></small>
+  </div>
+</footer>
+<script src="site.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.97.0"></script>
 <script>
 const SUPABASE_URL = 'https://tsquteboyugfvkewymhu.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_idamVW06MDAkTXfMhYo3RQ_-R0iIrN2';
 const T = {
-  ru: { loading: 'Загрузка…', toAccount: 'Перейти в аккаунт', newPwT: 'Новый пароль', newPwS: 'Придумайте новый пароль для GymPulse.', newPw: 'Новый пароль', repeatPw: 'Повторите пароль',
-    pwRule: 'Минимум 8 символов, латинские буквы и цифры.', savePw: 'Сохранить пароль', loginT: 'Аккаунт', loginS: 'Войдите, чтобы сменить пароль или почту.', email: 'Почта', password: 'Пароль',
+  ru: { loading: 'Загрузка…', accEyebrow: 'Аккаунт GymPulse', toAccount: 'Перейти в аккаунт', newPwT: 'Новый пароль', newPwS: 'Придумайте новый пароль для GymPulse.', newPw: 'Новый пароль', repeatPw: 'Повторите пароль',
+    pwRule: 'Минимум 8 символов, латинские буквы и цифры.', savePw: 'Сохранить пароль', loginT: 'Вход', loginS: 'Войдите, чтобы сменить пароль, почту или удалить аккаунт.', email: 'Почта', password: 'Пароль',
     signIn: 'Войти', byCode: 'Войти по коду', forgot: 'Забыли пароль?', code: 'Код из письма', verify: 'Подтвердить', back: 'Назад', resend: 'Отправить ещё раз',
-    accT: 'Мой аккаунт', chPw: 'Сменить пароль', chMail: 'Сменить почту', newMail: 'Новая почта', chMailHelp: 'Мы пришлём письма для подтверждения — смена произойдёт после перехода по ссылке.',
-    saveMail: 'Сменить почту', signOut: 'Выйти', delAcc: 'Удалить аккаунт', support: 'Поддержка', privacy: 'Конфиденциальность',
-    sentTo: 'Код отправлен на {e}. Проверьте «Входящие» и «Спам».', needEmail: 'Введите почту', needAll: 'Заполните почту и пароль', pwBad: 'Пароль: минимум 8 символов, латинские буквы и цифры', pwDiff: 'Пароли не совпадают',
-    pwSaved: 'Пароль изменён. Теперь войдите с ним в приложении.', mailSent: 'Письма отправлены. Подтвердите смену по ссылке в письме.', resetSent: 'Ссылка и код для сброса пароля отправлены на {e}.',
-    confirmedT: 'Почта подтверждена', confirmedS: 'Вернитесь в приложение GymPulse и войдите.', emailChT: 'Почта изменена', emailChS: 'Если пришло два письма (на старую и новую почту) — подтвердите оба.',
-    delQ: 'Удалить аккаунт и все тренировки без возможности восстановления?', deleted: 'Аккаунт удалён.', linkBad: 'Ссылка устарела или уже использована. Запросите новую.', wait: 'Подождите…' },
-  en: { loading: 'Loading…', toAccount: 'Go to account', newPwT: 'New password', newPwS: 'Choose a new password for GymPulse.', newPw: 'New password', repeatPw: 'Repeat password',
-    pwRule: 'At least 8 characters with Latin letters and numbers.', savePw: 'Save password', loginT: 'Account', loginS: 'Sign in to change your password or email.', email: 'Email', password: 'Password',
+    noAcc: 'Аккаунт создаётся в приложении GymPulse.', accT: 'Мой аккаунт', chPw: 'Сменить пароль', chMail: 'Сменить почту', newMail: 'Новая почта', chMailHelp: 'Мы пришлём письмо для подтверждения. Почта сменится после перехода по ссылке.',
+    saveMail: 'Сменить почту', signOut: 'Выйти', delAcc: 'Удалить аккаунт', delT: 'Удалить аккаунт?', delQ: 'Аккаунт, все тренировки, резервные копии и фото профиля будут удалены без возможности восстановления.', delYes: 'Да, удалить', cancel: 'Отмена',
+    sentTo: 'Код отправлен на {e}. Проверьте «Входящие» и «Спам».', needEmail: 'Введите почту', needAll: 'Введите почту и пароль', pwBad: 'Пароль: минимум 8 символов, латинские буквы и цифры', pwDiff: 'Пароли не совпадают',
+    pwSaved: 'Пароль изменён. Теперь войдите с ним в приложении.', mailSent: 'Письмо отправлено. Подтвердите смену по ссылке в нём.',
+    confirmedT: 'Почта подтверждена', confirmedS: 'Вернитесь в приложение GymPulse и войдите.', emailChT: 'Почта изменена', emailChS: 'Если пришло два письма (на старую и новую почту), подтвердите оба.',
+    deleted: 'Аккаунт удалён.', linkBad: 'Ссылка устарела или уже использована. Запросите новую.', wait: 'Подождите…' },
+  en: { loading: 'Loading…', accEyebrow: 'GymPulse account', toAccount: 'Go to my account', newPwT: 'New password', newPwS: 'Choose a new password for GymPulse.', newPw: 'New password', repeatPw: 'Repeat password',
+    pwRule: 'At least 8 characters with Latin letters and numbers.', savePw: 'Save password', loginT: 'Sign in', loginS: 'Sign in to change your password or email, or to delete your account.', email: 'Email', password: 'Password',
     signIn: 'Sign in', byCode: 'Sign in with a code', forgot: 'Forgot password?', code: 'Code from the email', verify: 'Verify', back: 'Back', resend: 'Resend',
-    accT: 'My account', chPw: 'Change password', chMail: 'Change email', newMail: 'New email', chMailHelp: 'We will send confirmation emails — the change happens after you follow the link.',
-    saveMail: 'Change email', signOut: 'Sign out', delAcc: 'Delete account', support: 'Support', privacy: 'Privacy',
-    sentTo: 'Code sent to {e}. Check your inbox and spam.', needEmail: 'Enter your email', needAll: 'Enter email and password', pwBad: 'Password: at least 8 characters, letters and numbers', pwDiff: 'Passwords do not match',
-    pwSaved: 'Password changed. Sign in with it in the app.', mailSent: 'Emails sent. Confirm the change via the link.', resetSent: 'A reset link and code were sent to {e}.',
+    noAcc: 'Accounts are created in the GymPulse app.', accT: 'My account', chPw: 'Change password', chMail: 'Change email', newMail: 'New email', chMailHelp: 'We will send a confirmation email. The address changes after you follow the link.',
+    saveMail: 'Change email', signOut: 'Sign out', delAcc: 'Delete account', delT: 'Delete account?', delQ: 'Your account, all workouts, backups and profile photo will be erased permanently.', delYes: 'Yes, delete', cancel: 'Cancel',
+    sentTo: 'Code sent to {e}. Check your inbox and spam.', needEmail: 'Enter your email', needAll: 'Enter your email and password', pwBad: 'Password: at least 8 characters, letters and numbers', pwDiff: 'Passwords do not match',
+    pwSaved: 'Password changed. Sign in with it in the app.', mailSent: 'Email sent. Confirm the change via the link inside.',
     confirmedT: 'Email confirmed', confirmedS: 'Go back to the GymPulse app and sign in.', emailChT: 'Email changed', emailChS: 'If you got two emails (old and new address), confirm both.',
-    delQ: 'Delete your account and all workouts permanently?', deleted: 'Account deleted.', linkBad: 'This link has expired or was already used. Request a new one.', wait: 'Please wait…' } };
-let L = (localStorage.getItem('gp_lang') || navigator.language || 'en').slice(0, 2) === 'ru' ? 'ru' : 'en';
-try { const q = new URLSearchParams(location.search).get('lang'); if (q === 'ru' || q === 'en') L = q; } catch (e) {}
-const t = (k, p) => (T[L][k] || k).replace(/\{(\w+)\}/g, (_, x) => (p && p[x]) || '');
+    deleted: 'Account deleted.', linkBad: 'This link has expired or was already used. Request a new one.', wait: 'Please wait…' } };
+const lang = () => (window.gpLang ? window.gpLang() : 'ru');
+const t = (k, p) => (T[lang()][k] || k).replace(/\{(\w+)\}/g, (_, x) => (p && p[x]) || '');
 const $ = id => document.getElementById(id);
+let doneKey = null;
 function paint() {
-  document.documentElement.lang = L;
   document.querySelectorAll('[data-t]').forEach(el => { el.textContent = t(el.dataset.t); });
-  document.querySelectorAll('.lang button').forEach(b => b.classList.toggle('on', b.dataset.l === L));
+  if (doneKey) { $('done-t').textContent = t(doneKey + 'T'); $('done-s').textContent = t(doneKey + 'S'); }
 }
-document.querySelectorAll('.lang button').forEach(b => b.onclick = () => { L = b.dataset.l; try { localStorage.setItem('gp_lang', L); } catch (e) {} paint(); });
-const msg = (txt, ok) => { const m = $('msg'); m.textContent = txt || ''; m.className = 'msg' + (txt ? (ok ? ' ok' : ' err') : ''); if (txt) window.scrollTo({ top: 0, behavior: 'smooth' }); };
-function show(v) { ['load', 'done', 'newpw', 'login', 'acc'].forEach(x => $('v-' + x).classList.toggle('hide', x !== v)); if (v === 'acc') fillAcc(); }
+window.onLang = paint;
+const msg = (txt, ok) => { const m = $('msg'); m.textContent = txt || ''; m.hidden = !txt; m.className = 'msg' + (ok ? ' ok' : ' err'); if (txt) window.scrollTo({ top: 0, behavior: 'smooth' }); };
+function show(v) { ['load', 'done', 'newpw', 'login', 'acc'].forEach(x => { $('v-' + x).hidden = x !== v; }); if (v === 'acc') fillAcc(); }
 const pwOk = p => p.length >= 8 && /[A-Za-z]/.test(p) && /\d/.test(p);
-const busy = (btn, on) => { btn.disabled = on; if (on) { btn.dataset.o = btn.textContent; btn.textContent = t('wait'); } else if (btn.dataset.o) btn.textContent = btn.dataset.o; };
+const busy = (btn, on) => { btn.disabled = on; if (on) btn.textContent = t('wait'); else paint(); };
 
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY, { auth: { persistSession: true, detectSessionInUrl: true, flowType: 'implicit' } });
 let codeMode = null, codeEmail = '';
@@ -164,6 +189,7 @@ async function setPw(p1, p2, btn) {
   busy(btn, true); const { error } = await sb.auth.updateUser({ password: p1 }); busy(btn, false);
   if (error) return msg(error.message); msg(t('pwSaved'), true); return true;
 }
+$('to-acc').onclick = () => show('login');
 $('np-go').onclick = async () => { if (await setPw($('np1').value, $('np2').value, $('np-go'))) show('acc'); };
 $('cp-go').onclick = async () => { if (await setPw($('cp1').value, $('cp2').value, $('cp-go'))) { $('cp1').value = $('cp2').value = ''; } };
 $('cm-go').onclick = async () => {
@@ -182,25 +208,29 @@ async function sendCode(mode) {
     : await sb.auth.signInWithOtp({ email: e, options: { shouldCreateUser: false } });
   if (r.error) return msg(r.error.message);
   codeMode = mode; codeEmail = e; $('code-to').textContent = t('sentTo', { e });
-  $('pw-box').classList.add('hide'); $('code-box').classList.remove('hide'); $('lc').value = ''; $('lc').focus(); msg('');
+  $('pw-box').hidden = true; $('code-box').hidden = false; $('lc').value = ''; $('lc').focus(); msg('');
 }
 $('l-code').onclick = () => sendCode('email');
 $('l-forgot').onclick = () => sendCode('recovery');
 $('c-resend').onclick = () => sendCode(codeMode);
-$('c-back').onclick = () => { $('code-box').classList.add('hide'); $('pw-box').classList.remove('hide'); };
+$('c-back').onclick = () => { $('code-box').hidden = true; $('pw-box').hidden = false; };
 $('c-go').onclick = async () => {
   const token = $('lc').value.replace(/\D/g, ''); if (token.length < 6) return;
   busy($('c-go'), true); const { error } = await sb.auth.verifyOtp({ email: codeEmail, token, type: codeMode }); busy($('c-go'), false);
   if (error) return msg(error.message); msg(''); show(codeMode === 'recovery' ? 'newpw' : 'acc');
 };
 $('out').onclick = async () => { await sb.auth.signOut(); show('login'); };
-$('del').onclick = async () => {
-  if (!confirm(t('delQ'))) return;
+$('del').onclick = () => { $('del-box').hidden = false; $('del-box').scrollIntoView({ behavior: 'smooth', block: 'center' }); };
+$('del-no').onclick = () => { $('del-box').hidden = true; };
+$('del-yes').onclick = async () => {
+  busy($('del-yes'), true);
   const { data } = await sb.auth.getUser(); const u = data && data.user;
   if (u) { try { await sb.storage.from('avatars').remove([u.id + '/avatar.jpg']); } catch (e) {} }
-  const { error } = await sb.rpc('delete_my_account'); if (error) return msg(error.message);
-  await sb.auth.signOut(); msg(t('deleted'), true); show('login');
+  const { error } = await sb.rpc('delete_my_account'); busy($('del-yes'), false);
+  if (error) return msg(error.message);
+  await sb.auth.signOut(); $('del-box').hidden = true; msg(t('deleted'), true); show('login');
 };
+function done(k) { doneKey = k; paint(); show('done'); }
 
 (async () => {
   paint();
@@ -212,8 +242,8 @@ $('del').onclick = async () => {
     history.replaceState(null, '', location.pathname);
     if (error) { msg(t('linkBad')); return show('login'); }
     if (type === 'recovery') return show('newpw');
-    if (type === 'email_change') { $('done-t').textContent = t('emailChT'); $('done-s').textContent = t('emailChS'); return show('done'); }
-    if (type === 'signup' || type === 'email' || type === 'invite') { $('done-t').textContent = t('confirmedT'); $('done-s').textContent = t('confirmedS'); return show('done'); }
+    if (type === 'email_change') return done('emailCh');
+    if (type === 'signup' || type === 'email' || type === 'invite') return done('confirmed');
     return show('acc');
   }
   await new Promise(r => setTimeout(r, 300));                 // даём supabase разобрать #access_token из старых ссылок
