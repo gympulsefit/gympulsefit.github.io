@@ -8,7 +8,7 @@
 <meta name="gp:title-en" content="GymPulse — Account">
 <meta name="description" content="Управление аккаунтом GymPulse.">
 <meta name="theme-color" content="#08070A">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-vhCojYVqglzWc3rxSe71ZzEY8ykdeRPMenTMEMSjk7M=' 'sha256-+N1O2ZhB4fCDuWW6IZrmTO3uLFp5yGKeGTYfXfHgf4A=' 'sha256-25fCiRb4iYJKmDPbPjr32mXl3Fm/svxAkvFXTJlMIlY=' https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.119.0/; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://tsquteboyugfvkewymhu.supabase.co; connect-src 'self' https://tsquteboyugfvkewymhu.supabase.co wss://tsquteboyugfvkewymhu.supabase.co; object-src 'none'; frame-src 'none'; worker-src 'none'; manifest-src 'self'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-vhCojYVqglzWc3rxSe71ZzEY8ykdeRPMenTMEMSjk7M=' 'sha256-+N1O2ZhB4fCDuWW6IZrmTO3uLFp5yGKeGTYfXfHgf4A=' 'sha256-JK71yEE44T1cVw2rTnOdy1yc30YP68d1bNeTu2z0Mac=' https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.119.0/; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://tsquteboyugfvkewymhu.supabase.co; connect-src 'self' https://tsquteboyugfvkewymhu.supabase.co wss://tsquteboyugfvkewymhu.supabase.co; object-src 'none'; frame-src 'none'; worker-src 'none'; manifest-src 'self'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <script>if (self !== top) { try { top.location.href = self.location.href; } catch (e) {} document.documentElement.style.display = 'none'; }</script>
 
 <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -405,7 +405,7 @@ const T = {
     impT: 'Перенос из Strong и Hevy', impS: 'Заберите всю историю тренировок из другого приложения: подходы, веса, разминки, дроп-сеты и суперсеты. Повторный импорт того же файла ничего не задвоит.',
     impStrong: 'Профиль → Настройки → «Экспорт данных Strong»', impHevy: 'Профиль → Настройки → «Экспорт и импорт» → «Экспорт тренировок»',
     impPick: 'Выберите CSV-файл', impPickS: 'или перетащите его сюда', impUnit: 'В чём записаны веса в Strong?', impW: 'тренировок', impS2: 'подходов', impE: 'упражнений узнали',
-    impFrom: 'Файл {src}: с {a} по {b}', impUnk: 'Не узнали {n} упр. — добавим как ваши собственные', impGo: 'Перенести тренировки: {n}',
+    impFrom: 'Файл {src}: с {a} по {b}', impUnk: 'Не узнали: {n} — добавим как ваши упражнения', impGo: 'Перенести тренировки: {n}',
     impBig: 'Файл слишком большой (больше 30 МБ).', impBad: 'Не получилось прочитать файл. Нужен CSV, выгруженный из Strong или Hevy.', impEmpty: 'В файле не нашлось подходов с повторами.',
     impDone: 'Готово! Перенесено тренировок: {n}. Откройте GymPulse — история появится после синхронизации.', impFail: 'Не удалось перенести:',
     deleted: 'Аккаунт удалён.', linkBad: 'Ссылка устарела или уже использована. Запросите новую.', wait: 'Подождите…', netErr: 'Не удалось загрузить данные. Проверьте интернет и обновите страницу.' },
@@ -436,7 +436,7 @@ const T = {
     impT: 'Move from Strong or Hevy', impS: 'Bring your whole training history from another app: sets, weights, warm-ups, drop sets and supersets. Importing the same file again won’t create duplicates.',
     impStrong: 'Profile → Settings → “Export Strong Data”', impHevy: 'Profile → Settings → “Export & Import Data” → “Export Workouts”',
     impPick: 'Choose a CSV file', impPickS: 'or drop it here', impUnit: 'Which unit are the weights in Strong?', impW: 'workouts', impS2: 'sets', impE: 'exercises matched',
-    impFrom: '{src} file: {a} to {b}', impUnk: '{n} exercises not matched — we’ll add them as your own', impGo: 'Import {n} workouts',
+    impFrom: '{src} file: {a} to {b}', impUnk: 'Not matched: {n} — we’ll add them as your own exercises', impGo: 'Import {n} workouts',
     impBig: 'The file is too large (over 30 MB).', impBad: 'Could not read the file. Use a CSV exported from Strong or Hevy.', impEmpty: 'No sets with reps were found in the file.',
     impDone: 'Done: {n} workouts imported. Open GymPulse — your history appears after it syncs.', impFail: 'Import failed:',
     deleted: 'Account deleted.', linkBad: 'This link has expired or was already used. Request a new one.', wait: 'Please wait…', netErr: 'Could not load your data. Check your connection and refresh the page.' } };
