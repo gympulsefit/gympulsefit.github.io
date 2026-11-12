@@ -8,7 +8,9 @@
 <meta name="gp:title-en" content="GymPulse — Account">
 <meta name="description" content="Управление аккаунтом GymPulse.">
 <meta name="theme-color" content="#08070A">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://tsquteboyugfvkewymhu.supabase.co; connect-src 'self' https://tsquteboyugfvkewymhu.supabase.co wss://tsquteboyugfvkewymhu.supabase.co; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-vhCojYVqglzWc3rxSe71ZzEY8ykdeRPMenTMEMSjk7M=' 'sha256-+N1O2ZhB4fCDuWW6IZrmTO3uLFp5yGKeGTYfXfHgf4A=' 'sha256-ujYWzJKeQBLWagDcQnxqzu0/yEpIm5n63ieNqsLZJpg=' https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.119.0/; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://tsquteboyugfvkewymhu.supabase.co; connect-src 'self' https://tsquteboyugfvkewymhu.supabase.co wss://tsquteboyugfvkewymhu.supabase.co; object-src 'none'; frame-src 'none'; worker-src 'none'; manifest-src 'self'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<script>if (self !== top) { try { top.location.href = self.location.href; } catch (e) {} document.documentElement.style.display = 'none'; }</script>
+
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="robots" content="noindex">
 <link rel="icon" type="image/png" href="img/icon.png">
@@ -326,7 +328,7 @@
 </footer>
 <script src="site.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.97.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.119.0/dist/umd/supabase.js" integrity="sha384-uteMfOloLDGt042uDz+xHGF3ym63/WQ6rFq7murQRG8Ih7QrXGEGNtWd8688sb4O" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
 const SUPABASE_URL = 'https://tsquteboyugfvkewymhu.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_idamVW06MDAkTXfMhYo3RQ_-R0iIrN2';
@@ -532,7 +534,7 @@ function save(name, text, type) { const a = document.createElement('a'); a.href 
 const stamp = () => new Date().toISOString().slice(0, 10);
 $('x-csv').onclick = async () => {
   try { await loadW(); } catch (e) { return msg(t('netErr')); }
-  const en = lang() === 'en', sep = en ? ',' : ';', q = v => { const s = String(v == null ? '' : v); return /[",;\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; };
+  const en = lang() === 'en', sep = en ? ',' : ';', q = v => { let s = String(v == null ? '' : v); if (/^[=+@\t\r]|^-(?![\d.,]*$)/.test(s)) s = "'" + s; return /[",;\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; };
   const num = v => (en ? String(v) : String(v).replace('.', ','));
   const head = en ? ['Date', 'Workout', 'Exercise', 'Set', 'Type', 'Weight', 'Unit', 'Reps', 'Done', 'Weight (kg)', 'Body weight (kg)', 'Note']
     : ['Дата', 'Тренировка', 'Упражнение', 'Подход', 'Тип', 'Вес', 'Ед.', 'Повторы', 'Выполнен', 'Вес (кг)', 'Вес тела (кг)', 'Заметка'];
