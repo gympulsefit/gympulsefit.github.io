@@ -8,40 +8,114 @@
 <meta name="gp:title-en" content="GymPulse — Account">
 <meta name="description" content="Управление аккаунтом GymPulse.">
 <meta name="theme-color" content="#08070A">
+<meta name="robots" content="noindex">
 <link rel="icon" type="image/png" href="img/icon.png">
+
 <script>(function(){var l;try{l=new URLSearchParams(location.search).get('lang')||localStorage.getItem('gp_lang')}catch(e){}if(l!=='ru'&&l!=='en')l=/^(ru|uk|be|kk)/i.test(navigator.language||'')?'ru':'en';document.documentElement.lang=l})()</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@1,700;1,800;1,900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
 <link rel="stylesheet" href="style.css">
-<meta name="robots" content="noindex">
 </head>
 <body>
 <style>
-.acc { padding-block: clamp(36px, 6vw, 64px) clamp(56px, 8vw, 96px); background: radial-gradient(ellipse 900px 520px at 50% -10%, rgba(255, 110, 0, .22), transparent 70%); }
-.acc .wrap { max-width: 520px; }
-.acc h1.d { font-size: clamp(36px, 6vw, 52px); margin: 8px 0 10px; }
+/* Личный кабинет: вход в узкой колонке, после входа — шапка профиля и разделы-вкладки */
+.acc { padding-block: clamp(30px, 5vw, 56px) clamp(56px, 8vw, 96px); background: radial-gradient(ellipse 900px 520px at 50% -10%, rgba(255, 110, 0, .2), transparent 70%); min-height: 70vh; }
+.acc .narrow { max-width: 520px; }
+.acc .wide { max-width: 900px; }
+.acc h1.d { font-size: clamp(34px, 6vw, 52px); margin: 8px 0 10px; }
 .acc .sub { color: var(--mut); margin: 0 0 22px; }
-.acc .card { margin-bottom: 14px; padding: 22px; border-color: rgba(255, 122, 0, .22); }
+.acc .card { margin-bottom: 14px; padding: 22px; }
 .acc .card h2 { font-family: var(--f-display); font-style: italic; font-weight: 800; text-transform: uppercase; font-size: 15px; letter-spacing: .06em; margin: 0 0 12px; }
-.acc label { display: block; color: var(--mut); font-size: 13px; font-weight: 600; margin: 12px 0 6px; }
-.acc input { width: 100%; background: var(--panel-2); border: 1.5px solid var(--line); border-radius: 14px; color: var(--fg); font-size: 16px; padding: 13px 14px; outline: none; font-family: var(--f-body); }
+.acc label.f { display: block; color: var(--mut); font-size: 13px; font-weight: 600; margin: 12px 0 6px; }
+.acc input[type=text], .acc input[type=email], .acc input[type=password], .acc input[type=number], .acc input.code { width: 100%; background: var(--panel-2); border: 1.5px solid var(--line); border-radius: 14px; color: var(--fg); font-size: 16px; padding: 13px 14px; outline: none; font-family: var(--f-body); }
 .acc input:focus { border-color: var(--ac); }
 .acc input.code { font-size: 28px; letter-spacing: 10px; text-align: center; font-weight: 800; font-family: var(--f-mono); }
-.acc .btn { width: 100%; margin-top: 14px; }
-.acc .btn-gh { font-family: var(--f-body); font-style: normal; text-transform: none; letter-spacing: 0; font-weight: 700; }
-.acc .btn-bad { background: transparent; color: var(--bad); border: 1px solid rgba(255, 90, 77, .45); font-family: var(--f-body); font-style: normal; text-transform: none; letter-spacing: 0; font-weight: 700; }
+.acc .btn { margin-top: 14px; }
+.acc .full { width: 100%; }
+.acc .btn-gh, .acc .btn-bad { font-family: var(--f-body); font-style: normal; text-transform: none; letter-spacing: 0; font-weight: 700; }
+.acc .btn-bad { background: transparent; color: var(--bad); border: 1px solid rgba(255, 90, 77, .45); }
 .acc .linkb { background: none; border: 0; color: var(--ac-2); font-weight: 600; cursor: pointer; padding: 10px 0 0; font-size: 14px; font-family: var(--f-body); }
-.acc .row { display: flex; gap: 8px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+.acc .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.acc .row.sb { justify-content: space-between; }
 .acc .msg { border-radius: 14px; padding: 12px 14px; margin: 0 0 14px; font-weight: 600; font-size: 14px; }
 .acc .msg.ok { background: rgba(47, 210, 122, .1); color: var(--ok); border: 1px solid rgba(47, 210, 122, .3); }
 .acc .msg.err { background: rgba(255, 90, 77, .1); color: var(--bad); border: 1px solid rgba(255, 90, 77, .3); }
-.acc .note { color: var(--mut); font-size: 13px; margin-top: 8px; }
-.acc .who { display: flex; align-items: center; gap: 12px; }
-.acc .av { width: 46px; height: 46px; border-radius: 50%; background: var(--ac-soft); color: var(--ac); display: grid; place-items: center; font-weight: 900; font-size: 18px; flex: none; }
-.acc .who > div { min-width: 0; overflow-wrap: anywhere; }
+.acc .note { color: var(--mut); font-size: 13.5px; margin-top: 8px; }
 .acc .big { width: 64px; height: 64px; border-radius: 50%; background: rgba(47, 210, 122, .14); display: grid; place-items: center; margin: 6px 0 14px; }
 .acc .danger { border-color: rgba(255, 90, 77, .35); background: rgba(255, 90, 77, .06); }
+
+/* шапка кабинета */
+.hero-acc { display: flex; align-items: center; gap: 18px; margin-bottom: 22px; flex-wrap: wrap; }
+.av { width: 72px; height: 72px; border-radius: 50%; background: var(--ac-soft); color: var(--ac); display: grid; place-items: center; font-weight: 900; font-size: 28px; flex: none; overflow: hidden; border: 2px solid rgba(255, 122, 0, .35); font-family: var(--f-display); font-style: italic; }
+.av img { width: 100%; height: 100%; object-fit: cover; }
+.hero-acc .who { flex: 1; min-width: 0; }
+.hero-acc .who b { display: block; font-family: var(--f-display); font-style: italic; font-weight: 900; text-transform: uppercase; font-size: clamp(24px, 4vw, 32px); line-height: 1.05; overflow-wrap: anywhere; }
+.hero-acc .who span { color: var(--mut); font-size: 14px; overflow-wrap: anywhere; }
+.tabs-acc { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding: 4px; margin: 0 0 18px; background: var(--panel); border: 1px solid var(--line); border-radius: 16px; }
+.tabs-acc::-webkit-scrollbar { display: none; }
+.tabs-acc button { flex: none; border: 0; background: transparent; color: var(--mut); font-weight: 700; font-size: 14px; padding: 10px 14px; border-radius: 12px; cursor: pointer; font-family: var(--f-body); white-space: nowrap; transition: background .2s, color .2s; }
+.tabs-acc button[aria-selected="true"] { background: var(--ac); color: var(--on-ac); }
+
+/* статистика */
+.kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 14px; }
+.kpi { background: var(--panel); border: 1px solid var(--line); border-radius: 18px; padding: 16px; min-width: 0; }
+.kpi b { display: block; font-family: var(--f-display); font-style: italic; font-weight: 900; font-size: clamp(22px, 3.4vw, 30px); line-height: 1; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.kpi span { color: var(--mut); font-size: 12.5px; }
+
+/* календарь */
+.cal-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
+.cal-head b { font-family: var(--f-display); font-style: italic; text-transform: uppercase; font-size: 17px; }
+.cal-head button { width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--line); background: var(--panel-2); color: var(--fg); cursor: pointer; font-size: 16px; }
+.cal { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; text-align: center; }
+.cal .dw { font-family: var(--f-mono); font-size: 11px; color: var(--mut); padding-bottom: 2px; }
+.cal .d { height: 44px; display: grid; place-items: center; border-radius: 12px; font-size: 14px; font-weight: 600; color: var(--mut); background: transparent; border: 0; font-family: var(--f-body); }
+.cal .d.on { background: linear-gradient(135deg, var(--ac), var(--ac-2)); color: var(--on-ac); font-weight: 800; cursor: pointer; }
+.cal .d.today { box-shadow: inset 0 0 0 1.5px var(--ac); color: var(--fg); }
+.wlist { display: grid; gap: 10px; margin-top: 14px; }
+.wk { background: var(--panel); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
+.wk > button { width: 100%; display: grid; grid-template-columns: 52px 1fr auto; gap: 14px; align-items: center; padding: 14px 16px; background: transparent; border: 0; color: var(--fg); text-align: left; cursor: pointer; font-family: var(--f-body); }
+.wk .dt { width: 52px; height: 52px; border-radius: 14px; background: var(--ac-soft); color: var(--ac-2); display: grid; place-items: center; line-height: 1; font-weight: 900; font-size: 20px; font-family: var(--f-display); font-style: italic; }
+.wk .dt small { display: block; font-size: 10px; font-family: var(--f-mono); font-style: normal; font-weight: 700; text-transform: uppercase; margin-top: 3px; }
+.wk .t b { display: block; font-size: 16px; overflow-wrap: anywhere; }
+.wk .t span { color: var(--mut); font-size: 13px; }
+.wk .chev { color: var(--mut); transition: transform .25s; font-size: 18px; }
+.wk[open-w] .chev { transform: rotate(90deg); }
+.wk .body { padding: 0 16px 16px; display: grid; gap: 10px; }
+.ex { background: var(--panel-2); border-radius: 14px; padding: 12px 14px; }
+.ex b { display: block; font-size: 14.5px; margin-bottom: 6px; }
+.sets { display: flex; flex-wrap: wrap; gap: 6px; }
+.sets span { font-family: var(--f-mono); font-size: 12.5px; padding: 5px 9px; border-radius: 9px; background: var(--bg); border: 1px solid var(--line); }
+.sets span.wu { color: var(--mut); border-style: dashed; }
+.empty { color: var(--mut); text-align: center; padding: 26px 10px; }
+
+/* переключатели */
+.seg { display: inline-flex; padding: 3px; border-radius: 12px; background: var(--panel-2); border: 1px solid var(--line); }
+.seg button { border: 0; background: transparent; color: var(--mut); font-weight: 700; padding: 8px 14px; border-radius: 9px; cursor: pointer; font-family: var(--f-body); font-size: 14px; }
+.seg button.on { background: var(--ac); color: var(--on-ac); }
+.dl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.dl-item { background: var(--panel-2); border: 1px solid var(--line); border-radius: 18px; padding: 18px; display: flex; flex-direction: column; gap: 6px; }
+.dl-item b { font-size: 16px; }
+.dl-item p { color: var(--mut); font-size: 13.5px; flex: 1; }
+.snaps { display: grid; gap: 8px; }
+.snap { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; background: var(--panel-2); border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; }
+.snap b { display: block; }
+.snap span { color: var(--mut); font-size: 13px; }
+.snap .btn { margin: 0; padding: 9px 14px; font-size: 13px; }
+.snap.ask { border-color: rgba(255, 122, 0, .5); }
+.lbbox { display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: center; }
+.lbbox .hex { width: 64px; height: 70px; clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); }
+.lbbox b { display: block; font-family: var(--f-display); font-style: italic; font-weight: 900; font-size: 28px; line-height: 1; }
+.lbbox span { color: var(--mut); font-size: 14px; }
+.spin { display: inline-block; width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--line); border-top-color: var(--ac); animation: sp .8s linear infinite; vertical-align: middle; }
+@keyframes sp { to { transform: rotate(360deg); } }
+@media (max-width: 640px) {
+  .kpis { grid-template-columns: 1fr 1fr; }
+  .dl-grid { grid-template-columns: 1fr; }
+  .wk > button { grid-template-columns: 46px 1fr auto; gap: 12px; }
+  .wk .dt { width: 46px; height: 46px; font-size: 18px; }
+  .acc .card { padding: 18px; }
+}
 </style>
 <div class="strip"><div class="wrap"><span data-l="ru"><b>СКОРО</b> в App Store и Google Play</span><span data-l="en"><b>COMING SOON</b> to the App Store and Google Play</span></div></div>
 <nav class="top" aria-label="GymPulse">
@@ -60,25 +134,25 @@
 </nav>
 
 <main class="acc">
-  <div class="wrap">
+  <div class="wrap narrow" id="box">
     <div id="msg" class="msg" hidden></div>
 
-    <section id="v-load"><p class="note" data-t="loading"></p></section>
+    <section id="v-load"><p class="note"><span class="spin"></span> <span data-t="loading"></span></p></section>
 
     <section id="v-done" hidden>
       <div class="big"><svg width="30" height="30" viewBox="0 0 28 28" aria-hidden="true"><path d="M7 14.5l4.5 4.5L21 9" stroke="#2FD27A" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       <h1 class="d" id="done-t"></h1><p class="sub" id="done-s"></p>
-      <button type="button" class="btn btn-gh" id="to-acc" data-t="toAccount"></button>
+      <button type="button" class="btn btn-gh full" id="to-acc" data-t="toAccount"></button>
     </section>
 
     <section id="v-newpw" hidden>
       <div class="eyebrow" data-t="accEyebrow"></div>
       <h1 class="d slash" data-t="newPwT"></h1><p class="sub" data-t="newPwS"></p>
       <div class="card">
-        <label for="np1" data-t="newPw"></label><input id="np1" type="password" autocomplete="new-password">
-        <label for="np2" data-t="repeatPw"></label><input id="np2" type="password" autocomplete="new-password">
+        <label class="f" for="np1" data-t="newPw"></label><input id="np1" type="password" autocomplete="new-password">
+        <label class="f" for="np2" data-t="repeatPw"></label><input id="np2" type="password" autocomplete="new-password">
         <p class="note" data-t="pwRule"></p>
-        <button type="button" class="btn btn-ac" id="np-go" data-t="savePw"></button>
+        <button type="button" class="btn btn-ac full" id="np-go" data-t="savePw"></button>
       </div>
     </section>
 
@@ -86,43 +160,121 @@
       <div class="eyebrow" data-t="accEyebrow"></div>
       <h1 class="d slash" data-t="loginT"></h1><p class="sub" data-t="loginS"></p>
       <div class="card" id="pw-box">
-        <label for="le" data-t="email"></label><input id="le" type="email" autocomplete="email">
-        <label for="lp" data-t="password"></label><input id="lp" type="password" autocomplete="current-password">
-        <button type="button" class="btn btn-ac" id="l-go" data-t="signIn"></button>
-        <div class="row"><button type="button" class="linkb" id="l-code" data-t="byCode"></button><button type="button" class="linkb" id="l-forgot" data-t="forgot"></button></div>
+        <label class="f" for="le" data-t="email"></label><input id="le" type="email" autocomplete="email">
+        <label class="f" for="lp" data-t="password"></label><input id="lp" type="password" autocomplete="current-password">
+        <button type="button" class="btn btn-ac full" id="l-go" data-t="signIn"></button>
+        <div class="row sb"><button type="button" class="linkb" id="l-code" data-t="byCode"></button><button type="button" class="linkb" id="l-forgot" data-t="forgot"></button></div>
       </div>
       <div class="card" id="code-box" hidden>
-        <p class="note" id="code-to"></p>
-        <label for="lc" data-t="code"></label><input id="lc" class="code" inputmode="numeric" maxlength="10" autocomplete="one-time-code">
-        <button type="button" class="btn btn-ac" id="c-go" data-t="verify"></button>
-        <div class="row"><button type="button" class="linkb" id="c-back" data-t="back"></button><button type="button" class="linkb" id="c-resend" data-t="resend"></button></div>
+        <p class="note" id="code-to" style="margin-top:0"></p>
+        <label class="f" for="lc" data-t="code"></label><input id="lc" class="code" inputmode="numeric" maxlength="10" autocomplete="one-time-code">
+        <button type="button" class="btn btn-ac full" id="c-go" data-t="verify"></button>
+        <div class="row sb"><button type="button" class="linkb" id="c-back" data-t="back"></button><button type="button" class="linkb" id="c-resend" data-t="resend"></button></div>
       </div>
-      <p class="note" data-t="noAcc"></p>
+      <p class="note"><span data-t="noAcc"></span> <a href="./#download" data-t="getApp" style="color:var(--ac-2)"></a></p>
     </section>
 
     <section id="v-acc" hidden>
-      <div class="eyebrow" data-t="accEyebrow"></div>
-      <h1 class="d slash" data-t="accT"></h1>
-      <div class="card"><div class="who"><div class="av" id="av"></div><div><b id="acc-name"></b><div class="note" id="acc-mail" style="margin:0"></div></div></div></div>
-      <div class="card">
-        <h2 data-t="chPw"></h2>
-        <label for="cp1" data-t="newPw"></label><input id="cp1" type="password" autocomplete="new-password">
-        <label for="cp2" data-t="repeatPw"></label><input id="cp2" type="password" autocomplete="new-password">
-        <p class="note" data-t="pwRule"></p>
-        <button type="button" class="btn btn-ac" id="cp-go" data-t="savePw"></button>
+      <div class="hero-acc">
+        <div class="av" id="av"></div>
+        <div class="who"><b id="acc-name"></b><span id="acc-mail"></span></div>
       </div>
-      <div class="card">
-        <h2 data-t="chMail"></h2>
-        <label for="cm" data-t="newMail"></label><input id="cm" type="email" autocomplete="email">
-        <p class="note" data-t="chMailHelp"></p>
-        <button type="button" class="btn btn-ac" id="cm-go" data-t="saveMail"></button>
+      <div class="tabs-acc" role="tablist" id="tabs">
+        <button type="button" role="tab" data-p="profile" data-t="tProfile"></button>
+        <button type="button" role="tab" data-p="history" data-t="tHistory"></button>
+        <button type="button" role="tab" data-p="data" data-t="tData"></button>
+        <button type="button" role="tab" data-p="backups" data-t="tBackups"></button>
+        <button type="button" role="tab" data-p="rank" data-t="tRank"></button>
+        <button type="button" role="tab" data-p="security" data-t="tSecurity"></button>
       </div>
-      <button type="button" class="btn btn-gh" id="out" data-t="signOut"></button>
-      <button type="button" class="btn btn-bad" id="del" data-t="delAcc"></button>
-      <div class="card danger" id="del-box" hidden style="margin-top:14px">
-        <h2 style="color:var(--bad)" data-t="delT"></h2>
-        <p data-t="delQ"></p>
-        <div class="row" style="flex-wrap:nowrap"><button type="button" class="btn btn-gh" id="del-no" data-t="cancel"></button><button type="button" class="btn btn-bad" id="del-yes" data-t="delYes"></button></div>
+
+      <!-- Профиль -->
+      <div class="pane" id="p-profile" hidden>
+        <div class="card">
+          <h2 data-t="photoT"></h2>
+          <div class="row">
+            <label class="btn btn-gh" style="margin:0;cursor:pointer"><input type="file" id="ph" accept="image/*" hidden><span data-t="photoUp"></span></label>
+            <button type="button" class="btn btn-gh" id="ph-del" style="margin:0" data-t="photoDel"></button>
+          </div>
+          <p class="note" data-t="photoHelp"></p>
+        </div>
+        <div class="card">
+          <h2 data-t="aboutT"></h2>
+          <label class="f" for="pn" data-t="name"></label><input id="pn" type="text" maxlength="30" autocomplete="nickname">
+          <label class="f" data-t="sex"></label>
+          <div class="seg" id="psex"><button type="button" data-v="m" data-t="male"></button><button type="button" data-v="f" data-t="female"></button></div>
+          <label class="f" for="pbw"><span data-t="bw"></span>, <span class="unit"></span></label><input id="pbw" type="number" inputmode="decimal" min="30" max="550" step="0.1">
+          <p class="note" data-t="aboutHelp"></p>
+          <button type="button" class="btn btn-ac" id="p-save" data-t="save"></button>
+        </div>
+      </div>
+
+      <!-- Тренировки -->
+      <div class="pane" id="p-history" hidden>
+        <div class="kpis" id="kpis"></div>
+        <div class="card">
+          <div class="cal-head"><button type="button" id="m-prev" aria-label="Previous month">←</button><b id="m-title"></b><button type="button" id="m-next" aria-label="Next month">→</button></div>
+          <div class="cal" id="cal"></div>
+        </div>
+        <div class="row sb"><h2 class="eyebrow" id="wl-title" style="margin:6px 0 0"></h2><div class="seg" id="unit"><button type="button" data-v="kg">kg</button><button type="button" data-v="lb">lb</button></div></div>
+        <div class="wlist" id="wlist"></div>
+      </div>
+
+      <!-- Мои данные -->
+      <div class="pane" id="p-data" hidden>
+        <div class="card">
+          <h2 data-t="exportT"></h2>
+          <p data-t="exportS"></p>
+          <div class="dl-grid" style="margin-top:16px">
+            <div class="dl-item"><b data-t="csvT"></b><p data-t="csvS"></p><button type="button" class="btn btn-ac" id="x-csv" data-t="download"></button></div>
+            <div class="dl-item"><b data-t="jsonT"></b><p data-t="jsonS"></p><button type="button" class="btn btn-gh" id="x-json" data-t="download"></button></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Резервные копии -->
+      <div class="pane" id="p-backups" hidden>
+        <div class="card">
+          <h2 data-t="bkT"></h2>
+          <p data-t="bkS"></p>
+          <div class="snaps" id="snaps" style="margin-top:16px"></div>
+        </div>
+      </div>
+
+      <!-- Рейтинг -->
+      <div class="pane" id="p-rank" hidden>
+        <div class="card" id="lb"></div>
+      </div>
+
+      <!-- Безопасность -->
+      <div class="pane" id="p-security" hidden>
+        <div class="card">
+          <h2 data-t="chPw"></h2>
+          <label class="f" for="cp1" data-t="newPw"></label><input id="cp1" type="password" autocomplete="new-password">
+          <label class="f" for="cp2" data-t="repeatPw"></label><input id="cp2" type="password" autocomplete="new-password">
+          <p class="note" data-t="pwRule"></p>
+          <button type="button" class="btn btn-ac" id="cp-go" data-t="savePw"></button>
+        </div>
+        <div class="card">
+          <h2 data-t="chMail"></h2>
+          <label class="f" for="cm" data-t="newMail"></label><input id="cm" type="email" autocomplete="email">
+          <p class="note" data-t="chMailHelp"></p>
+          <button type="button" class="btn btn-ac" id="cm-go" data-t="saveMail"></button>
+        </div>
+        <div class="card">
+          <h2 data-t="sessT"></h2>
+          <p data-t="sessS"></p>
+          <div class="row"><button type="button" class="btn btn-gh" id="out" data-t="signOut"></button><button type="button" class="btn btn-gh" id="out-all" data-t="signOutAll"></button></div>
+        </div>
+        <div class="card danger">
+          <h2 style="color:var(--bad)" data-t="dangerT"></h2>
+          <p data-t="delQ"></p>
+          <button type="button" class="btn btn-bad" id="del" data-t="delAcc"></button>
+          <div id="del-box" hidden>
+            <p class="note" style="color:var(--fg)" data-t="delSure"></p>
+            <div class="row"><button type="button" class="btn btn-gh" id="del-no" data-t="cancel"></button><button type="button" class="btn btn-bad" id="del-yes" data-t="delYes"></button></div>
+          </div>
+        </div>
       </div>
     </section>
   </div>
@@ -144,47 +296,260 @@
 <script>
 const SUPABASE_URL = 'https://tsquteboyugfvkewymhu.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_idamVW06MDAkTXfMhYo3RQ_-R0iIrN2';
+const EXN = {"Жим лёжа":["Bench Press",0],"Жим гантелей лёжа":["Dumbbell Bench Press",0],"Жим на наклонной скамье":["Incline Bench Press",0],"Разведение гантелей":["Dumbbell Fly",0],"Отжимания на брусьях":["Dips",0],"Сведение в кроссовере":["Cable Crossover",0],"Становая тяга":["Deadlift",1],"Подтягивания":["Pull-ups",1],"Тяга штанги в наклоне":["Barbell Row",1],"Тяга верхнего блока":["Lat Pulldown",1],"Тяга нижнего блока":["Seated Cable Row",1],"Тяга гантели одной рукой":["One-Arm Dumbbell Row",1],"Гиперэкстензия":["Back Extension",1],"Приседания со штангой":["Barbell Squat",2],"Фронтальные приседания":["Front Squat",2],"Жим ногами":["Leg Press",2],"Румынская тяга":["Romanian Deadlift",2],"Выпады":["Lunges",2],"Болгарские сплит-приседания":["Bulgarian Split Squat",2],"Разгибание ног":["Leg Extension",2],"Сгибание ног":["Leg Curl",2],"Подъём на носки":["Calf Raise",2],"Ягодичный мост":["Glute Bridge",2],"Жим стоя":["Overhead Press",3],"Жим гантелей сидя":["Seated Dumbbell Press",3],"Махи гантелей в стороны":["Lateral Raise",3],"Тяга к подбородку":["Upright Row",3],"Обратные разведения":["Reverse Fly",3],"Подъём штанги на бицепс":["Barbell Curl",4],"Молотки":["Hammer Curl",4],"Французский жим":["Skull Crusher",4],"Разгибание на трицепс в блоке":["Triceps Pushdown",4],"Сгибание на скамье Скотта":["Preacher Curl",4],"Скручивания":["Crunches",5],"Подъём ног в висе":["Hanging Leg Raise",5],"Планка (сек)":["Plank (sec)",5],"Жим гантелей на наклонной скамье":["Incline Dumbbell Press",0],"Жим в тренажёре на грудь":["Machine Chest Press",0],"Отжимания от пола":["Push-ups",0],"Пуловер с гантелью":["Dumbbell Pullover",0],"Сведение в тренажёре «бабочка»":["Pec Deck Fly",0],"Жим на скамье с обратным наклоном":["Decline Bench Press",0],"Т-тяга":["T-Bar Row",1],"Тяга в рычажном тренажёре":["Machine Row",1],"Шраги со штангой":["Barbell Shrugs",1],"Шраги с гантелями":["Dumbbell Shrugs",1],"Пуловер на верхнем блоке":["Straight-Arm Pulldown",1],"Подтягивания обратным хватом":["Chin-ups",1],"Гакк-приседания":["Hack Squat",2],"Приседания в Смите":["Smith Machine Squat",2],"Становая тяга сумо":["Sumo Deadlift",2],"Гоблет-приседания":["Goblet Squat",2],"Зашагивания на платформу":["Step-ups",2],"Отведение ноги в кроссовере":["Cable Glute Kickback",2],"Сведение ног в тренажёре":["Hip Adduction Machine",2],"Разведение ног в тренажёре":["Hip Abduction Machine",2],"Подъём на носки сидя":["Seated Calf Raise",2],"Жим Арнольда":["Arnold Press",3],"Махи в кроссовере":["Cable Lateral Raise",3],"Подъём гантелей перед собой":["Front Raise",3],"Жим в тренажёре на плечи":["Machine Shoulder Press",3],"Тяга каната к лицу":["Face Pull",3],"Обратные разведения в тренажёре":["Reverse Pec Deck",3],"Жим лёжа узким хватом":["Close-Grip Bench Press",4],"Разгибание гантели из-за головы":["Overhead Dumbbell Extension",4],"Подъём гантелей на бицепс":["Dumbbell Curl",4],"Концентрированный подъём на бицепс":["Concentration Curl",4],"Сгибание рук на блоке":["Cable Curl",4],"Кикбэк с гантелью":["Dumbbell Kickback",4],"Обратные отжимания от скамьи":["Bench Dips",4],"Сгибание запястий":["Wrist Curl",4],"Русские скручивания":["Russian Twist",5],"Велосипед":["Bicycle Crunch",5],"Боковая планка (сек)":["Side Plank (sec)",5],"Подъём ног лёжа":["Lying Leg Raise",5],"Ролик для пресса":["Ab Wheel Rollout",5],"Скручивания на блоке":["Cable Crunch",5],"Приседания с собственным весом":["Bodyweight Squat",2],"Приседания с выпрыгиванием":["Jump Squat",2],"Стульчик у стены (сек)":["Wall Sit (sec)",2],"Алмазные отжимания":["Diamond Push-ups",4],"Отжимания с ногами на возвышении":["Decline Push-ups",0],"Пайк-отжимания":["Pike Push-ups",3],"Австралийские подтягивания":["Inverted Row",1],"Супермен":["Superman",1],"Альпинист (сек)":["Mountain Climbers (sec)",5],"Бёрпи":["Burpees",6]};
+const LB = 2.20462;
+const TIERS = [['Бронза', 'Bronze', '#B9784A'], ['Серебро', 'Silver', '#AEB8C2'], ['Золото', 'Gold', '#E8BE3E'], ['Платина', 'Platinum', '#4FD1C5'], ['Алмаз', 'Diamond', '#6FB8FF'], ['Элита', 'Elite', '#A78BFA']];
 const T = {
-  ru: { loading: 'Загрузка…', accEyebrow: 'Аккаунт GymPulse', toAccount: 'Перейти в аккаунт', newPwT: 'Новый пароль', newPwS: 'Придумайте новый пароль для GymPulse.', newPw: 'Новый пароль', repeatPw: 'Повторите пароль',
-    pwRule: 'Минимум 8 символов, латинские буквы и цифры.', savePw: 'Сохранить пароль', loginT: 'Вход', loginS: 'Войдите, чтобы сменить пароль, почту или удалить аккаунт.', email: 'Почта', password: 'Пароль',
+  ru: { loading: 'Загрузка…', accEyebrow: 'Личный кабинет GymPulse', toAccount: 'Перейти в кабинет', newPwT: 'Новый пароль', newPwS: 'Придумайте новый пароль для GymPulse.', newPw: 'Новый пароль', repeatPw: 'Повторите пароль',
+    pwRule: 'Минимум 8 символов, латинские буквы и цифры.', savePw: 'Сохранить пароль', loginT: 'Вход', loginS: 'Профиль, история тренировок, ваши данные, резервные копии и настройки безопасности.', email: 'Почта', password: 'Пароль',
     signIn: 'Войти', byCode: 'Войти по коду', forgot: 'Забыли пароль?', code: 'Код из письма', verify: 'Подтвердить', back: 'Назад', resend: 'Отправить ещё раз',
-    noAcc: 'Аккаунт создаётся в приложении GymPulse.', accT: 'Мой аккаунт', chPw: 'Сменить пароль', chMail: 'Сменить почту', newMail: 'Новая почта', chMailHelp: 'Мы пришлём письмо для подтверждения. Почта сменится после перехода по ссылке.',
-    saveMail: 'Сменить почту', signOut: 'Выйти', delAcc: 'Удалить аккаунт', delT: 'Удалить аккаунт?', delQ: 'Аккаунт, все тренировки, резервные копии и фото профиля будут удалены без возможности восстановления.', delYes: 'Да, удалить', cancel: 'Отмена',
+    noAcc: 'Аккаунт создаётся в приложении.', getApp: 'Скачать GymPulse', tProfile: 'Профиль', tHistory: 'Тренировки', tData: 'Мои данные', tBackups: 'Копии', tRank: 'Рейтинг', tSecurity: 'Безопасность',
+    photoT: 'Фото профиля', photoUp: 'Загрузить фото', photoDel: 'Убрать фото', photoHelp: 'JPG или PNG. Мы уменьшим фото до 512×512 перед загрузкой.', aboutT: 'О себе', name: 'Имя', sex: 'Пол', male: 'Мужской', female: 'Женский', bw: 'Вес тела',
+    aboutHelp: 'Пол и вес тела нужны, чтобы сравнивать результаты с нормативами и считать ранги.', save: 'Сохранить', saved: 'Сохранено. В приложении изменения появятся при следующем открытии.', nameShort: 'Имя должно быть не короче 2 символов', bwBad: 'Укажите вес тела от 30 до 250 кг',
+    photoSaved: 'Фото обновлено', photoRemoved: 'Фото убрано', photoBig: 'Не удалось обработать фото, попробуйте другое',
+    kWorkouts: 'тренировок', kVolume: 'поднято всего', kSets: 'рабочих подходов', kMonth: 'в этом месяце', wlMonth: 'Тренировки за {m}', noW: 'В этом месяце тренировок нет.', noAll: 'Тренировок пока нет. Запишите первую в приложении.',
+    ex: 'упр.', sets: 'подх.', min: 'мин', untitled: 'Тренировка', bwShort: 'вес тела',
+    exportT: 'Скачать мои данные', exportS: 'Все ваши тренировки, подходы и настройки — в файле, который останется у вас.', csvT: 'Таблица Excel (CSV)', csvS: 'Каждый подход отдельной строкой: дата, упражнение, вес, повторы. Открывается в Excel и Google Таблицах.',
+    jsonT: 'Полная копия (JSON)', jsonS: 'Всё как хранится в облаке: тренировки, программы, замеры и настройки. Для архива или переноса.', download: 'Скачать', prepared: 'Файл подготовлен: {n} тренировок',
+    bkT: 'Резервные копии', bkS: 'Раз в день сервер сохраняет копию ваших данных и хранит 14 последних. Вернуть можно любую из них.', bkEmpty: 'Копий пока нет. Первая появится после синхронизации в приложении.', bkN: 'тренировок в копии: {n}', restore: 'Вернуть',
+    bkSure: 'Вернуть данные к {d}? Тренировки, добавленные позже, пропадут.', yesRestore: 'Да, вернуть', restored: 'Данные восстановлены. Откройте приложение, чтобы оно подтянуло изменения.', latest: 'последняя',
+    lbOn: 'Вы участвуете в рейтинге', lbPlace: 'место {p} из {n}', lbOff: 'Вы не участвуете в рейтинге', lbOffS: 'В рейтинге видны только имя профиля, страна, ранг, объём и число тренировок за 30 дней. Почта, фото и сами тренировки не публикуются.',
+    lbJoin: 'Участвовать', lbLeave: 'Выйти из рейтинга', lbPending: 'Участие включено. Ваша строка появится в рейтинге, когда вы откроете приложение.', lbLeft: 'Вы вышли из рейтинга, ваша строка удалена.', lbName: 'Имя в рейтинге', lbScore: 'Ранг',
+    chPw: 'Сменить пароль', chMail: 'Сменить почту', newMail: 'Новая почта', chMailHelp: 'Мы пришлём письмо для подтверждения. Почта сменится после перехода по ссылке.', saveMail: 'Сменить почту',
+    sessT: 'Сеансы', sessS: 'Если телефон потерян или кто-то узнал пароль, выйдите на всех устройствах сразу, а потом смените пароль.', signOut: 'Выйти здесь', signOutAll: 'Выйти на всех устройствах', outAll: 'Вы вышли на всех устройствах.',
+    dangerT: 'Удаление аккаунта', delQ: 'Аккаунт, все тренировки, резервные копии и фото профиля будут удалены без возможности восстановления.', delAcc: 'Удалить аккаунт', delSure: 'Точно удалить? Это действие нельзя отменить.', delYes: 'Да, удалить навсегда', cancel: 'Отмена',
     sentTo: 'Код отправлен на {e}. Проверьте «Входящие» и «Спам».', needEmail: 'Введите почту', needAll: 'Введите почту и пароль', pwBad: 'Пароль: минимум 8 символов, латинские буквы и цифры', pwDiff: 'Пароли не совпадают',
-    pwSaved: 'Пароль изменён. Теперь войдите с ним в приложении.', mailSent: 'Письмо отправлено. Подтвердите смену по ссылке в нём.',
-    confirmedT: 'Почта подтверждена', confirmedS: 'Вернитесь в приложение GymPulse и войдите.', emailChT: 'Почта изменена', emailChS: 'Если пришло два письма (на старую и новую почту), подтвердите оба.',
-    deleted: 'Аккаунт удалён.', linkBad: 'Ссылка устарела или уже использована. Запросите новую.', wait: 'Подождите…' },
-  en: { loading: 'Loading…', accEyebrow: 'GymPulse account', toAccount: 'Go to my account', newPwT: 'New password', newPwS: 'Choose a new password for GymPulse.', newPw: 'New password', repeatPw: 'Repeat password',
-    pwRule: 'At least 8 characters with Latin letters and numbers.', savePw: 'Save password', loginT: 'Sign in', loginS: 'Sign in to change your password or email, or to delete your account.', email: 'Email', password: 'Password',
+    pwSaved: 'Пароль изменён.', mailSent: 'Письмо отправлено. Подтвердите смену по ссылке в нём.', confirmedT: 'Почта подтверждена', confirmedS: 'Вернитесь в приложение GymPulse и войдите.', emailChT: 'Почта изменена', emailChS: 'Если пришло два письма (на старую и новую почту), подтвердите оба.',
+    deleted: 'Аккаунт удалён.', linkBad: 'Ссылка устарела или уже использована. Запросите новую.', wait: 'Подождите…', netErr: 'Не удалось загрузить данные. Проверьте интернет и обновите страницу.' },
+  en: { loading: 'Loading…', accEyebrow: 'GymPulse account', toAccount: 'Open my account', newPwT: 'New password', newPwS: 'Choose a new password for GymPulse.', newPw: 'New password', repeatPw: 'Repeat password',
+    pwRule: 'At least 8 characters with Latin letters and numbers.', savePw: 'Save password', loginT: 'Sign in', loginS: 'Your profile, workout history, data, backups and security settings.', email: 'Email', password: 'Password',
     signIn: 'Sign in', byCode: 'Sign in with a code', forgot: 'Forgot password?', code: 'Code from the email', verify: 'Verify', back: 'Back', resend: 'Resend',
-    noAcc: 'Accounts are created in the GymPulse app.', accT: 'My account', chPw: 'Change password', chMail: 'Change email', newMail: 'New email', chMailHelp: 'We will send a confirmation email. The address changes after you follow the link.',
-    saveMail: 'Change email', signOut: 'Sign out', delAcc: 'Delete account', delT: 'Delete account?', delQ: 'Your account, all workouts, backups and profile photo will be erased permanently.', delYes: 'Yes, delete', cancel: 'Cancel',
+    noAcc: 'Accounts are created in the app.', getApp: 'Get GymPulse', tProfile: 'Profile', tHistory: 'Workouts', tData: 'My data', tBackups: 'Backups', tRank: 'Leaderboard', tSecurity: 'Security',
+    photoT: 'Profile photo', photoUp: 'Upload photo', photoDel: 'Remove photo', photoHelp: 'JPG or PNG. We resize it to 512×512 before uploading.', aboutT: 'About you', name: 'Name', sex: 'Sex', male: 'Male', female: 'Female', bw: 'Body weight',
+    aboutHelp: 'Sex and body weight are used to compare your lifts with strength standards and calculate ranks.', save: 'Save', saved: 'Saved. The app picks up the changes next time you open it.', nameShort: 'The name must be at least 2 characters', bwBad: 'Enter a body weight between 30 and 250 kg',
+    photoSaved: 'Photo updated', photoRemoved: 'Photo removed', photoBig: 'Could not process this photo, try another one',
+    kWorkouts: 'workouts', kVolume: 'lifted in total', kSets: 'working sets', kMonth: 'this month', wlMonth: 'Workouts in {m}', noW: 'No workouts this month.', noAll: 'No workouts yet. Log your first one in the app.',
+    ex: 'ex.', sets: 'sets', min: 'min', untitled: 'Workout', bwShort: 'body weight',
+    exportT: 'Download my data', exportS: 'All your workouts, sets and settings in a file you keep.', csvT: 'Spreadsheet (CSV)', csvS: 'One row per set: date, exercise, weight, reps. Opens in Excel and Google Sheets.',
+    jsonT: 'Full copy (JSON)', jsonS: 'Everything as stored in the cloud: workouts, programs, measurements and settings. For archiving or moving.', download: 'Download', prepared: 'File ready: {n} workouts',
+    bkT: 'Backups', bkS: 'Once a day the server saves a copy of your data and keeps the last 14. You can restore any of them.', bkEmpty: 'No backups yet. The first one appears after the app syncs.', bkN: 'workouts in backup: {n}', restore: 'Restore',
+    bkSure: 'Restore your data to {d}? Workouts added later will be lost.', yesRestore: 'Yes, restore', restored: 'Data restored. Open the app so it picks up the changes.', latest: 'latest',
+    lbOn: 'You are on the leaderboard', lbPlace: 'place {p} of {n}', lbOff: 'You are not on the leaderboard', lbOffS: 'Others see only your profile name, country, rank, 30-day volume and workout count. Your email, photo and workouts stay private.',
+    lbJoin: 'Join', lbLeave: 'Leave the leaderboard', lbPending: 'Joined. Your entry appears on the leaderboard next time you open the app.', lbLeft: 'You left the leaderboard and your entry was deleted.', lbName: 'Leaderboard name', lbScore: 'Rank',
+    chPw: 'Change password', chMail: 'Change email', newMail: 'New email', chMailHelp: 'We will send a confirmation email. The address changes after you follow the link.', saveMail: 'Change email',
+    sessT: 'Sessions', sessS: 'If you lost your phone or someone knows your password, sign out everywhere at once, then change your password.', signOut: 'Sign out here', signOutAll: 'Sign out everywhere', outAll: 'You are signed out on all devices.',
+    dangerT: 'Delete account', delQ: 'Your account, all workouts, backups and profile photo will be erased permanently.', delAcc: 'Delete account', delSure: 'Are you sure? This cannot be undone.', delYes: 'Yes, delete forever', cancel: 'Cancel',
     sentTo: 'Code sent to {e}. Check your inbox and spam.', needEmail: 'Enter your email', needAll: 'Enter your email and password', pwBad: 'Password: at least 8 characters, letters and numbers', pwDiff: 'Passwords do not match',
-    pwSaved: 'Password changed. Sign in with it in the app.', mailSent: 'Email sent. Confirm the change via the link inside.',
-    confirmedT: 'Email confirmed', confirmedS: 'Go back to the GymPulse app and sign in.', emailChT: 'Email changed', emailChS: 'If you got two emails (old and new address), confirm both.',
-    deleted: 'Account deleted.', linkBad: 'This link has expired or was already used. Request a new one.', wait: 'Please wait…' } };
+    pwSaved: 'Password changed.', mailSent: 'Email sent. Confirm the change via the link inside.', confirmedT: 'Email confirmed', confirmedS: 'Go back to the GymPulse app and sign in.', emailChT: 'Email changed', emailChS: 'If you got two emails (old and new address), confirm both.',
+    deleted: 'Account deleted.', linkBad: 'This link has expired or was already used. Request a new one.', wait: 'Please wait…', netErr: 'Could not load your data. Check your connection and refresh the page.' } };
 const lang = () => (window.gpLang ? window.gpLang() : 'ru');
-const t = (k, p) => (T[lang()][k] || k).replace(/\{(\w+)\}/g, (_, x) => (p && p[x]) || '');
+const t = (k, p) => (T[lang()][k] || k).replace(/\{(\w+)\}/g, (_, x) => (p && p[x] != null ? p[x] : ''));
 const $ = id => document.getElementById(id);
-let doneKey = null;
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const N = v => { const x = parseFloat(String(v == null ? '' : v).replace(',', '.')); return isNaN(x) ? 0 : x; };
+const loc = () => (lang() === 'en' ? 'en-GB' : 'ru-RU');
+let unit = 'kg'; try { unit = localStorage.getItem('gp_unit') || (lang() === 'en' ? 'lb' : 'kg'); } catch (e) {}
+const fmtW = kg => { const v = unit === 'lb' ? kg * LB : kg; return (Math.round(v * 10) / 10).toLocaleString(loc()); };
+const kgOf = s => N(s.w) / (s.u === 'lb' ? LB : 1);
+const Wk = s => s.d && s.t !== 'x';
+const exName = n => (lang() === 'en' && EXN[n] ? EXN[n][0] : n);
+
+let doneKey = null, U = null, W = [], G = null, pane = 'profile', month = null, openId = null, snapsData = null, snapAsk = null, lbState = null, sexV = '';
 function paint() {
   document.querySelectorAll('[data-t]').forEach(el => { el.textContent = t(el.dataset.t); });
+  document.querySelectorAll('.unit').forEach(el => { el.textContent = unit; });
   if (doneKey) { $('done-t').textContent = t(doneKey + 'T'); $('done-s').textContent = t(doneKey + 'S'); }
+  if (U) { renderHistory(); renderSnaps(); renderLb(); fillProfile(false); }
 }
 window.onLang = paint;
 const msg = (txt, ok) => { const m = $('msg'); m.textContent = txt || ''; m.hidden = !txt; m.className = 'msg' + (ok ? ' ok' : ' err'); if (txt) window.scrollTo({ top: 0, behavior: 'smooth' }); };
-function show(v) { ['load', 'done', 'newpw', 'login', 'acc'].forEach(x => { $('v-' + x).hidden = x !== v; }); if (v === 'acc') fillAcc(); }
+function show(v) { ['load', 'done', 'newpw', 'login', 'acc'].forEach(x => { $('v-' + x).hidden = x !== v; }); $('box').className = 'wrap ' + (v === 'acc' ? 'wide' : 'narrow'); if (v === 'acc') openAcc(); }
 const pwOk = p => p.length >= 8 && /[A-Za-z]/.test(p) && /\d/.test(p);
-const busy = (btn, on) => { btn.disabled = on; if (on) btn.textContent = t('wait'); else paint(); };
+const busy = (btn, on) => { btn.disabled = on; if (on) { btn.dataset.l = btn.textContent; btn.textContent = t('wait'); } else paint(); };
 
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY, { auth: { persistSession: true, detectSessionInUrl: true, flowType: 'implicit' } });
 let codeMode = null, codeEmail = '';
 
-async function fillAcc() {
-  const { data } = await sb.auth.getUser(); const u = data && data.user; if (!u) return show('login');
-  const nm = (u.user_metadata && u.user_metadata.name) || u.email.split('@')[0];
-  $('acc-name').textContent = nm; $('acc-mail').textContent = u.email; $('av').textContent = nm.slice(0, 1).toUpperCase();
+// ---------- кабинет ----------
+async function openAcc() {
+  const { data } = await sb.auth.getUser(); U = data && data.user; if (!U) return show('login');
+  fillProfile(true); avatar();
+  const want = (location.hash || '').slice(1); setPane(['profile', 'history', 'data', 'backups', 'rank', 'security'].includes(want) ? want : 'profile');
+  try { await Promise.all([loadW(), loadG()]); } catch (e) { msg(t('netErr')); }
+  renderHistory(); fillProfile(true);
 }
+function setPane(p) {
+  pane = p; document.querySelectorAll('#tabs button').forEach(b => b.setAttribute('aria-selected', b.dataset.p === p ? 'true' : 'false'));
+  document.querySelectorAll('.pane').forEach(el => { el.hidden = el.id !== 'p-' + p; });
+  try { history.replaceState(null, '', '#' + p); } catch (e) {}
+  if (p === 'backups') loadSnaps(); if (p === 'rank') loadLb();
+}
+$('tabs').onclick = e => { const b = e.target.closest('button'); if (b) { msg(''); setPane(b.dataset.p); } };
+const md = () => (U && U.user_metadata) || {};
+const uname = () => md().name || (U ? U.email.split('@')[0] : '');
+function fillProfile(fields) {
+  $('acc-name').textContent = uname(); $('acc-mail').textContent = U ? U.email : '';
+  if (!$('av').querySelector('img')) $('av').textContent = uname().slice(0, 1).toUpperCase();
+  if (fields) { $('pn').value = md().name || ''; sexV = md().sex || ''; const bw = G && N(G.bwBase); $('pbw').value = bw ? Math.round((unit === 'lb' ? bw * LB : bw) * 10) / 10 : ''; }
+  document.querySelectorAll('#psex button').forEach(b => b.classList.toggle('on', b.dataset.v === sexV));
+  document.querySelectorAll('#unit button').forEach(b => b.classList.toggle('on', b.dataset.v === unit));
+}
+async function avatar() {
+  if (!md().avatar) { $('av').textContent = uname().slice(0, 1).toUpperCase(); return; }
+  const { data } = await sb.storage.from('avatars').createSignedUrl(U.id + '/avatar.jpg', 3600);
+  if (data && data.signedUrl) $('av').innerHTML = '<img alt="" src="' + esc(data.signedUrl) + '">';
+}
+async function loadW() {
+  const rows = []; let from = 0;
+  for (;;) { const { data, error } = await sb.from('workouts').select('id,data').eq('user_id', U.id).eq('deleted', false).range(from, from + 999); if (error) throw error; rows.push(...data); if (data.length < 1000) break; from += 1000; }
+  W = rows.map(r => r.data).filter(w => w && w.date && Array.isArray(w.items)).sort((a, b) => b.date.localeCompare(a.date) || (b.ts || 0) - (a.ts || 0));
+  if (!month) { const d = W[0] ? new Date(W[0].date + 'T12:00') : new Date(); month = [d.getFullYear(), d.getMonth()]; }
+}
+async function loadG() { const { data, error } = await sb.from('gym_data').select('data').eq('user_id', U.id).maybeSingle(); if (error) throw error; G = (data && data.data) || {}; }
+async function saveG(patch) {   // приложение возьмёт настройки с сервера, если отметка времени новее
+  await loadG(); const n = { ...G, ...patch, upd: Date.now() }; delete n.workouts;
+  const { error } = await sb.from('gym_data').upsert({ user_id: U.id, data: n, updated_at: new Date().toISOString() }); if (error) throw error; G = n;
+}
+
+// профиль
+$('psex').onclick = e => { const b = e.target.closest('button'); if (b) { sexV = b.dataset.v; fillProfile(false); } };
+$('p-save').onclick = async () => {
+  const nm = $('pn').value.trim(), raw = N($('pbw').value), bw = unit === 'lb' ? raw / LB : raw;
+  if (nm && nm.length < 2) return msg(t('nameShort')); if (raw && (bw < 30 || bw > 250)) return msg(t('bwBad'));
+  busy($('p-save'), true);
+  try {
+    const patch = {}; if (nm !== (md().name || '')) patch.name = nm.slice(0, 30); if (sexV && sexV !== md().sex) patch.sex = sexV;
+    if (Object.keys(patch).length) { const { data, error } = await sb.auth.updateUser({ data: patch }); if (error) throw error; U = data.user; }
+    if (raw && Math.abs(bw - N(G && G.bwBase)) > 0.05) await saveG({ bwBase: Math.round(bw * 10) / 10 });
+    busy($('p-save'), false); fillProfile(true); msg(t('saved'), true);
+  } catch (e) { busy($('p-save'), false); msg(e.message || String(e)); }
+};
+$('ph').onchange = async e => {
+  const f = e.target.files && e.target.files[0]; e.target.value = ''; if (!f) return;
+  try {
+    const img = await createImageBitmap(f), s = Math.min(img.width, img.height), c = document.createElement('canvas'); c.width = c.height = 512;
+    c.getContext('2d').drawImage(img, (img.width - s) / 2, (img.height - s) / 2, s, s, 0, 0, 512, 512);
+    const blob = await new Promise(r => c.toBlob(r, 'image/jpeg', 0.82));
+    const up = await sb.storage.from('avatars').upload(U.id + '/avatar.jpg', blob, { contentType: 'image/jpeg', upsert: true }); if (up.error) throw up.error;
+    const { data, error } = await sb.auth.updateUser({ data: { avatar: 'v' + Date.now() } }); if (error) throw error; U = data.user;
+    $('av').innerHTML = ''; await avatar(); msg(t('photoSaved'), true);
+  } catch (err) { msg(err && err.message ? err.message : t('photoBig')); }
+};
+$('ph-del').onclick = async () => {
+  try { await sb.storage.from('avatars').remove([U.id + '/avatar.jpg']); const { data, error } = await sb.auth.updateUser({ data: { avatar: '' } }); if (error) throw error; U = data.user; $('av').innerHTML = ''; fillProfile(false); msg(t('photoRemoved'), true); }
+  catch (e) { msg(e.message || String(e)); }
+};
+
+// тренировки
+const vol = w => w.items.reduce((a, i) => a + (i.sets || []).reduce((b, s) => b + (Wk(s) ? kgOf(s) * N(s.r) : 0), 0), 0);
+const nsets = w => w.items.reduce((a, i) => a + (i.sets || []).filter(Wk).length, 0);
+function renderHistory() {
+  if (!U || !month) return;
+  const tot = W.reduce((a, w) => a + vol(w), 0), now = new Date(), mk = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0');
+  const big = v => { const x = unit === 'lb' ? v * LB : v; return x >= 1e6 ? (Math.round(x / 1e5) / 10).toLocaleString(loc()) + 'M' : x >= 1e4 ? Math.round(x / 1e3).toLocaleString(loc()) + 'k' : Math.round(x).toLocaleString(loc()); };
+  $('kpis').innerHTML = [[W.length, t('kWorkouts')], [big(tot) + ' ' + unit, t('kVolume')], [W.reduce((a, w) => a + nsets(w), 0).toLocaleString(loc()), t('kSets')], [W.filter(w => w.date.startsWith(mk)).length, t('kMonth')]]
+    .map(([v, l]) => '<div class="kpi"><b>' + esc(v) + '</b><span>' + esc(l) + '</span></div>').join('');
+  const [y, m] = month, first = new Date(y, m, 1), days = new Date(y, m + 1, 0).getDate(), shift = (first.getDay() + 6) % 7, pre = y + '-' + String(m + 1).padStart(2, '0');
+  const has = new Set(W.filter(w => w.date.startsWith(pre)).map(w => +w.date.slice(8, 10)));
+  const dn = lang() === 'en' ? ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'] : ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
+  let h = dn.map(d => '<div class="dw">' + d + '</div>').join('') + '<div></div>'.repeat(shift);
+  const today = now.getFullYear() === y && now.getMonth() === m ? now.getDate() : 0;
+  for (let d = 1; d <= days; d++) h += has.has(d) ? '<button type="button" class="d on' + (d === today ? ' today' : '') + '" data-day="' + d + '">' + d + '</button>' : '<div class="d' + (d === today ? ' today' : '') + '">' + d + '</div>';
+  $('cal').innerHTML = h;
+  const mt = first.toLocaleDateString(loc(), { month: 'long', year: 'numeric' }); $('m-title').textContent = mt;
+  $('wl-title').textContent = t('wlMonth', { m: first.toLocaleDateString(loc(), { month: 'long' }) });
+  const list = W.filter(w => w.date.startsWith(pre));
+  $('wlist').innerHTML = list.length ? list.map(wHtml).join('') : '<div class="empty">' + esc(W.length ? t('noW') : t('noAll')) + '</div>';
+}
+function wHtml(w) {
+  const d = new Date(w.date + 'T12:00'), isOpen = openId === w.id, items = w.items.filter(i => (i.sets || []).length);
+  const meta = [items.length + ' ' + t('ex'), nsets(w) + ' ' + t('sets'), fmtW(vol(w)) + ' ' + unit].concat(w.dur ? [Math.round(w.dur) + ' ' + t('min')] : []).join(' · ');
+  let body = '';
+  if (isOpen) body = '<div class="body">' + items.map(i => '<div class="ex"><b>' + esc(exName(i.n)) + '</b><div class="sets">' + i.sets.filter(s => s.d || N(s.w) || N(s.r)).map(s => {
+    const wt = N(s.w) ? fmtW(kgOf(s)) + '×' : ''; return '<span class="' + (s.t === 'x' ? 'wu' : '') + '">' + esc(wt + (N(s.r) || '–')) + '</span>'; }).join('') + '</div></div>').join('') +
+    (N(w.bw) ? '<p class="note">' + esc(t('bwShort')) + ': ' + esc(fmtW(N(w.bw) / (w.bwu === 'lb' ? LB : 1))) + ' ' + unit + '</p>' : '') + (w.note ? '<p class="note">' + esc(w.note) + '</p>' : '') + '</div>';
+  return '<div class="wk"' + (isOpen ? ' open-w' : '') + '><button type="button" data-w="' + esc(w.id) + '" aria-expanded="' + isOpen + '"><span class="dt">' + d.getDate() + '<small>' + esc(d.toLocaleDateString(loc(), { weekday: 'short' })) + '</small></span><span class="t"><b>' + esc(w.name || t('untitled')) + '</b><span>' + esc(meta) + '</span></span><span class="chev">›</span></button>' + body + '</div>';
+}
+$('wlist').onclick = e => { const b = e.target.closest('button[data-w]'); if (!b) return; openId = openId === b.dataset.w ? null : b.dataset.w; renderHistory(); };
+$('cal').onclick = e => { const b = e.target.closest('[data-day]'); if (!b) return; const pre = month[0] + '-' + String(month[1] + 1).padStart(2, '0') + '-' + String(b.dataset.day).padStart(2, '0'); const w = W.find(x => x.date === pre); if (w) { openId = w.id; renderHistory(); const el = document.querySelector('[data-w="' + CSS.escape(w.id) + '"]'); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' }); } };
+$('m-prev').onclick = () => { month = month[1] ? [month[0], month[1] - 1] : [month[0] - 1, 11]; openId = null; renderHistory(); };
+$('m-next').onclick = () => { month = month[1] < 11 ? [month[0], month[1] + 1] : [month[0] + 1, 0]; openId = null; renderHistory(); };
+$('unit').onclick = e => { const b = e.target.closest('button'); if (!b) return; unit = b.dataset.v; try { localStorage.setItem('gp_unit', unit); } catch (x) {} paint(); fillProfile(true); };
+
+// мои данные
+function save(name, text, type) { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([text], { type })); a.download = name; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000); }
+const stamp = () => new Date().toISOString().slice(0, 10);
+$('x-csv').onclick = async () => {
+  try { await loadW(); } catch (e) { return msg(t('netErr')); }
+  const en = lang() === 'en', sep = en ? ',' : ';', q = v => { const s = String(v == null ? '' : v); return /[",;\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; };
+  const num = v => (en ? String(v) : String(v).replace('.', ','));
+  const head = en ? ['Date', 'Workout', 'Exercise', 'Set', 'Type', 'Weight', 'Unit', 'Reps', 'Done', 'Weight (kg)', 'Body weight (kg)', 'Note']
+    : ['Дата', 'Тренировка', 'Упражнение', 'Подход', 'Тип', 'Вес', 'Ед.', 'Повторы', 'Выполнен', 'Вес (кг)', 'Вес тела (кг)', 'Заметка'];
+  const rows = [head.join(sep)];
+  W.slice().reverse().forEach(w => w.items.forEach(i => (i.sets || []).forEach((s, k) => rows.push([w.date, w.name || '', exName(i.n), k + 1, s.t === 'x' ? (en ? 'warm-up' : 'разминка') : (en ? 'working' : 'рабочий'),
+    s.w === '' || s.w == null ? '' : num(s.w), s.u || 'kg', s.r == null ? '' : s.r, s.d ? (en ? 'yes' : 'да') : (en ? 'no' : 'нет'), N(s.w) ? num(Math.round(kgOf(s) * 100) / 100) : '',
+    N(w.bw) ? num(Math.round(N(w.bw) / (w.bwu === 'lb' ? LB : 1) * 10) / 10) : '', i.note || ''].map(q).join(sep)))));
+  save('GymPulse-workouts-' + stamp() + '.csv', '﻿' + rows.join('\r\n'), 'text/csv;charset=utf-8'); msg(t('prepared', { n: W.length }), true);
+};
+$('x-json').onclick = async () => {
+  try { await Promise.all([loadW(), loadG()]); } catch (e) { return msg(t('netErr')); }
+  const out = { app: 'GymPulse', exported_at: new Date().toISOString(), account: { id: U.id, email: U.email, name: md().name || '', sex: md().sex || '' }, settings: G, workouts: W };
+  save('GymPulse-data-' + stamp() + '.json', JSON.stringify(out, null, 2), 'application/json'); msg(t('prepared', { n: W.length }), true);
+};
+
+// резервные копии
+async function loadSnaps() {
+  if (snapsData && snapsData.busy) return; snapsData = { busy: true, list: [] }; renderSnaps();
+  const { data, error } = await sb.rpc('my_snapshots'); snapsData = { busy: false, list: error ? [] : (data || []), err: error && error.message }; renderSnaps();
+}
+function renderSnaps() {
+  const el = $('snaps'); if (!el || !snapsData) return;
+  if (snapsData.busy) { el.innerHTML = '<p class="note"><span class="spin"></span></p>'; return; }
+  if (snapsData.err) { el.innerHTML = '<p class="note">' + esc(snapsData.err) + '</p>'; return; }
+  if (!snapsData.list.length) { el.innerHTML = '<p class="note">' + esc(t('bkEmpty')) + '</p>'; return; }
+  el.innerHTML = snapsData.list.map((s, k) => { const d = new Date(s.day + 'T12:00').toLocaleDateString(loc(), { day: 'numeric', month: 'long', year: 'numeric' });
+    if (snapAsk === s.day) return '<div class="snap ask"><div><b>' + esc(t('bkSure', { d })) + '</b></div><div class="row"><button type="button" class="btn btn-gh" data-no="1">' + esc(t('cancel')) + '</button><button type="button" class="btn btn-ac" data-go="' + esc(s.day) + '">' + esc(t('yesRestore')) + '</button></div></div>';
+    return '<div class="snap"><div><b>' + esc(d) + (k === 0 ? ' · ' + esc(t('latest')) : '') + '</b><span>' + esc(t('bkN', { n: s.n })) + '</span></div><button type="button" class="btn btn-gh" data-ask="' + esc(s.day) + '">' + esc(t('restore')) + '</button></div>'; }).join('');
+}
+$('snaps').onclick = async e => {
+  const a = e.target.closest('[data-ask]'), no = e.target.closest('[data-no]'), go = e.target.closest('[data-go]');
+  if (a) { snapAsk = a.dataset.ask; renderSnaps(); } else if (no) { snapAsk = null; renderSnaps(); }
+  else if (go) { busy(go, true); const { error } = await sb.rpc('restore_snapshot', { d: go.dataset.go }); snapAsk = null; if (error) { msg(error.message); renderSnaps(); return; } msg(t('restored'), true); await Promise.all([loadW(), loadG()]).catch(() => {}); renderHistory(); loadSnaps(); }
+};
+
+// рейтинг
+async function loadLb() {
+  lbState = { busy: true }; renderLb();
+  try {
+    await loadG();
+    const { data: row } = await sb.from('leaderboard').select('name,tier,score,vol30,wk30').eq('user_id', U.id).maybeSingle();
+    let pos = null; if (row) { const p = await sb.rpc('lb_pos', { m: 'score', c: null }); pos = p.data && p.data[0]; }
+    lbState = { busy: false, row, pos, on: !!(G && G.lb) };
+  } catch (e) { lbState = { busy: false, err: e.message || String(e) }; }
+  renderLb();
+}
+function renderLb() {
+  const el = $('lb'); if (!el || !lbState) return;
+  if (lbState.busy) { el.innerHTML = '<p class="note"><span class="spin"></span></p>'; return; }
+  if (lbState.err) { el.innerHTML = '<p class="note">' + esc(lbState.err) + '</p>'; return; }
+  const r = lbState.row;
+  if (r) { const ti = TIERS[Math.max(0, Math.min(5, r.tier | 0))];
+    el.innerHTML = '<h2>' + esc(t('lbOn')) + '</h2><div class="lbbox"><div class="hex" style="background:' + ti[2] + '"></div><div><b style="color:' + ti[2] + '">' + esc(lang() === 'en' ? ti[1] : ti[0]) + '</b><span>' + (lbState.pos ? esc(t('lbPlace', { p: lbState.pos.pos, n: lbState.pos.total })) + ' · ' : '') + esc(t('lbName')) + ': ' + esc(r.name) + '</span></div></div>' +
+      '<p class="note">' + esc(t('lbOffS')) + '</p><button type="button" class="btn btn-bad" id="lb-leave">' + esc(t('lbLeave')) + '</button>'; }
+  else if (lbState.on) el.innerHTML = '<h2>' + esc(t('lbOn')) + '</h2><p>' + esc(t('lbPending')) + '</p><button type="button" class="btn btn-bad" id="lb-leave">' + esc(t('lbLeave')) + '</button>';
+  else el.innerHTML = '<h2>' + esc(t('lbOff')) + '</h2><p>' + esc(t('lbOffS')) + '</p><button type="button" class="btn btn-ac" id="lb-join">' + esc(t('lbJoin')) + '</button>';
+}
+$('lb').onclick = async e => {
+  const j = e.target.closest('#lb-join'), l = e.target.closest('#lb-leave'); if (!j && !l) return;
+  busy(j || l, true);
+  try {
+    if (j) { await saveG({ lb: 1 }); msg(t('lbPending'), true); }
+    else { const { error } = await sb.from('leaderboard').delete().eq('user_id', U.id); if (error) throw error; await saveG({ lb: 0 }); msg(t('lbLeft'), true); }
+  } catch (err) { msg(err.message || String(err)); }
+  loadLb();
+};
+
+// безопасность
 async function setPw(p1, p2, btn) {
   if (!pwOk(p1)) return msg(t('pwBad')); if (p1 !== p2) return msg(t('pwDiff'));
   busy(btn, true); const { error } = await sb.auth.updateUser({ password: p1 }); busy(btn, false);
@@ -198,6 +563,19 @@ $('cm-go').onclick = async () => {
   busy($('cm-go'), true); const { error } = await sb.auth.updateUser({ email: e }, { emailRedirectTo: location.origin + location.pathname }); busy($('cm-go'), false);
   if (error) return msg(error.message); $('cm').value = ''; msg(t('mailSent'), true);
 };
+$('out').onclick = async () => { await sb.auth.signOut(); U = null; show('login'); };
+$('out-all').onclick = async () => { busy($('out-all'), true); const { error } = await sb.auth.signOut({ scope: 'global' }); busy($('out-all'), false); if (error) return msg(error.message); U = null; show('login'); msg(t('outAll'), true); };
+$('del').onclick = () => { $('del-box').hidden = false; $('del').hidden = true; };
+$('del-no').onclick = () => { $('del-box').hidden = true; $('del').hidden = false; };
+$('del-yes').onclick = async () => {
+  busy($('del-yes'), true);
+  try { await sb.storage.from('avatars').remove([U.id + '/avatar.jpg']); } catch (e) {}
+  const { error } = await sb.rpc('delete_my_account'); busy($('del-yes'), false);
+  if (error) return msg(error.message);
+  await sb.auth.signOut(); U = null; $('del-box').hidden = true; $('del').hidden = false; show('login'); msg(t('deleted'), true);
+};
+
+// вход
 $('l-go').onclick = async () => {
   const e = $('le').value.trim().toLowerCase(), p = $('lp').value; if (!e || !p) return msg(t('needAll'));
   busy($('l-go'), true); const { error } = await sb.auth.signInWithPassword({ email: e, password: p }); busy($('l-go'), false);
@@ -220,17 +598,7 @@ $('c-go').onclick = async () => {
   busy($('c-go'), true); const { error } = await sb.auth.verifyOtp({ email: codeEmail, token, type: codeMode }); busy($('c-go'), false);
   if (error) return msg(error.message); msg(''); show(codeMode === 'recovery' ? 'newpw' : 'acc');
 };
-$('out').onclick = async () => { await sb.auth.signOut(); show('login'); };
-$('del').onclick = () => { $('del-box').hidden = false; $('del-box').scrollIntoView({ behavior: 'smooth', block: 'center' }); };
-$('del-no').onclick = () => { $('del-box').hidden = true; };
-$('del-yes').onclick = async () => {
-  busy($('del-yes'), true);
-  const { data } = await sb.auth.getUser(); const u = data && data.user;
-  if (u) { try { await sb.storage.from('avatars').remove([u.id + '/avatar.jpg']); } catch (e) {} }
-  const { error } = await sb.rpc('delete_my_account'); busy($('del-yes'), false);
-  if (error) return msg(error.message);
-  await sb.auth.signOut(); $('del-box').hidden = true; msg(t('deleted'), true); show('login');
-};
+['le', 'lp'].forEach(id => $(id).addEventListener('keydown', e => { if (e.key === 'Enter') $('l-go').click(); }));
 function done(k) { doneKey = k; paint(); show('done'); }
 
 (async () => {
@@ -247,10 +615,11 @@ function done(k) { doneKey = k; paint(); show('done'); }
     if (type === 'signup' || type === 'email' || type === 'invite') return done('confirmed');
     return show('acc');
   }
-  await new Promise(r => setTimeout(r, 300));                 // даём supabase разобрать #access_token из старых ссылок
+  const tabHash = /^#(profile|history|data|backups|rank|security)$/.test(location.hash);
+  if (!tabHash) await new Promise(r => setTimeout(r, 300));                 // даём supabase разобрать #access_token из старых ссылок
   if (type === 'recovery') { history.replaceState(null, '', location.pathname); return show('newpw'); }
   const { data } = await sb.auth.getSession();
-  if (location.hash) history.replaceState(null, '', location.pathname);
+  if (location.hash && !tabHash) history.replaceState(null, '', location.pathname);
   show(data && data.session ? 'acc' : 'login');
 })();
 </script>
