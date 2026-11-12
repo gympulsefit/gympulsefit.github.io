@@ -41,9 +41,12 @@ p { margin: 0; }
 section { padding-block: clamp(64px, 9vw, 120px); }
 
 /* полоса и навигация */
-.strip { background: linear-gradient(90deg, var(--ac), var(--ac-2)); color: var(--on-ac); font-weight: 700; font-size: 13.5px; text-align: center; }
-.strip .wrap { padding-block: 9px; }
-.strip b { font-family: var(--f-mono); letter-spacing: 0.06em; }
+.strip { background: linear-gradient(90deg, var(--ac), var(--ac-2)); color: var(--on-ac); text-align: center; font-family: var(--f-display); font-style: italic; font-weight: 800; font-size: 12.5px; letter-spacing: 0.1em; text-transform: uppercase; }
+.strip .wrap { padding-block: 9px; display: flex; align-items: center; justify-content: center; gap: 10px; }
+.strip .wrap::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--on-ac); flex: none; animation: stripDot 1.8s ease-in-out infinite; }
+.strip b { font-weight: 900; padding: 2px 8px; margin-right: 4px; border-radius: 6px; background: rgba(26, 14, 0, 0.14); }
+@keyframes stripDot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .35; transform: scale(.7); } }
+@media (max-width: 480px) { .strip { font-size: 10.5px; letter-spacing: 0.05em; } .strip b { padding: 2px 6px; } .strip .wrap { gap: 8px; } }
 nav.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(8, 7, 10, 0.84); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
 nav.top .wrap { display: flex; align-items: center; gap: 20px; padding-block: 12px; }
 nav.top .logo img { height: 30px; width: auto; }
