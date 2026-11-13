@@ -8,7 +8,7 @@
 <meta name="gp:title-en" content="GymPulse">
 <meta name="description" content="GymPulse — дневник тренировок для iPhone и Android: ранги силы, карта нагрузки, умные цели и программы для зала и дома.">
 <meta name="theme-color" content="#08070A">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-vhCojYVqglzWc3rxSe71ZzEY8ykdeRPMenTMEMSjk7M=' 'sha256-+N1O2ZhB4fCDuWW6IZrmTO3uLFp5yGKeGTYfXfHgf4A=' 'sha256-yc+ZH+GXjhdj20Uvd1x+eblcQqOexcb/E6bV8d3Yuis=' https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.119.0/; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://tsquteboyugfvkewymhu.supabase.co; connect-src 'self' https://tsquteboyugfvkewymhu.supabase.co wss://tsquteboyugfvkewymhu.supabase.co; object-src 'none'; frame-src 'none'; worker-src 'none'; manifest-src 'self'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-vhCojYVqglzWc3rxSe71ZzEY8ykdeRPMenTMEMSjk7M=' 'sha256-+N1O2ZhB4fCDuWW6IZrmTO3uLFp5yGKeGTYfXfHgf4A=' 'sha256-VAVlBNXvPKZ7xdp2BcN4tLJjCNJUkDB6+BNIUAc+iOA=' https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.119.0/; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://tsquteboyugfvkewymhu.supabase.co; connect-src 'self' https://tsquteboyugfvkewymhu.supabase.co wss://tsquteboyugfvkewymhu.supabase.co; object-src 'none'; frame-src 'none'; worker-src 'none'; manifest-src 'self'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <script>if (self !== top) { try { top.location.href = self.location.href; } catch (e) {} document.documentElement.style.display = 'none'; }</script>
 
 <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -92,8 +92,10 @@
 .load { background: radial-gradient(70% 60% at 30% 40%, rgba(255, 106, 0, 0.12), transparent 70%), var(--panel); border-block: 1px solid var(--line); }
 .load .grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 40px; align-items: center; margin-top: 30px; }
 .mapbox { background: var(--bg); border: 1px solid var(--line); border-radius: 28px; padding: 22px 18px 18px; }
-.mapbox svg { width: 100%; height: auto; display: block; }
-.mapbox path { transition: fill .55s ease; }
+.bm { display: flex; justify-content: space-around; align-items: flex-end; }
+.bm .fig { position: relative; width: 40%; aspect-ratio: 460 / 1098; }
+.bm .fig img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.bm .fig i { position: absolute; inset: 0; -webkit-mask: var(--m) center / 100% 100% no-repeat; mask: var(--m) center / 100% 100% no-repeat; background: transparent; opacity: 0; transition: background-color .55s ease, opacity .55s ease; }
 .mapbox .cap { display: flex; justify-content: space-around; font-family: var(--f-mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--mut); margin-top: 6px; }
 .heat { display: flex; gap: 5px; margin-top: 16px; align-items: center; font-family: var(--f-mono); font-size: 11px; color: var(--mut); }
 .heat i { flex: 1; height: 12px; border-radius: 6px; }
@@ -121,7 +123,7 @@
 .rail::-webkit-scrollbar { display: none; }
 .rail figure { flex: none; margin: 0; scroll-snap-align: center; width: 272px; }
 .rail .phone { width: 272px; border-radius: 40px; padding: 9px; box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.9), 0 0 0 1px #3a363b inset; }
-.rail .phone img { border-radius: 32px; image-rendering: -webkit-optimize-contrast; }
+.rail .phone img { border-radius: 32px; }
 .rail .phone::after { top: 17px; height: 20px; }
 .rail figcaption { margin-top: 14px; }
 .rail figcaption b { display: block; font-family: var(--f-display); font-style: italic; text-transform: uppercase; font-weight: 800; font-size: 16px; }
@@ -222,7 +224,7 @@
       <div class="soon"><span class="dot" aria-hidden="true"></span><span data-l="ru">Готовится к выходу в App Store и Google Play</span><span data-l="en">Coming soon to the App Store and Google Play</span></div>
     </div>
     <div class="stage">
-      <div class="phone"><img src="img/home.jpg" alt="GymPulse" width="960" height="2087"></div>
+      <div class="phone"><img src="img/home.jpg" alt="GymPulse" width="1206" height="2622"></div>
       <div class="chip c1"><span class="hex" aria-hidden="true"></span><div><span data-l="ru">Ранг: Золото</span><span data-l="en">Rank: Gold</span><small><span data-l="ru">Грудь · жим лёжа</span><span data-l="en">Chest · bench press</span></small></div></div>
       <div class="chip c2"><span class="n" data-l="ru">+2,5 кг</span><span class="n" data-l="en">+5 lb</span><div><span data-l="ru">Новая цель</span><span data-l="en">New target</span><small><span data-l="ru">Жим лёжа 102,5 × 6</span><span data-l="en">Bench press 225 × 6</span></small></div></div>
       <div class="chip c3"><span class="fl" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24"><path d="M12 21c3.9 0 6.5-2.6 6.5-6.3 0-3.3-2.1-5.4-3.8-7.3-.5 1.8-1.5 2.8-2.7 3.2.2-2.7-.8-5.4-3.3-7.6-.3 3.3-2.1 5.1-3.6 7.1-1 1.3-1.6 2.9-1.6 4.6C5.5 18.4 8.1 21 12 21z" fill="#FF7A00"/></svg></span><div><span data-l="ru">4 дня на этой неделе</span><span data-l="en">4 days this week</span><small><span data-l="ru">серия продолжается</span><span data-l="en">streak is on</span></small></div></div>
@@ -297,7 +299,7 @@
     <p class="lead"><span data-l="ru">После тренировки мышцы окрашиваются по полученной работе: серые без нагрузки, зелёные слегка, красные на максимуме. Выберите тренировку, чтобы посмотреть.</span><span data-l="en">After every workout the muscles are coloured by the work they got: grey for none, green for a little, red for the most. Pick a workout to try it.</span></p>
     <div class="grid">
       <div class="mapbox rv">
-        <svg id="bodymap" viewBox="36 2 328 380" role="img" aria-label="Muscle load map"></svg>
+        <div class="bm" id="bodymap" role="img" aria-label="Muscle load map"><div class="fig"><img src="img/body/front.webp" alt="" width="460" height="1098" decoding="async"><i data-g="0" style="--m:url(img/body/front_0.webp)"></i><i data-g="1" style="--m:url(img/body/front_1.webp)"></i><i data-g="2" style="--m:url(img/body/front_2.webp)"></i><i data-g="3" style="--m:url(img/body/front_3.webp)"></i><i data-g="4" style="--m:url(img/body/front_4.webp)"></i><i data-g="5" style="--m:url(img/body/front_5.webp)"></i></div><div class="fig"><img src="img/body/back.webp" alt="" width="460" height="1098" decoding="async"><i data-g="1" style="--m:url(img/body/back_1.webp)"></i><i data-g="2" style="--m:url(img/body/back_2.webp)"></i><i data-g="3" style="--m:url(img/body/back_3.webp)"></i><i data-g="4" style="--m:url(img/body/back_4.webp)"></i></div></div>
         <div class="cap"><span data-l="ru">Спереди</span><span data-l="en">Front</span><span data-l="ru">Сзади</span><span data-l="en">Back</span></div>
         <div class="heat" aria-hidden="true">0 <i class="z"></i><i style="background:#2FD27A"></i><i style="background:#A6E03A"></i><i style="background:#FFD233"></i><i style="background:#FF8A1F"></i><i style="background:#FF3B30"></i> MAX</div>
       </div>
@@ -341,15 +343,15 @@
       <div class="rail-nav"><button type="button" id="prev" aria-label="Previous">←</button><button type="button" id="next" aria-label="Next">→</button></div>
     </div>
     <div class="rail" id="rail">
-      <figure><div class="phone"><img loading="lazy" src="img/home.jpg" alt="" width="960" height="2087"></div><figcaption><b data-l="ru">Главная</b><b data-l="en">Home</b><span data-l="ru">Неделя, серия и быстрый старт</span><span data-l="en">Your week, streak and quick start</span></figcaption></figure>
-      <figure><div class="phone"><img loading="lazy" src="img/rec.jpg" alt="" width="960" height="2087"></div><figcaption><b data-l="ru">Восстановление</b><b data-l="en">Recovery</b><span data-l="ru">Какие мышцы готовы к работе</span><span data-l="en">Which muscles are ready</span></figcaption></figure>
-      <figure><div class="phone"><img loading="lazy" src="img/rank.jpg" alt="" width="960" height="2087"></div><figcaption><b data-l="ru">Прогресс</b><b data-l="en">Progress</b><span data-l="ru">Ранг каждой группы мышц</span><span data-l="en">A rank for every muscle group</span></figcaption></figure>
-      <figure><div class="phone"><img loading="lazy" src="img/tgt.jpg" alt="" width="960" height="2087"></div><figcaption><b data-l="ru">Цели</b><b data-l="en">Targets</b><span data-l="ru">Вес на следующую тренировку</span><span data-l="en">Weight for your next session</span></figcaption></figure>
-      <figure><div class="phone"><img loading="lazy" src="img/load.jpg" alt="" width="960" height="2087"></div><figcaption><b data-l="ru">Нагрузка</b><b data-l="en">Load</b><span data-l="ru">Подходы на группу за 30 дней</span><span data-l="en">Sets per muscle group, 30 days</span></figcaption></figure>
-      <figure><div class="phone"><img loading="lazy" src="img/prog.jpg" alt="" width="960" height="2087"></div><figcaption><b data-l="ru">Программы</b><b data-l="en">Programs</b><span data-l="ru">Свои и готовые, старт в одно касание</span><span data-l="en">Yours and ready-made, one tap to start</span></figcaption></figure>
-      <figure><div class="phone"><img loading="lazy" src="img/chal.jpg" alt="" width="960" height="2087"></div><figcaption><b data-l="ru">Челленджи</b><b data-l="en">Challenges</b><span data-l="ru">Уровни, опыт и задания</span><span data-l="en">Levels, XP and goals</span></figcaption></figure>
-      <figure><div class="phone"><img loading="lazy" src="img/lb.jpg" alt="" width="960" height="2087"></div><figcaption><b data-l="ru">Рейтинг</b><b data-l="en">Leaderboard</b><span data-l="ru">Ваше место в мире и стране</span><span data-l="en">Your place worldwide and at home</span></figcaption></figure>
-      <figure><div class="phone"><img loading="lazy" src="img/hist.jpg" alt="" width="960" height="2087"></div><figcaption><b data-l="ru">История</b><b data-l="en">History</b><span data-l="ru">Календарь и все тренировки</span><span data-l="en">Calendar and every workout</span></figcaption></figure>
+      <figure><div class="phone"><img loading="lazy" src="img/home.jpg" alt="" width="1206" height="2622"></div><figcaption><b data-l="ru">Главная</b><b data-l="en">Home</b><span data-l="ru">Неделя, серия и быстрый старт</span><span data-l="en">Your week, streak and quick start</span></figcaption></figure>
+      <figure><div class="phone"><img loading="lazy" src="img/rec.jpg" alt="" width="1206" height="2622"></div><figcaption><b data-l="ru">Восстановление</b><b data-l="en">Recovery</b><span data-l="ru">Какие мышцы готовы к работе</span><span data-l="en">Which muscles are ready</span></figcaption></figure>
+      <figure><div class="phone"><img loading="lazy" src="img/rank.jpg" alt="" width="1206" height="2622"></div><figcaption><b data-l="ru">Прогресс</b><b data-l="en">Progress</b><span data-l="ru">Ранг каждой группы мышц</span><span data-l="en">A rank for every muscle group</span></figcaption></figure>
+      <figure><div class="phone"><img loading="lazy" src="img/tgt.jpg" alt="" width="1206" height="2622"></div><figcaption><b data-l="ru">Цели</b><b data-l="en">Targets</b><span data-l="ru">Вес на следующую тренировку</span><span data-l="en">Weight for your next session</span></figcaption></figure>
+      <figure><div class="phone"><img loading="lazy" src="img/load.jpg" alt="" width="1206" height="2622"></div><figcaption><b data-l="ru">Нагрузка</b><b data-l="en">Load</b><span data-l="ru">Подходы на группу за 30 дней</span><span data-l="en">Sets per muscle group, 30 days</span></figcaption></figure>
+      <figure><div class="phone"><img loading="lazy" src="img/prog.jpg" alt="" width="1206" height="2622"></div><figcaption><b data-l="ru">Программы</b><b data-l="en">Programs</b><span data-l="ru">Свои и готовые, старт в одно касание</span><span data-l="en">Yours and ready-made, one tap to start</span></figcaption></figure>
+      <figure><div class="phone"><img loading="lazy" src="img/chal.jpg" alt="" width="1206" height="2622"></div><figcaption><b data-l="ru">Челленджи</b><b data-l="en">Challenges</b><span data-l="ru">Уровни, опыт и задания</span><span data-l="en">Levels, XP and goals</span></figcaption></figure>
+      <figure><div class="phone"><img loading="lazy" src="img/lb.jpg" alt="" width="1206" height="2622"></div><figcaption><b data-l="ru">Рейтинг</b><b data-l="en">Leaderboard</b><span data-l="ru">Ваше место в мире и стране</span><span data-l="en">Your place worldwide and at home</span></figcaption></figure>
+      <figure><div class="phone"><img loading="lazy" src="img/hist.jpg" alt="" width="1206" height="2622"></div><figcaption><b data-l="ru">История</b><b data-l="en">History</b><span data-l="ru">Календарь и все тренировки</span><span data-l="en">Calendar and every workout</span></figcaption></figure>
     </div>
   </div>
 </section>
@@ -452,29 +454,18 @@
 
 <script>
 (function () {
-  // Силуэт тот же, что в приложении: половина тела, вторая половина отражается. g: 0 грудь, 1 спина, 2 ноги, 3 плечи, 4 руки, 5 кор, -1 голова и кисти
-  var BODY = {"front":[[-1,"M100 10 Q117 10 118 32 Q118 50 106 56 L100 57 Z"],[-1,"M100 56 L108 55 Q110 62 116 64 L100 66 Z"],[1,"M108 56 Q118 62 132 64 Q124 68 114 67 Z"],[3,"M132 64 Q148 66 150 86 Q149 98 140 104 Q134 88 120 72 Z"],[0,"M101 68 L119 70 Q135 78 138 98 Q126 110 104 108 L101 106 Z"],[4,"M140 106 Q152 108 153 126 Q151 142 143 148 Q136 134 136 118 Z"],[4,"M143 151 Q155 160 153 182 Q149 198 143 204 L136 202 Q134 178 136 158 Z"],[-1,"M137 206 Q146 206 146 216 Q144 228 138 228 Q132 226 133 214 Z"],[5,"M101 111 L118 111 Q121 140 117 170 L101 173 Z"],[5,"M121 110 Q134 114 133 140 Q130 160 121 172 Q124 140 121 110 Z"],[-1,"M101 175 L119 172 Q131 178 133 194 Q118 186 101 188 Z"],[2,"M103 190 Q124 186 134 198 Q138 240 129 272 Q117 280 109 271 Q102 232 103 190 Z"],[-1,"M110 276 Q120 280 127 276 Q128 288 120 290 Q111 290 110 276 Z"],[2,"M110 292 Q124 290 128 304 Q128 332 121 358 L113 358 Q106 322 110 292 Z"],[-1,"M112 360 L122 360 Q130 368 128 374 L108 374 Q108 366 112 360 Z"]],"back":[[-1,"M100 10 Q117 10 118 32 Q118 50 106 56 L100 57 Z"],[1,"M100 54 Q112 56 132 66 Q120 84 100 100 Z"],[3,"M133 66 Q148 68 150 86 Q149 98 140 104 Q132 88 124 76 Z"],[1,"M101 102 Q118 88 136 92 Q139 114 127 142 Q113 152 101 152 Z"],[4,"M140 106 Q152 108 153 126 Q151 142 143 148 Q136 134 136 118 Z"],[4,"M143 151 Q155 160 153 182 Q149 198 143 204 L136 202 Q134 178 136 158 Z"],[-1,"M137 206 Q146 206 146 216 Q144 228 138 228 Q132 226 133 214 Z"],[1,"M101 155 Q116 152 126 146 Q127 162 120 174 L101 176 Z"],[2,"M101 179 Q124 175 133 192 Q135 212 119 216 Q104 214 101 202 Z"],[2,"M104 220 Q121 216 133 224 Q135 252 127 274 Q115 280 109 270 Q102 246 104 220 Z"],[-1,"M110 277 Q120 281 127 277 Q127 287 120 289 Q111 289 110 277 Z"],[2,"M109 291 Q127 289 129 309 Q127 333 119 343 Q108 339 106 319 Q105 303 109 291 Z"],[-1,"M111 346 L121 346 Q124 360 126 372 L108 374 Q108 360 111 346 Z"]]};
-  var HEAT = ['#2FD27A', '#A6E03A', '#FFD233', '#FF8A1F', '#FF3B30'], OFF = '#3A3634', SKIN = '#2A2628';
+  // та же анатомическая модель, что в приложении: основа + маски групп, окрашиваемые цветом нагрузки
+  var HEAT = ['#2FD27A', '#A6E03A', '#FFD233', '#FF8A1F', '#FF3B30'], OFF = '#3A3634';
   function hx(c) { return [1, 3, 5].map(function (i) { return parseInt(c.slice(i, i + 2), 16); }); }
   function mix(a, b, t) { var x = hx(a), y = hx(b); return '#' + x.map(function (v, i) { return Math.round(v + (y[i] - v) * t).toString(16).padStart(2, '0'); }).join(''); }
   function heat(t) { if (t <= 0) return OFF; var f = Math.min(1, t) * (HEAT.length - 1), i = Math.min(HEAT.length - 2, Math.floor(f)); return mix(HEAT[i], HEAT[i + 1], f - i); }
   var NAMES = { ru: ['Грудь', 'Спина', 'Ноги', 'Плечи', 'Руки', 'Кор'], en: ['Chest', 'Back', 'Legs', 'Shoulders', 'Arms', 'Core'] };
   var W = { push: [42, 0, 0, 26, 22, 10], pull: [0, 56, 0, 14, 30, 0], legs: [0, 6, 82, 0, 0, 12], full: [20, 22, 32, 10, 8, 8] };
-  var svg = document.getElementById('bodymap'), NS = 'http://www.w3.org/2000/svg', parts = [];
-  function add(list, dx) {
-    list.forEach(function (p) {
-      [0, 1].forEach(function (m) {
-        var el = document.createElementNS(NS, 'path'); el.setAttribute('d', p[1]);
-        el.setAttribute('transform', m ? 'translate(' + (200 + dx) + ',0) scale(-1,1)' : 'translate(' + dx + ',0)');
-        el.setAttribute('fill', p[0] < 0 ? SKIN : OFF); svg.appendChild(el); if (p[0] >= 0) parts.push([p[0], el]);
-      });
-    });
-  }
-  add(BODY.front, 0); add(BODY.back, 200);
+  var parts = [].map.call(document.querySelectorAll('#bodymap i'), function (el) { return [+el.getAttribute('data-g'), el]; });
   var cur = 'push', list = document.getElementById('mlist');
   function render() {
     var v = W[cur], mx = Math.max.apply(null, v), lang = window.gpLang ? window.gpLang() : 'ru';
-    parts.forEach(function (p) { p[1].setAttribute('fill', heat(v[p[0]] / mx)); });
+    parts.forEach(function (p) { var t = v[p[0]] / mx; p[1].style.backgroundColor = t > 0 ? heat(t) : 'transparent'; p[1].style.opacity = t > 0 ? '0.82' : '0'; });
     var order = [0, 1, 2, 3, 4, 5].sort(function (a, b) { return v[b] - v[a]; });
     if (!list.children.length) order.forEach(function (g) { var r = document.createElement('div'); r.className = 'mrow'; r.innerHTML = '<span></span><span class="t"><i></i></span><em></em>'; list.appendChild(r); });
     order.forEach(function (g, k) {
